@@ -44,8 +44,26 @@
 				</headerToolbar>
 
 				<columns>
-					<Column id="nameColumn">
-						<Text text="{i18n>tableNameColumnTitle}" id="nameColumnTitle"/>
+					<Column id="MaterialIDColumn">
+						<Text text="{i18n>MaterialIDColumnTitle}" id="nameMaterialIDTitle"/>
+					</Column>
+					<Column id="MaterialTextColumn">
+						<Text text="{i18n>MaterialTextColumnTitle}" id="nameMaterialTextTitle"/>
+					</Column>
+					<Column id="MaterialDescriptionColumn">
+						<Text text="{i18n>MaterialDescriptionColumnTitle}" id="nameMateriaDescriptionTitle"/>
+					</Column>
+					<Column id="CreatedByFullNameColumn">
+						<Text text="{i18n>CreatedByFullNameColumnTitle}" id="CreatedByFullNameTitle"/>
+					</Column>
+					<Column id="CreatedColumn">
+						<Text text="{i18n>CreatedColumnTitle}" id="CreatedTitle"/>
+					</Column>
+					<Column id="ModifiedByFullNameColumn">
+						<Text text="{i18n>ModifiedByFullNameColumnTitle}" id="ModifiedByFullNameTitle"/>
+					</Column>
+					<Column id="ModifiedColumn">
+						<Text text="{i18n>ModifiedColumnTitle}" id="ModifiedTitle"/>
 					</Column>
 				</columns>
 
@@ -55,7 +73,19 @@
 						press="onPress">
 						<cells>
 							<ObjectIdentifier
-								title="{CreatedBy}"/>
+								title="{MaterialID}"/>
+							<ObjectIdentifier
+								title="{MaterialText}"/>
+							<ObjectIdentifier
+								title="{MaterialDescription}"/>
+							<ObjectIdentifier
+								title="{CreatedByFullName}"/>
+							<ObjectIdentifier
+								title="{Created}"/>
+							<ObjectIdentifier
+								title="{ModifiedByFullName}"/>
+							<ObjectIdentifier
+								title="{Modified}"/>
 						</cells>
 					</ColumnListItem>
 				</items>
