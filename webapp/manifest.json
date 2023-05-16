@@ -52,11 +52,7 @@
 			"libs": {
 				"sap.ui.core": {},
 				"sap.m": {},
-				"sap.f": {},
-				"sap.ushell": {},
-				"sap.collaboration": {
-					"lazy": true
-				}
+				"sap.f": {}
 			}
 		},
 		"contentDensities": {
@@ -73,15 +69,6 @@
 			"": {
 				"dataSource": "mainService",
 				"preload": true
-			}
-		},
-		"services": {
-			"ShellUIService": {
-				"factoryName": "sap.ushell.ui5service.ShellUIService",
-				"lazy": false,
-				"settings": {
-					"setTitle": "auto"
-				}
 			}
 		},
 		"routing": {

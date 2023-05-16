@@ -1,7 +1,7 @@
 {
   "run": [
     {
-      "filePath": "/webapp/test/flpSandbox.html",
+      "filePath": "/webapp/index.html",
       "previewMode": 1,
       "dataMode": 1,
       "workspace": "withoutWorkspace",
@@ -13,13 +13,13 @@
       "backendSystem": [],
       "_metadata": {
         "runnerId": "webapprunner",
-        "id": 7140240,
-        "displayName": "Run flpSandbox.html",
-        "lastRunTimeStamp": 1684221355970
+        "id": 6264993,
+        "displayName": "Run index.html",
+        "lastRunTimeStamp": 1684221840545
       }
     },
     {
-      "filePath": "/Worklist/webapp/test/flpSandbox.html",
+      "filePath": "/Worklist/webapp/index.html",
       "previewMode": 1,
       "dataMode": 1,
       "workspace": "withoutWorkspace",
@@ -35,18 +35,18 @@
           "paramActive": false
         }
       ],
-      "hashParameter": "Worklist-display",
+      "hashParameter": "",
       "ui5ActiveVersion": "snapshot",
       "ui5VerSource": null,
       "isDefaultVersion": 1,
       "_metadata": {
-        "id": "5543726",
+        "id": "8811421",
         "runnerId": "webapprunner",
-        "displayName": "App in FLP Sandbox"
+        "displayName": "App"
       }
     },
     {
-      "filePath": "/Worklist/webapp/test/flpSandboxMockServer.html",
+      "filePath": "/Worklist/webapp/test/mockServer.html",
       "previewMode": 1,
       "dataMode": 1,
       "workspace": "withoutWorkspace",
@@ -62,14 +62,14 @@
           "paramActive": false
         }
       ],
-      "hashParameter": "Worklist-display",
+      "hashParameter": "",
       "ui5ActiveVersion": "snapshot",
       "ui5VerSource": null,
       "isDefaultVersion": 1,
       "_metadata": {
-        "id": "8905675",
+        "id": "5570653",
         "runnerId": "webapprunner",
-        "displayName": "App in FLP Sandbox (Mock Server)"
+        "displayName": "App (Mock Server)"
       }
     },
     {
@@ -93,7 +93,7 @@
         }
       ],
       "_metadata": {
-        "id": "6934945",
+        "id": "4431051",
         "runnerId": "webapprunner",
         "displayName": "Unit Tests"
       }
@@ -120,7 +120,7 @@
       ],
       "hashParameter": "",
       "_metadata": {
-        "id": "1207314",
+        "id": "2414554",
         "runnerId": "webapprunner",
         "displayName": "OPA Tests"
       }
@@ -147,36 +147,9 @@
       ],
       "hashParameter": "",
       "_metadata": {
-        "id": "2513945",
+        "id": "1487281",
         "runnerId": "webapprunner",
         "displayName": "Test Suite (Unit, OPA)"
-      }
-    },
-    {
-      "filePath": "/Worklist/webapp/Component.js",
-      "previewMode": 1,
-      "dataMode": 1,
-      "workspace": "withoutWorkspace",
-      "ui5ActiveVersion": "snapshot",
-      "ui5VerSource": null,
-      "isDefaultVersion": 1,
-      "urlParameters": [
-        {
-          "paramName": "",
-          "paramValue": "",
-          "paramActive": false
-        },
-        {
-          "paramName": "",
-          "paramValue": "",
-          "paramActive": false
-        }
-      ],
-      "hashParameter": "",
-      "_metadata": {
-        "id": "3689653",
-        "runnerId": "fiorirunner",
-        "displayName": "App as Fiori Component"
       }
     }
   ]

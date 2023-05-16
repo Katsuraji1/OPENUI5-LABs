@@ -23,17 +23,9 @@ sap.ui.define([
 		and.theObjectViewsBusyIndicatorDelayIsRestored().
 		and.iShouldSeeTheRememberedObject();
 
-	});
-
-	opaTest("Should open the share menu and display the share buttons", function (Given, When, Then) {
-		// Actions
-		When.onTheObjectPage.iPressOnTheShareButton();
-
-		// Assertions
-		Then.onTheObjectPage.iShouldSeeTheShareEmailButton();
-
 		// Cleanup
 		Then.iTeardownMyAppFrame();
+
 	});
 
 });

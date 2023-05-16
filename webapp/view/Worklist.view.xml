@@ -2,8 +2,7 @@
 	controllerName="zjblessons.Worklist.controller.Worklist"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:semantic="sap.f.semantic"
-	xmlns:footerbar="sap.ushell.ui.footerbar">
+	xmlns:semantic="sap.f.semantic">
 
 	<semantic:SemanticPage
 		id="page"
@@ -67,13 +66,6 @@
 			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
 		</semantic:sendEmailAction>
 
-		<semantic:shareInJamAction>
-			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press="onShareInJamPress"/>
-		</semantic:shareInJamAction>
-
-		<semantic:saveAsTileAction>
-			<footerbar:AddBookmarkButton id ="shareTile" title="{worklistView>/saveAsTileTitle}" />
-		</semantic:saveAsTileAction>
 
 	</semantic:SemanticPage>
 

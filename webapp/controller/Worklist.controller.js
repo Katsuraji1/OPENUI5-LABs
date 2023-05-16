@@ -2,11 +2,10 @@
 sap.ui.define([
 		"zjblessons/Worklist/controller/BaseController",
 		"sap/ui/model/json/JSONModel",
-		"sap/ui/core/routing/History",
 		"zjblessons/Worklist/model/formatter",
 		"sap/ui/model/Filter",
 		"sap/ui/model/FilterOperator"
-	], function (BaseController, JSONModel, History, formatter, Filter, FilterOperator) {
+	], function (BaseController, JSONModel, formatter, Filter, FilterOperator) {
 		"use strict";
 
 		return BaseController.extend("zjblessons.Worklist.controller.Worklist", {
@@ -36,7 +35,6 @@ sap.ui.define([
 				// Model used to manipulate control states
 				oViewModel = new JSONModel({
 					worklistTableTitle : this.getResourceBundle().getText("worklistTableTitle"),
-					saveAsTileTitle: this.getResourceBundle().getText("saveAsTileTitle", this.getResourceBundle().getText("worklistViewTitle")),
 					shareOnJamTitle: this.getResourceBundle().getText("worklistTitle"),
 					shareSendEmailSubject: this.getResourceBundle().getText("shareSendEmailWorklistSubject"),
 					shareSendEmailMessage: this.getResourceBundle().getText("shareSendEmailWorklistMessage", [location.href]),
@@ -52,12 +50,6 @@ sap.ui.define([
 					// Restore original busy indicator delay for worklist's table
 					oViewModel.setProperty("/tableBusyDelay", iOriginalBusyDelay);
 				});
-				// Add the worklist page to the flp routing history
-				this.addHistoryEntry({
-					title: this.getResourceBundle().getText("worklistViewTitle"),
-					icon: "sap-icon://table-view",
-					intent: "#Worklist-display"
-				}, true);
 			},
 
 			/* =========================================================== */
@@ -98,24 +90,15 @@ sap.ui.define([
 				this._showObject(oEvent.getSource());
 			},
 
-
 			/**
-			 * Event handler when the share in JAM button has been clicked
+			 * Event handler for navigating back.
+			 * We navigate back in the browser historz
 			 * @public
 			 */
-			onShareInJamPress : function () {
-				var oViewModel = this.getModel("worklistView"),
-					oShareDialog = sap.ui.getCore().createComponent({
-						name: "sap.collaboration.components.fiori.sharing.dialog",
-						settings: {
-							object:{
-								id: location.href,
-								share: oViewModel.getProperty("/shareOnJamTitle")
-							}
-						}
-					});
-				oShareDialog.open();
+			onNavBack : function() {
+				history.go(-1);
 			},
+
 
 			onSearch : function (oEvent) {
 				if (oEvent.getParameters().refreshButtonPressed) {

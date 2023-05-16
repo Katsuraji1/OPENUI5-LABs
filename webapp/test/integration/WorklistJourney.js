@@ -30,14 +30,6 @@ sap.ui.define([
 
 		// Assertions
 		Then.onTheWorklistPage.theTableHasEntries();
-	});
-
-	opaTest("Should open the share menu and display the share buttons", function (Given, When, Then) {
-		// Actions
-		When.onTheWorklistPage.iPressOnTheShareButton();
-
-		// Assertions
-		Then.onTheWorklistPage.iShouldSeeTheShareEmailButton();
 
 		// Cleanup
 		Then.iTeardownMyAppFrame();

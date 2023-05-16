@@ -8,9 +8,9 @@ sap.ui.define([
 			sUrlParameters = sUrlParameters ? "?" + sUrlParameters : "";
 
 			if (sHash) {
-				sHash = "#Worklist-display&/" + (sHash.indexOf("/") === 0 ? sHash.substring(1) : sHash);
+				sHash = "#" + (sHash.indexOf("/") === 0 ? sHash.substring(1) : sHash);
 			} else {
-				sHash = "#Worklist-display";
+				sHash = "";
 			}
 
 			return sUrl + sUrlParameters + sHash;

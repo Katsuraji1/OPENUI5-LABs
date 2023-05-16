@@ -40,28 +40,6 @@ sap.ui.define([
 							},
 							errorMessage : "The E-Mail button was not found"
 						});
-					},
-
-					iShouldSeeTheShareTileButton : function () {
-						return this.waitFor({
-							id : "shareTile",
-							viewName : sViewName,
-							success : function () {
-								Opa5.assert.ok(true, "The Save as Tile button is visible");
-							},
-							errorMessage : "The Save as Tile  button was not found"
-						});
-					},
-
-					iShouldSeeTheShareJamButton : function () {
-						return this.waitFor({
-							id : "shareJam",
-							viewName : sViewName,
-							success : function () {
-								Opa5.assert.ok(true, "The Jam share button is visible");
-							},
-							errorMessage : "The Jam share button was not found"
-						});
 					}
 
 				};

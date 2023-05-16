@@ -25,8 +25,7 @@ sap.ui.require([
 		"zjblessons/Worklist/test/integration/WorklistJourney",
 		"zjblessons/Worklist/test/integration/ObjectJourney",
 		"zjblessons/Worklist/test/integration/NavigationJourney",
-		"zjblessons/Worklist/test/integration/NotFoundJourney",
-		"zjblessons/Worklist/test/integration/FLPIntegrationJourney"
+		"zjblessons/Worklist/test/integration/NotFoundJourney"
 	], function () {
 		QUnit.start();
 	});
