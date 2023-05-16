@@ -40,7 +40,7 @@ sap.ui.define([
 						return this.waitFor({
 							success : function () {
 								var sObjectId = this.getContext().currentItem.id;
-								Opa5.getHashChanger().setHash("/zjblessons_base_Headers/" + sObjectId);
+								Opa5.getHashChanger().setHash("/zjblessons_base_Materials/" + sObjectId);
 							}
 						});
 					},
@@ -56,7 +56,7 @@ sap.ui.define([
 
 						return this.waitFor({
 							success : function() {
-								oOptions.hash = "/zjblessons_base_Headers/" + encodeURIComponent(sObjectId);
+								oOptions.hash = "/zjblessons_base_Materials/" + encodeURIComponent(sObjectId);
 								this.iStartMyApp(oOptions);
 							}
 						});

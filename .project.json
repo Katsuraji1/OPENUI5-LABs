@@ -25,17 +25,17 @@
       "entitySet": "UNBINDKEY"
     },
     "/webapp/view/Worklist.view.xml": {
-      "entitySet": "zjblessons_base_Headers"
+      "entitySet": "zjblessons_base_Materials"
     },
     "/webapp/view/Object.view.xml": {
-      "entitySet": "zjblessons_base_Headers"
+      "entitySet": "zjblessons_base_Materials"
     }
   },
   "generation": [
     {
       "templateId": "sap.ui.ui5-template-plugin.1worklist",
       "templateVersion": "1.52.7",
-      "dateTimeStamp": "Tue, 16 May 2023 07:05:24 GMT"
+      "dateTimeStamp": "Tue, 16 May 2023 07:15:10 GMT"
     }
   ],
   "translation": {

@@ -82,8 +82,8 @@ sap.ui.define([
 			_onObjectMatched : function (oEvent) {
 				var sObjectId =  oEvent.getParameter("arguments").objectId;
 				this.getModel().metadataLoaded().then( function() {
-					var sObjectPath = this.getModel().createKey("zjblessons_base_Headers", {
-						HeaderID :  sObjectId
+					var sObjectPath = this.getModel().createKey("zjblessons_base_Materials", {
+						MaterialID :  sObjectId
 					});
 					this._bindView("/" + sObjectPath);
 				}.bind(this));
@@ -132,7 +132,7 @@ sap.ui.define([
 
 				var oResourceBundle = this.getResourceBundle(),
 					oObject = oView.getBindingContext().getObject(),
-					sObjectId = oObject.HeaderID,
+					sObjectId = oObject.MaterialID,
 					sObjectName = oObject.CreatedBy;
 
 				oViewModel.setProperty("/busy", false);
@@ -140,7 +140,7 @@ sap.ui.define([
 				this.addHistoryEntry({
 					title: this.getResourceBundle().getText("objectTitle") + " - " + sObjectName,
 					icon: "sap-icon://enter-more",
-					intent: "#Worklist-display&/zjblessons_base_Headers/" + sObjectId
+					intent: "#Worklist-display&/zjblessons_base_Materials/" + sObjectId
 				});
 
 				oViewModel.setProperty("/saveAsTileTitle", oResourceBundle.getText("saveAsTileTitle", [sObjectName]));

@@ -19,7 +19,7 @@
 				id="table"
 				width="auto"
 				items="{
-					path: '/zjblessons_base_Headers',
+					path: '/zjblessons_base_Materials',
 					sorter: {
 						path: 'CreatedBy',
 						descending: false

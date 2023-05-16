@@ -158,7 +158,7 @@ sap.ui.define([
 			 */
 			_showObject : function (oItem) {
 				this.getRouter().navTo("object", {
-					objectId: oItem.getBindingContext().getProperty("HeaderID")
+					objectId: oItem.getBindingContext().getProperty("MaterialID")
 				});
 			},
 

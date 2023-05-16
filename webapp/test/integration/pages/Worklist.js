@@ -65,7 +65,7 @@ sap.ui.define([
 								// Don't remember objects just strings since IE will not allow accessing objects of destroyed frames
 								this.getContext().currentItem = {
 									bindingPath: oBindingContext.getPath(),
-									id: oBindingContext.getProperty("HeaderID"),
+									id: oBindingContext.getProperty("MaterialID"),
 									name: oBindingContext.getProperty("CreatedBy")
 								};
 							}
@@ -213,9 +213,9 @@ sap.ui.define([
 						var aAllEntities,
 							iExpectedNumberOfItems;
 
-						// retrieve all zjblessons_base_Headers to be able to check for the total amount
+						// retrieve all zjblessons_base_Materials to be able to check for the total amount
 						this.waitFor(this.createAWaitForAnEntitySet({
-							entitySet: "zjblessons_base_Headers",
+							entitySet: "zjblessons_base_Materials",
 							success: function (aEntityData) {
 								aAllEntities = aEntityData;
 							}
