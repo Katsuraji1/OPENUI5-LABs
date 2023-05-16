@@ -63,7 +63,7 @@ sap.ui.define([
 			},
 
 
-			onSearch : function (oEvent) {
+			onSearchMaterialText : function (oEvent) {
 				if (oEvent.getParameters().refreshButtonPressed) {
 					this.onRefresh();
 				} else {
@@ -77,6 +77,21 @@ sap.ui.define([
 				}
 
 			},
+			
+			
+			onSearhCreatedByFullName: function(oEvent) {
+				if(oEvent.getParameters().refreshButtonPressed){
+					this.onRefresh();
+				} else {
+					let aTableSearchState = [];
+					let sQuery = oEvent.getParameter('query');
+					if(sQuery && sQuery.length > 0) {
+						aTableSearchState = [new Filter('CreatedByFullName', FilterOperator.Contains, sQuery)];              
+					}
+					this._applySearch(aTableSearchState);
+				}
+			},
+			
 			onRefresh : function () {
 				var oTable = this.byId("table");
 				oTable.getBinding("items").refresh();
