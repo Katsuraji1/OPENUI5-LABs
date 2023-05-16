@@ -85,7 +85,10 @@
 							<ObjectIdentifier
 								title="{ModifiedByFullName}"/>
 							<ObjectIdentifier
-								title="{Modified}"/>
+								title="{
+									path: 'Created',
+									formatter: '.formatter.formatTime'
+								}"/>
 						</cells>
 					</ColumnListItem>
 				</items>

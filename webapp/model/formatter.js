@@ -15,6 +15,14 @@ sap.ui.define([
 					return "";
 				}
 				return parseFloat(sValue).toFixed(2);
+			},
+			
+			formatTime: function(oEvent){
+				const hours = oEvent.getHours().toString().length === 1 ? `0${oEvent.getHours()}` : oEvent.getHours();
+				const minutes = oEvent.getMinutes().toString().length === 1 ? `0${oEvent.getMinutes()}` : oEvent.getMinutes();
+				const day = oEvent.getDate().toString().length === 1 ? `0${oEvent.getDate()}` : oEvent.getDate();
+				const month = oEvent.getMonth().toString().length === 1 ? `0${oEvent.getMonth()}` : oEvent.getMonth();
+				return `${hours}:${minutes} ${day}/${month}/${oEvent.getFullYear()}`;
 			}
 
 		};
