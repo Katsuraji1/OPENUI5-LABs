@@ -16,7 +16,7 @@
 		<semantic:content>
 			<Table
 				id="table"
-				width="auto"
+				width="100%"
 				items="{
 					path: '/zjblessons_base_Materials',
 					sorter: {
@@ -75,6 +75,12 @@
 					<Column id="ModifiedColumn">
 						<Text text="{i18n>ModifiedColumnTitle}" id="ModifiedTitle"/>
 					</Column>
+					<Column id="GroupIDColumn">
+						<Text text="{i18n>GroupIDColumnTitle}" id="GroupIDTitle"/>
+					</Column>
+					<Column id="SubGroupIDColumn">
+						<Text text="{i18n>SubGroupIDColumnTitle}" id="SubGroupIDTitle"/>
+					</Column>
 				</columns>
 
 				<items>
@@ -99,6 +105,10 @@
 									path: 'Created',
 									formatter: '.formatter.formatTime'
 								}"/>
+							<ObjectIdentifier
+								title="{GroupID}"/>
+							<ObjectIdentifier
+								title="{SubGroupID}"/>
 						</cells>
 					</ColumnListItem>
 				</items>
