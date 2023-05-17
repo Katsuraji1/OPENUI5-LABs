@@ -84,6 +84,8 @@
 					<Column id="SubGroupIDColumn">
 						<Text text="{i18n>SubGroupIDColumnTitle}" id="SubGroupIDTitle"/>
 					</Column>
+					<Column
+					width="5%"/>
 				</columns>
 
 				<items>
@@ -112,6 +114,11 @@
 								title="{GroupID}"/>
 							<ObjectIdentifier
 								title="{SubGroupID}"/>
+							<Button
+								tooltip='{i18n>ttDelete}'
+								icon='{i18n>iDelete}'
+								press='onPressDeleteRecord'
+							/>
 						</cells>
 					</ColumnListItem>
 				</items>

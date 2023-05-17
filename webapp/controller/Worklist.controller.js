@@ -103,6 +103,11 @@ sap.ui.define([
 				this.getModel().submitChanges();
 				this._closeCreateDialog();
 			},
+			
+			onPressDeleteRecord: function(oEvent){
+				const sEntryPath = oEvent.getSource().getBindingContext().getPath();
+				this.getModel().remove(sEntryPath);
+				},
 
 			onNavBack : function() {
 				history.go(-1);
