@@ -18,11 +18,8 @@ sap.ui.define([
 			},
 			
 			formatTime: function(oEvent){
-				const hours = oEvent.getHours().toString().length === 1 ? `0${oEvent.getHours()}` : oEvent.getHours();
-				const minutes = oEvent.getMinutes().toString().length === 1 ? `0${oEvent.getMinutes()}` : oEvent.getMinutes();
-				const day = oEvent.getDate().toString().length === 1 ? `0${oEvent.getDate()}` : oEvent.getDate();
-				const month = oEvent.getMonth().toString().length === 1 ? `0${oEvent.getMonth()}` : oEvent.getMonth();
-				return `${hours}:${minutes} ${day}/${month}/${oEvent.getFullYear()}`;
+				const dateFormat = sap.ui.core.format.DateFormat.getDateInstance({pattern: 'HH:mm dd/MM/yyyy'});
+				return dateFormat.format(oEvent);
 			}
 
 		};
