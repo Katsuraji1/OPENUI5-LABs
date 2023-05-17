@@ -4,8 +4,9 @@ sap.ui.define([
 		"sap/ui/model/json/JSONModel",
 		"zjblessons/Worklist/model/formatter",
 		"sap/ui/model/Filter",
-		"sap/ui/model/FilterOperator"
-	], function (BaseController, JSONModel, formatter, Filter, FilterOperator) {
+		"sap/ui/model/FilterOperator",
+		"sap/ui/core/Fragment"
+	], function (BaseController, JSONModel, formatter, Filter, FilterOperator, Fragment) {
 		"use strict";
 
 		return BaseController.extend("zjblessons.Worklist.controller.Worklist", {
@@ -56,7 +57,52 @@ sap.ui.define([
 
 				this._showObject(oEvent.getSource());
 			},
-
+			
+			_loadCreateMateriaFragment: function(oEntryContext){
+				if(!this.oCreateDialog){
+					this.pCreateMaterial = Fragment.load({
+						name:"zjblessons.Worklist.view.Fragment.CreateMaterial",
+						controller: this,
+						id:"fCreateDialog"
+					}).then(oDialog => {
+						this.oCreateDialog = oDialog;
+						this.getView().addDependent(this.oCreateDialog);
+						return Promise.resolve(oDialog);
+					});
+				}
+				this.pCreateMaterial.then(oDialog => {
+					oDialog.setBindingContext(oEntryContext);
+					oDialog.open();
+				});
+			},
+			
+			onPressCreateMaterial: function() {
+				const mProps = {
+					Language: "RU",
+					Version: "A" ,
+					MaterialID:"0"
+				};
+				
+				const oEntryContext=this.getModel().createEntry('/zjblessons_base_Materials', {
+					properties: mProps
+				});
+				
+				this._loadCreateMateriaFragment(oEntryContext);
+			},
+			
+			_closeCreateDialog: function(){
+				this.oCreateDialog.close();
+			},
+			
+			onPressCloseCreateDialog: function(){
+				this.getModel().resetChanges();
+				this._closeCreateDialog();
+			},
+			
+			onPressSaveCreateMaterial: function(){
+				this.getModel().submitChanges();
+				this._closeCreateDialog();
+			},
 
 			onNavBack : function() {
 				history.go(-1);
