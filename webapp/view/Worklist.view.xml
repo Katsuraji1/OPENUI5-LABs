@@ -40,7 +40,7 @@
 							tooltip="{i18n>worklistSearchTooltip}"
 							search="onSearchMaterialText"
 							width="auto"
-							placeholder="MaterialText">
+							placeholder="{i18n>MaterialText}">
 						</SearchField>
 						<ToolbarSeparator />
 						<SearchField
@@ -48,7 +48,7 @@
 							tooltip="i18n>worklistSearchTooltip"
 							search="onSearhCreatedByFullName"
 							width="auto"
-							placeholder="CreatedByFullName">
+							placeholder="{i18n>CreatedByFullName}">
 						</SearchField>
 					</Toolbar>
 				</headerToolbar>
@@ -104,11 +104,6 @@
 				</items>
 			</Table>
 		</semantic:content>
-
-		<semantic:sendEmailAction>
-			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
-		</semantic:sendEmailAction>
-
 
 	</semantic:SemanticPage>
 
