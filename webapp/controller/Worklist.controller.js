@@ -90,24 +90,46 @@ sap.ui.define([
 				this._loadCreateMateriaFragment(oEntryContext);
 			},
 			
-			_closeCreateDialog: function(){
-				this.oCreateDialog.close();
+			_closeCreateDialog: function(dialog){
+				dialog.close();
 			},
 			
 			onPressCloseCreateDialog: function(){
 				this.getModel().resetChanges();
-				this._closeCreateDialog();
+				this._closeCreateDialog(this.oCreateDialog);
 			},
 			
 			onPressSaveCreateMaterial: function(){
 				this.getModel().submitChanges();
-				this._closeCreateDialog();
+				this._closeCreateDialog(this.oCreateDialog);
 			},
 			
 			onPressDeleteRecord: function(oEvent){
-				const sEntryPath = oEvent.getSource().getBindingContext().getPath();
-				this.getModel().remove(sEntryPath);
-				},
+				this.sEntryPath = oEvent.getSource().getBindingContext().getPath();
+				if(!this.oConfirmationDialog){
+					this.pConfirmationFragment=Fragment.load({
+						name:'zjblessons.Worklist.view.Fragment.DeletionConfirmation',
+						controller: this,
+						id: 'fConfirmationDialog'
+					}).then(oDialog => {
+						this.oConfirmationDialog = oDialog;
+						this.getView().addDependent(this.oConfirmationDialog);
+						return Promise.resolve(oDialog);
+					});
+				}
+				this.pConfirmationFragment.then(oDialog => {
+					oDialog.open();
+				});
+			},
+			
+			onPressConfirmDeleteRecord: function(){
+				this.getModel().remove(this.sEntryPath);
+				this._closeCreateDialog(this.oConfirmationDialog);
+			},
+			
+			onPressCancelDeleteRecord: function() {
+				this._closeCreateDialog(this.oConfirmationDialog);	
+			},
 
 			onNavBack : function() {
 				history.go(-1);

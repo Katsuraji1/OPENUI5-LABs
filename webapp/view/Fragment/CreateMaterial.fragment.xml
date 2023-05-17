@@ -25,7 +25,7 @@
 					<FlexBox
 						justifyContent='SpaceBetween'>
 					<Button
-						text='{i18n>closeCreateMaterial}'
+						text='{i18n>closeDialog}'
 						icon='{i18n>iClose}'
 						press='onPressCloseCreateDialog'/>
 					<Button
