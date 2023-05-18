@@ -107,7 +107,7 @@
 								title="{ModifiedByFullName}"/>
 							<ObjectIdentifier
 								title="{
-									path: 'Created',
+									path: 'Modified',
 									type: 'sap.ui.model.type.DateTime',
 									formatOptions:{
 										pattern: 'HH:mm dd/MM/yyyy'
