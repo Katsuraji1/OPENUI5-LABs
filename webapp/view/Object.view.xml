@@ -41,16 +41,20 @@
 			<Label
 				text="{i18n>lMaterialDescription}"/>
 			<Text
+				visible="{= !${objectView>/editMode}}"
 			text="{MaterialDescription}"/>
 			<Input
+				visible="{objectView>/editMode}"
 				width="10em"
 				value="{MaterialDescription}"
 				maxLength="256"/>
 			<Label
 				text="{i18n>lMaterialText}"/>
 			<Text
+				visible="{= !${objectView>/editMode}}"
 				text="{MaterialText}"/>
 			<Input
+				visible="{objectView>/editMode}"
 				width="10em"
 				value="{MaterialText}"
 				maxLength="128"/>
