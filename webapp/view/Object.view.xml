@@ -20,9 +20,22 @@
 		</semantic:headerContent> -->
 		<semantic:titleCustomTextActions>
 			<Button tooltip='{i18>ttlEdit}' 
-			text='{i18n>ttlEdit}' 
-			icon='{i18n>iEdit}'
-			type="Emphasized"/>
+				text='{i18n>ttlEdit}' 
+				icon='{i18n>iEdit}'
+				type='Emphasized'
+				visible="{= !${objectView>/editMode}}"
+				press="onPressEditMaterial"/>
+			<Button tooltip='{i18>ttlCancel}' 
+				text='{i18n>ttlCancel}' 
+				icon='{i18n>iCancel}'
+				visible='{= ${objectView>/editMode}}'
+				press="onPressCancelEditMaterial"/>
+			<Button tooltip='{i18>ttlSave}' 
+				text='{i18n>ttlSave}' 
+				icon='{i18n>iSave}'
+				type='Emphasized'
+				visible='{= ${objectView>/editMode}}'
+				press="onPressSaveEditMaterial"/>
 		</semantic:titleCustomTextActions>
 	</semantic:SemanticPage>
 

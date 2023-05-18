@@ -19,7 +19,8 @@ sap.ui.define([
 				var iOriginalBusyDelay,
 					oViewModel = new JSONModel({
 						busy : true,
-						delay : 0
+						delay : 0,
+						editMode: false,
 					});
 
 				this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
@@ -40,6 +41,22 @@ sap.ui.define([
 				} else {
 					this.getRouter().navTo("worklist", {}, true);
 				}
+			},
+			
+			onPressEditMaterial: function(){
+				this._setEditMode(true);
+			},
+			
+			onPressCancelEditMaterial: function(){
+				this._setEditMode(false);
+			},
+			
+			onPressSaveEditMaterial: function(){
+				this._setEditMode(false);
+			},
+			
+			_setEditMode: function(bMode){
+				this.getModel("objectView").setProperty("/editMode", bMode);
 			},
 
 			_onObjectMatched : function (oEvent) {
