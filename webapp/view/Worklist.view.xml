@@ -108,14 +108,17 @@
 							<ObjectIdentifier
 								title="{
 									path: 'Created',
-									formatter: '.formatter.formatTime'
+									type: 'sap.ui.model.type.DateTime',
+									formatOptions:{
+										pattern: 'HH:mm dd/MM/yyyy'
+									}
 								}"/>
 							<ObjectIdentifier
 								title="{GroupID}"/>
 							<ObjectIdentifier
 								title="{SubGroupID}"/>
 							<Button
-								tooltip='{i18n>ttDelete}'
+								tooltip='{i18n>ttlDelete}'
 								icon='{i18n>iDelete}'
 								press='onPressDeleteRecord'
 							/>
