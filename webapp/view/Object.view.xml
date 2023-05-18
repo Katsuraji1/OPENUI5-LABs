@@ -33,10 +33,29 @@
 			<Button tooltip='{i18>ttlSave}' 
 				text='{i18n>ttlSave}' 
 				icon='{i18n>iSave}'
-				type='Emphasized'
 				visible='{objectView>/editMode}'
 				press="onPressSaveEditMaterial"/>
 		</semantic:titleCustomTextActions>
+		<semantic:content>
+		<VBox>
+			<Label
+				text="{i18n>lMaterialDescription}"/>
+			<Text
+			text="{MaterialDescription}"/>
+			<Input
+				width="10em"
+				value="{MaterialDescription}"
+				maxLength="256"/>
+			<Label
+				text="{i18n>lMaterialText}"/>
+			<Text
+				text="{MaterialText}"/>
+			<Input
+				width="10em"
+				value="{MaterialText}"
+				maxLength="128"/>
+		</VBox>
+		</semantic:content>
 	</semantic:SemanticPage>
 
 </mvc:View>

@@ -9,18 +9,22 @@
 				<Label
 					text='{i18n>ttlMaterialText}'/>
 				<Input 
+					maxLength="128"
 					value='{MaterialText}'/> 
 				<Label
 					text='{i18n>ttlMaterialDescription}'/>
 				<Input
+					maxLength="256"
 					value='{MaterialDescription}'/> 
 				<Label
 					text='{i18n>ttlGroupID}'/> 
 				<Input
+					maxLength="10"
 					value="{GroupID}"/> 
 				<Label
 					text='{i18n>ttlSubGroupID}'/>
 				<Input
+					maxLength="10"
 					value="{SubGroupID}"/> 
 					<FlexBox
 						justifyContent='SpaceBetween'>
