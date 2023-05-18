@@ -15,13 +15,7 @@ sap.ui.define([
 					return "";
 				}
 				return parseFloat(sValue).toFixed(2);
-			},
-			
-			formatTime: function(oEvent){
-				const dateFormat = sap.ui.core.format.DateFormat.getDateInstance({pattern: "HH:mm dd/MM/yyyy"});
-				return dateFormat.format(oEvent);
 			}
-
 		};
 
 	}

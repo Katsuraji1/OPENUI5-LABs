@@ -96,8 +96,11 @@
 								title="{ModifiedByFullName}"/>
 							<ObjectIdentifier
 								title="{
-									path: 'Created',
-									formatter: '.formatter.formatTime'
+									path: 'Modified',
+									type: 'sap.ui.model.type.DateTime',
+									formatOptions:{
+										pattern: 'HH:mm dd/MM/yyyy'
+									}
 								}"/>
 						</cells>
 					</ColumnListItem>
