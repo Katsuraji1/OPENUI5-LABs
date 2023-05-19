@@ -89,7 +89,13 @@
 							<ObjectIdentifier
 								title="{MaterialDescription}"/>
 							<ObjectIdentifier
-								title="{Created}"/>
+								title="{
+									path: 'Created',
+									type: 'sap.ui.model.type.DateTime',
+									formatOptions: {
+										style: 'short'
+									}
+								}"/>
 							<ObjectIdentifier
 								title="{CreatedByFullName}"/>
 								<ObjectIdentifier
@@ -97,7 +103,7 @@
 									path: 'Modified',
 									type: 'sap.ui.model.type.DateTime',
 									formatOptions:{
-										pattern: 'HH:mm dd/MM/yyyy'
+										style: 'medium'
 									}
 								}"/>
 							<ObjectIdentifier
