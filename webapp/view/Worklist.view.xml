@@ -53,6 +53,11 @@
 							width="auto"
 							placeholder="CreatedByFullName">
 						</SearchField>
+						<Button
+						icon="{i18n>iRefresh}"
+						tooltip="{i18n>ttlRefresh}"
+						press="onRefresh"
+						/>
 					</Toolbar>
 				</headerToolbar>
 

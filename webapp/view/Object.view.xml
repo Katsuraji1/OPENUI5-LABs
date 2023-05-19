@@ -47,7 +47,7 @@
 				text="{i18n>lMaterialDescription}"/>
 			<Text
 				visible="{= !${objectView>/editMode}}"
-			text="{MaterialDescription}"/>
+				text="{MaterialDescription}"/>
 			<Input
 				visible="{objectView>/editMode}"
 				width="10em"
