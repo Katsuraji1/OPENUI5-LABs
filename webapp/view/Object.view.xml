@@ -12,14 +12,18 @@
 		busyIndicatorDelay="{objectView>/delay}">
 		<semantic:titleHeading
 			class='sapUiMarginSmall'>
-			<Title text="{MaterialText}"/>
-		</semantic:titleHeading>
-		<semantic:titleCustomTextActions>
-		<Button
+			<HBox
+				alignItems="Center"
+			>
+				<Button
 				tooltip="{i18n>ttlNavBack}"
 				press="onNavBack"
 				icon="{i18n>iBack}"
 				type="Emphasized"/>
+				<Title class='sapUiSmallMarginBegin' text="{MaterialText}"/>
+			</HBox>
+		</semantic:titleHeading>
+		<semantic:titleCustomTextActions>
 			<Button tooltip='{i18>ttlEdit}' 
 				text='{i18n>ttlEdit}' 
 				icon='{i18n>iEdit}'
