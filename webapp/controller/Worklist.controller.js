@@ -104,7 +104,7 @@ sap.ui.define([
 				this._closeCreateDialog(this.oCreateDialog);
 			},
 			
-			onPressDeleteRecord: function(oEvent){
+			onPressDeleteEntry: function(oEvent){
 				this.sEntryPath = oEvent.getSource().getBindingContext().getPath();
 				sap.m.MessageBox.confirm(this.getResourceBundle().getText('msgdeletionConfiramtion'),{
 					actions:[

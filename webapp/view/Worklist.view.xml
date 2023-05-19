@@ -120,7 +120,7 @@
 							<Button
 								tooltip='{i18n>ttlDelete}'
 								icon='{i18n>iDelete}'
-								press='onPressDeleteRecord'
+								press='onPressDeleteEntry'
 							/>
 						</cells>
 					</ColumnListItem>

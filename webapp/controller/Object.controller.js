@@ -25,7 +25,7 @@ sap.ui.define([
 
 				this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
 
-				iOriginalBusyDelay = this.getView().getBusyIndicatorDelay();
+				iOriginalBusyDelay = this.getView().setBusyIndicatorDelay(0).getBusyIndicatorDelay();
 				this.setModel(oViewModel, "objectView");
 				this.getOwnerComponent().getModel().metadataLoaded().then(function () {
 						oViewModel.setProperty("/delay", iOriginalBusyDelay);
@@ -46,10 +46,12 @@ sap.ui.define([
 			},
 			
 			onPressCancelEditMaterial: function(){
+				this.getModel().resetChanges();
 				this._setEditMode(false);
 			},
 			
 			onPressSaveEditMaterial: function(){
+				this.getModel().submitChanges();
 				this._setEditMode(false);
 			},
 			
@@ -104,11 +106,6 @@ sap.ui.define([
 					sObjectName = oObject.CreatedBy;
 
 				oViewModel.setProperty("/busy", false);
-
-				oViewModel.setProperty("/shareSendEmailSubject",
-				oResourceBundle.getText("shareSendEmailObjectSubject", [sObjectId]));
-				oViewModel.setProperty("/shareSendEmailMessage",
-				oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
 			}
 
 		});
