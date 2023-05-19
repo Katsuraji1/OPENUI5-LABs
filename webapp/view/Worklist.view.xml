@@ -57,32 +57,23 @@
 				</headerToolbar>
 
 				<columns>
-					<Column id="MaterialIDColumn">
-						<Text text="{i18n>MaterialIDColumnTitle}" id="nameMaterialIDTitle"/>
-					</Column>
 					<Column id="MaterialTextColumn">
 						<Text text="{i18n>MaterialTextColumnTitle}" id="nameMaterialTextTitle"/>
 					</Column>
 					<Column id="MaterialDescriptionColumn">
 						<Text text="{i18n>MaterialDescriptionColumnTitle}" id="nameMateriaDescriptionTitle"/>
 					</Column>
-					<Column id="CreatedByFullNameColumn">
-						<Text text="{i18n>CreatedByFullNameColumnTitle}" id="CreatedByFullNameTitle"/>
-					</Column>
 					<Column id="CreatedColumn">
 						<Text text="{i18n>CreatedColumnTitle}" id="CreatedTitle"/>
 					</Column>
-					<Column id="ModifiedByFullNameColumn">
-						<Text text="{i18n>ModifiedByFullNameColumnTitle}" id="ModifiedByFullNameTitle"/>
+					<Column id="CreatedByFullNameColumn">
+						<Text text="{i18n>CreatedByFullNameColumnTitle}" id="CreatedByFullNameTitle"/>
 					</Column>
 					<Column id="ModifiedColumn">
 						<Text text="{i18n>ModifiedColumnTitle}" id="ModifiedTitle"/>
 					</Column>
-					<Column id="GroupIDColumn">
-						<Text text="{i18n>GroupIDColumnTitle}" id="GroupIDTitle"/>
-					</Column>
-					<Column id="SubGroupIDColumn">
-						<Text text="{i18n>SubGroupIDColumnTitle}" id="SubGroupIDTitle"/>
+					<Column id="ModifiedByFullNameColumn">
+						<Text text="{i18n>ModifiedByFullNameColumnTitle}" id="ModifiedByFullNameTitle"/>
 					</Column>
 					<Column
 					width="5%"/>
@@ -94,18 +85,14 @@
 						press="onPress">
 						<cells>
 							<ObjectIdentifier
-								title="{MaterialID}"/>
-							<ObjectIdentifier
 								title="{MaterialText}"/>
 							<ObjectIdentifier
 								title="{MaterialDescription}"/>
 							<ObjectIdentifier
-								title="{CreatedByFullName}"/>
-							<ObjectIdentifier
 								title="{Created}"/>
 							<ObjectIdentifier
-								title="{ModifiedByFullName}"/>
-							<ObjectIdentifier
+								title="{CreatedByFullName}"/>
+								<ObjectIdentifier
 								title="{
 									path: 'Modified',
 									type: 'sap.ui.model.type.DateTime',
@@ -114,9 +101,7 @@
 									}
 								}"/>
 							<ObjectIdentifier
-								title="{GroupID}"/>
-							<ObjectIdentifier
-								title="{SubGroupID}"/>
+								title="{ModifiedByFullName}"/>
 							<Button
 								tooltip='{i18n>ttlDelete}'
 								icon='{i18n>iDelete}'
