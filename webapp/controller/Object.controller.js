@@ -32,15 +32,17 @@ sap.ui.define([
 					}
 				);
 			},
+
 			onNavBack : function() {
-				var sPreviousHash = History.getInstance().getPreviousHash();
+				this.onPressCancelEditMaterial();
+				const sPreviousHash = History.getInstance().getPreviousHash();
 				if (sPreviousHash !== undefined) {
 					history.go(-1);
 				} else {
 					this.getRouter().navTo("worklist", {}, true);
 				}
 			},
-			
+
 			onPressEditMaterial: function(){
 				this._setEditMode(true);
 			},
@@ -60,7 +62,7 @@ sap.ui.define([
 			},
 
 			_onObjectMatched : function (oEvent) {
-				this._setEditMode(false);
+				this._setEditMode(false)
 				const sObjectId =  oEvent.getParameter("arguments").objectId;
 				this.getModel().metadataLoaded().then( function() {
 					const sObjectPath = this.getModel().createKey("zjblessons_base_Materials", {

@@ -10,15 +10,16 @@
 		toggleHeaderOnTitleClick="false"
 		busy="{objectView>/busy}"
 		busyIndicatorDelay="{objectView>/delay}">
-
 		<semantic:titleHeading
-		class='sapUiMarginSmall'>
+			class='sapUiMarginSmall'>
 			<Title text="{MaterialText}"/>
 		</semantic:titleHeading>
-		<!--<semantic:headerContent>
-			<ObjectNumber/>
-		</semantic:headerContent> -->
 		<semantic:titleCustomTextActions>
+		<Button
+				tooltip="{i18n>ttlNavBack}"
+				press="onNavBack"
+				icon="{i18n>iBack}"
+				type="Emphasized"/>
 			<Button tooltip='{i18>ttlEdit}' 
 				text='{i18n>ttlEdit}' 
 				icon='{i18n>iEdit}'

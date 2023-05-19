@@ -31,6 +31,7 @@ sap.ui.define([
 				});
 				this.setModel(oViewModel, "worklistView");
 
+				this.getRouter().getRoute('worklist').attachPatternMatched(this._onObjectMatched, this);
 
 				oTable.attachEventOnce("updateFinished", function(){
 					
@@ -54,10 +55,13 @@ sap.ui.define([
 
 			
 			onPress : function (oEvent) {
-
 				this._showObject(oEvent.getSource());
 			},
 			
+			_onObjectMatched: function() {
+				this.getModel().resetChanges();
+			},
+
 			_loadCreateMateriaFragment: function(oEntryContext){
 				if(!this.oCreateDialog){
 					this.pCreateMaterial = Fragment.load({
