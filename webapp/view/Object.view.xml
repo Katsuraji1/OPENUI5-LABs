@@ -76,6 +76,16 @@
 						headerText="{i18n>ttlList}"
 					>
 						<InputListItem
+							label="{i18n>ttlChange}"
+							labelTextDirection="Inherit"
+						>
+							<Switch
+								state="{objectView>/editMode}"
+							>
+								
+							</Switch>
+						</InputListItem>
+						<InputListItem
 							label="{i18n>ttlMaterialText}"
 							labelTextDirection="Inherit"
 							visible="{= !${objectView>/editMode}}"
