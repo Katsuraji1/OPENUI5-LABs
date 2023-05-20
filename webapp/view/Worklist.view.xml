@@ -43,7 +43,7 @@
 							tooltip="{i18n>worklistSearchTooltip}"
 							search="onSearchMaterialText"
 							width="auto"
-							placeholder="MaterialText">
+							placeholder="{i18n>ttlMaterialText}">
 						</SearchField>
 						<ToolbarSeparator />
 						<SearchField
@@ -51,7 +51,7 @@
 							tooltip="i18n>worklistSearchTooltip"
 							search="onSearhCreatedByFullName"
 							width="auto"
-							placeholder="CreatedByFullName">
+							placeholder="{i18n>ttlCreatedByFullName}">
 						</SearchField>
 					</Toolbar>
 				</headerToolbar>
