@@ -131,22 +131,32 @@ sap.ui.define([
 
 
 			onSearchMaterialText : function (oEvent) {
-				if (oEvent.getParameters().refreshButtonPressed) {
-					this.onRefresh();
-				} else {
-					var aTableSearchState = [];
-					var sQuery = oEvent.getParameter("query");
+				const sValue = oEvent.getParameter('query') || oEvent.getParameter('newValue');
+				const aFilters = [];
+				if(sValue){
+					aFilters.push(
+						new Filter({
+							filters: [
+								new Filter('MaterialText', FilterOperator.Contains, sValue),
+								new Filter('MaterialDescription', FilterOperator.Contains, sValue),
 
-					if (sQuery && sQuery.length > 0) {
-						aTableSearchState = [new Filter("MaterialText", FilterOperator.EQ, sQuery)];
-					}
-					this._applySearch(aTableSearchState);
-				}
-
+								new Filter({
+									filters: [
+										new Filter('CreatedByFullName', FilterOperator.Contains, sValue),
+										new Filter('ModifiedByFullName', FilterOperator.Contains, sValue)
+									],
+									and: true
+								})
+							],
+							and: false
+						})
+					)
+				};
+				this.byId('table').getBinding('items').filter(aFilters);
 			},
 			
 			
-			onSearhCreatedByFullName: function(oEvent) {
+			/* onSearhCreatedByFullName: function(oEvent) {
 				if(oEvent.getParameters().refreshButtonPressed){
 					this.onRefresh();
 				} else {
@@ -157,7 +167,7 @@ sap.ui.define([
 					}
 					this._applySearch(aTableSearchState);
 				}
-			},
+			}, */
 			
 			onRefresh : function () {
 				var oTable = this.byId("table");
