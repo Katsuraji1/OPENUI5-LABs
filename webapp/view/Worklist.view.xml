@@ -48,7 +48,7 @@
 						<ToolbarSeparator />
 						<SearchField
 							id="searchFieldCreatedByFullName"
-							tooltip="i18n>worklistSearchTooltip"
+							tooltip="{i18n>worklistSearchTooltip}"
 							search="onSearhCreatedByFullName"
 							width="auto"
 							placeholder="{i18n>ttlCreatedByFullName}">
