@@ -42,7 +42,7 @@
 				press="onPressSaveEditMaterial"/>
 		</semantic:titleCustomTextActions>
 		<semantic:content>
-		<VBox>
+<!-- 		<VBox>
 			<Label
 				text="{i18n>lMaterialDescription}"/>
 			<Text
@@ -63,7 +63,91 @@
 				width="10em"
 				value="{MaterialText}"
 				maxLength="128"/>
-		</VBox>
+		</VBox> -->
+		<IconTabBar
+		headerMode="Inline">
+			<items>
+				<IconTabFilter
+				icon="{i18n>iList}"
+				key="List"
+				text="{i18n>ttlList}">
+					<List
+						backgroundDesign="Solid"
+						headerText="{i18n>ttlList}"
+					>
+						<InputListItem
+							label="{i18n>ttlMaterialText}"
+							labelTextDirection="Inherit"
+							visible="{= !${objectView>/editMode}}"
+						>
+							<Text
+								text="{MaterialText}"/>
+						</InputListItem>
+						<InputListItem
+							label="{i18n>ttlMaterialDescription}"
+							labelTextDirection="Inherit"
+							visible="{= !${objectView>/editMode}}"
+						>
+							<Text
+								text="{MaterialDescription}"/>
+						</InputListItem>
+						<InputListItem
+							visible="{= !${objectView>/editMode}}"
+							label="{i18n>ttlGroupText}"
+							labelTextDirection="Inherit"
+						>
+							<Text
+								text="{GroupText}"/>
+						</InputListItem>
+						<InputListItem
+							visible="{= !${objectView>/editMode}}"
+							label="{i18n>ttlSubGroupText}"
+							labelTextDirection="Inherit"
+						>
+							<Text
+								text="{SubGroupText}"/>
+						</InputListItem>
+						<InputListItem
+							visible="{= !${objectView>/editMode}}"
+							label="{i18n>ttlCreated}"
+							labelTextDirection="Inherit"
+						>
+							<Text
+								text="{Created}"/>
+						</InputListItem>
+						<InputListItem
+							visible="{= !${objectView>/editMode}}"
+							label="{i18n>ttlCreatedBy}"
+							labelTextDirection="Inherit"
+						>
+							<Text
+								text="{CreatedBy}"/>
+						</InputListItem>
+						<InputListItem
+							visible="{= !${objectView>/editMode}}"
+							label="{i18n>ttlModified}"
+							labelTextDirection="Inherit"
+						>
+							<Text
+								text="{Modified}"/>
+						</InputListItem>
+						<InputListItem
+							visible="{= !${objectView>/editMode}}"
+							label="{i18n>ttlModifiedBy}"
+							labelTextDirection="Inherit"
+						>
+							<Text
+								text="{ModifiedBy}"/>
+						</InputListItem>
+					</List>
+				</IconTabFilter>
+				<IconTabFilter
+				icon="{i18n>iForm}"
+				key="Form"
+				text="{i18n>ttlForm}">
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
 		</semantic:content>
 	</semantic:SemanticPage>
 

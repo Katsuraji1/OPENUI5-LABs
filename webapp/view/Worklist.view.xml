@@ -43,17 +43,8 @@
 							tooltip="{i18n>worklistSearchTooltip}"
 							search="onSearchMaterialText"
 							liveChange="onSearchMaterialText"
-							width="auto"
-							placeholder="MaterialText">
+							width="auto">
 						</SearchField>
-						<!-- <ToolbarSeparator />
-						<SearchField
-							id="searchFieldCreatedByFullName"
-							tooltip="i18n>worklistSearchTooltip"
-							search="onSearhCreatedByFullName"
-							width="auto"
-							placeholder="CreatedByFullName">
-						</SearchField> -->
 						<Button
 						icon="{i18n>iRefresh}"
 						tooltip="{i18n>ttlRefresh}"
