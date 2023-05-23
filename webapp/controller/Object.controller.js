@@ -43,6 +43,33 @@ sap.ui.define([
 				this.onPressCancelEditMaterial();
 			},
 
+			onChange: function(oEvent){
+				const bState = oEvent.getParameter('state');
+				if(!bState && this.getModel().hasPendingChanges()){
+					sap.m.MessageBox.confirm(this.getResourceBundle().getText('ttlSaveChanges'),{
+						title: this.getResourceBundle().getText('ttlChooseAction'),
+						actions:[
+							sap.m.MessageBox.Action.OK,
+							sap.m.MessageBox.Action.CANCEL,
+							sap.m.MessageBox.Action.CLOSE,
+						],
+						emphasizedAction: sap.m.MessageBox.Action.OK,
+						textDirection: sap.ui.core.TextDirection.Inherit,  
+						initialFocus: null,
+						onClose:(sAction) => {
+							if(sAction === 'OK'){
+								this.onPressSaveEditMaterial()
+							} else if (sAction==='CANCEL'){
+								this.onPressCancelEditMaterial()
+							}
+						}
+					});
+					this._setEditMode(true);
+				} else{
+					this._setEditMode(bState);
+				}
+			},
+
 			onPressEditMaterial: function(){
 				this._setEditMode(true);
 			},

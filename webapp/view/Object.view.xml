@@ -60,6 +60,7 @@
 							labelTextDirection="Inherit"
 						>
 							<Switch
+								change="onChange"
 								state="{objectView>/editMode}"
 							>
 							</Switch>
