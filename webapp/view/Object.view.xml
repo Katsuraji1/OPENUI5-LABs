@@ -2,7 +2,9 @@
 	controllerName="zjblessons.Worklist.controller.Object"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:semantic="sap.f.semantic">
+	xmlns:semantic="sap.f.semantic"
+	xmlns:core="sap.ui.core">
+	
 
 	<semantic:SemanticPage
 		id="page"
@@ -42,28 +44,6 @@
 				press="onPressSaveEditMaterial"/>
 		</semantic:titleCustomTextActions>
 		<semantic:content>
-<!-- 		<VBox>
-			<Label
-				text="{i18n>lMaterialDescription}"/>
-			<Text
-				visible="{= !${objectView>/editMode}}"
-				text="{MaterialDescription}"/>
-			<Input
-				visible="{objectView>/editMode}"
-				width="10em"
-				value="{MaterialDescription}"
-				maxLength="256"/>
-			<Label
-				text="{i18n>lMaterialText}"/>
-			<Text
-				visible="{= !${objectView>/editMode}}"
-				text="{MaterialText}"/>
-			<Input
-				visible="{objectView>/editMode}"
-				width="10em"
-				value="{MaterialText}"
-				maxLength="128"/>
-		</VBox> -->
 		<IconTabBar
 		headerMode="Inline">
 			<items>
@@ -82,71 +62,120 @@
 							<Switch
 								state="{objectView>/editMode}"
 							>
-								
 							</Switch>
 						</InputListItem>
 						<InputListItem
 							label="{i18n>ttlMaterialText}"
 							labelTextDirection="Inherit"
-							visible="{= !${objectView>/editMode}}"
 						>
 							<Text
+								visible="{= !${objectView>/editMode}}"
 								text="{MaterialText}"/>
+							<Input
+								enabled="{= ${objectView>/editMode} &amp;&amp; ${MaterialText} !== '' || null || undefined}"
+								maxLength="128"
+								visible="{= ${objectView>/editMode}}"
+								width="15em"
+								value="{MaterialText}"/>
 						</InputListItem>
 						<InputListItem
 							label="{i18n>ttlMaterialDescription}"
 							labelTextDirection="Inherit"
-							visible="{= !${objectView>/editMode}}"
 						>
 							<Text
+								visible="{= !${objectView>/editMode}}"
 								text="{MaterialDescription}"/>
+							<Input
+								enabled="{= ${objectView>/editMode} &amp;&amp; ${MaterialDescription} !== '' || null || undefined}"
+								width="15em"
+								maxLength="256"
+								visible="{= ${objectView>/editMode}}"
+								value="{MaterialDescription}"/>
 						</InputListItem>
 						<InputListItem
-							visible="{= !${objectView>/editMode}}"
 							label="{i18n>ttlGroupText}"
 							labelTextDirection="Inherit"
 						>
 							<Text
+								visible="{= !${objectView>/editMode}}"
 								text="{GroupText}"/>
+							<Select
+							visible="{= ${objectView>/editMode}}"
+							forceSelection="false"
+							selectedKey="{GroupID}"
+							width="15em"
+							items="{
+								path: '/zjblessons_base_Groups',
+								sorter: {
+									path: 'GroupText',
+									descending: true
+								},
+								filters: {
+									path: 'GroupText',
+									operator: 'NE',
+									value1: null
+								}
+							}">
+							<core:Item
+								key="{GroupID}"
+								text="{GroupText}"
+							/>
+							</Select>
 						</InputListItem>
 						<InputListItem
-							visible="{= !${objectView>/editMode}}"
 							label="{i18n>ttlSubGroupText}"
 							labelTextDirection="Inherit"
 						>
 							<Text
+								visible="{= !${objectView>/editMode}}"
 								text="{SubGroupText}"/>
+							<Select
+							selectedKey="{SubGroupID}"
+							visible="{= ${objectView>/editMode}}"
+							forceSelection="false"
+							width="15em"
+							items="{
+								path: '/zjblessons_base_SubGroups',
+								sotert: {
+									path: 'SubGroupText',
+									descending: true
+								}
+							}">
+								<core:Item
+								key="{SubGroupID}"
+								text="{SubGroupText}"/>
+							</Select>
 						</InputListItem>
 						<InputListItem
-							visible="{= !${objectView>/editMode}}"
 							label="{i18n>ttlCreated}"
 							labelTextDirection="Inherit"
 						>
 							<Text
+								visible="{= !${objectView>/editMode}}"
 								text="{Created}"/>
 						</InputListItem>
 						<InputListItem
-							visible="{= !${objectView>/editMode}}"
 							label="{i18n>ttlCreatedBy}"
 							labelTextDirection="Inherit"
 						>
 							<Text
+								visible="{= !${objectView>/editMode}}"
 								text="{CreatedBy}"/>
 						</InputListItem>
 						<InputListItem
-							visible="{= !${objectView>/editMode}}"
 							label="{i18n>ttlModified}"
 							labelTextDirection="Inherit"
 						>
 							<Text
+								visible="{= !${objectView>/editMode}}"
 								text="{Modified}"/>
 						</InputListItem>
 						<InputListItem
-							visible="{= !${objectView>/editMode}}"
 							label="{i18n>ttlModifiedBy}"
 							labelTextDirection="Inherit"
 						>
 							<Text
+								visible="{= !${objectView>/editMode}}"
 								text="{ModifiedBy}"/>
 						</InputListItem>
 					</List>
