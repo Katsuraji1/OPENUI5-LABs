@@ -3,12 +3,14 @@ sap.ui.define([
 		"zjblessons/Worklist/controller/BaseController",
 		"sap/ui/model/json/JSONModel",
 		"sap/ui/core/routing/History",
-		"zjblessons/Worklist/model/formatter"
+		"zjblessons/Worklist/model/formatter",
+	"sap/ui/core/Fragment"
 	], function (
 		BaseController,
-		JSONModel,
-		History,
-		formatter
+	JSONModel,
+	History,
+	formatter,
+	Fragment
 	) {
 		"use strict";
 
@@ -21,6 +23,7 @@ sap.ui.define([
 						busy : true,
 						delay : 0,
 						editMode: false,
+						selectedKeyITB: 'list'
 					});
 
 				this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
@@ -78,14 +81,10 @@ sap.ui.define([
 				this.getModel().resetChanges();
 				this._setEditMode(false);
 			},
-			
+
 			onPressSaveEditMaterial: function(){
 				this.getModel().submitChanges();
 				this._setEditMode(false);
-			},
-			
-			_setEditMode: function(bMode){
-				this.getModel("objectView").setProperty("/editMode", bMode);
 			},
 
 			_onObjectMatched : function (oEvent) {
@@ -135,6 +134,45 @@ sap.ui.define([
 					sObjectName = oObject.CreatedBy;
 
 				oViewModel.setProperty("/busy", false);
+			},
+
+			_setEditMode: function(bMode){
+				this.getModel("objectView").setProperty("/editMode", bMode);
+				const sSelectedKey = this.getModel('objectView').getProperty("/selectedKeyITB");
+
+				if(bMode && sSelectedKey === 'list'){
+
+				} else if(sSelectedKey==='form'){
+					this._addFormContent(bMode ? "Edit" : "View")
+				}
+			},
+
+			onSelectIconTabBar: function(oEvent){
+				const sSelectedKey = oEvent.getSource().getSelectedKey();
+				this.getModel("objectView").setProperty("/selectedKeyITB", sSelectedKey);
+
+				if(sSelectedKey !== 'form') return;
+
+				this._addFormContent('View');
+			},
+
+			_addFormContent(sMode){
+				if(!this[`pForm${sMode}`]){
+					this[`pForm${sMode}`]=Fragment.load({
+						name:"zjblessons.Worklist.view.Fragment.Form"+sMode,
+						controller: this,
+						id: this.getView().getId(),
+					}).then((oContent) => {
+						this.getView().addDependent(oContent);
+						return oContent;
+					})
+				}
+
+				this[`pForm${sMode}`].then((oContent) => {
+					const IconTabFilter = this.byId('FormIconTabFilter');
+					IconTabFilter.removeAllContent();
+					IconTabFilter.insertContent(oContent, 0);
+				})
 			}
 
 		});

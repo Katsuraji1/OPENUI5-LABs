@@ -45,11 +45,12 @@
 		</semantic:titleCustomTextActions>
 		<semantic:content>
 		<IconTabBar
-		headerMode="Inline">
+			select="onSelectIconTabBar"
+			headerMode="Inline">
 			<items>
 				<IconTabFilter
 				icon="{i18n>iList}"
-				key="List"
+				key="list"
 				text="{i18n>ttlList}">
 					<List
 						backgroundDesign="Solid"
@@ -131,20 +132,20 @@
 								visible="{= !${objectView>/editMode}}"
 								text="{SubGroupText}"/>
 							<Select
-							selectedKey="{SubGroupID}"
-							visible="{= ${objectView>/editMode}}"
-							forceSelection="false"
-							width="15em"
-							items="{
-								path: '/zjblessons_base_SubGroups',
-								sotert: {
-									path: 'SubGroupText',
-									descending: true
-								}
-							}">
-								<core:Item
-								key="{SubGroupID}"
-								text="{SubGroupText}"/>
+								selectedKey="{SubGroupID}"
+								visible="{= ${objectView>/editMode}}"
+								forceSelection="false"
+								width="15em"
+								items="{
+									path: '/zjblessons_base_SubGroups',
+									sotert: {
+										path: 'SubGroupText',
+										descending: true
+									}
+								}">
+									<core:Item
+									key="{SubGroupID}"
+									text="{SubGroupText}"/>
 							</Select>
 						</InputListItem>
 						<InputListItem
@@ -182,8 +183,9 @@
 					</List>
 				</IconTabFilter>
 				<IconTabFilter
+				id="FormIconTabFilter"
 				icon="{i18n>iForm}"
-				key="Form"
+				key="form"
 				text="{i18n>ttlForm}">
 				</IconTabFilter>
 			</items>

@@ -155,20 +155,6 @@ sap.ui.define([
 				this.byId('table').getBinding('items').filter(aFilters);
 			},
 			
-			
-			/* onSearhCreatedByFullName: function(oEvent) {
-				if(oEvent.getParameters().refreshButtonPressed){
-					this.onRefresh();
-				} else {
-					let aTableSearchState = [];
-					let sQuery = oEvent.getParameter('query');
-					if(sQuery && sQuery.length > 0) {
-						aTableSearchState = [new Filter('CreatedByFullName', FilterOperator.Contains, sQuery)];              
-					}
-					this._applySearch(aTableSearchState);
-				}
-			}, */
-			
 			onRefresh : function () {
 				var oTable = this.byId("table");
 				oTable.getBinding("items").refresh();
