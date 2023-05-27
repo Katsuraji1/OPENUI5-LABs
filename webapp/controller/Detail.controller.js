@@ -2,7 +2,8 @@
 sap.ui.define([
 		"zjblessons/MasterDetail/controller/BaseController",
 		"sap/ui/model/json/JSONModel",
-		"zjblessons/MasterDetail/model/formatter"
+		"zjblessons/MasterDetail/model/formatter",
+	"sap/m/Table"
 	], function (BaseController, JSONModel, formatter) {
 		"use strict";
 
@@ -26,7 +27,20 @@ sap.ui.define([
 
 				this.getModel('detailView').setProperty('/masterItem', sEntity);
 
-				
+				switch(sEntity){
+					case "All":
+						break
+					default:
+						if(this.byId(sEntity).getBinding('rows')){
+							this.byId(sEntity).getBinding('rows').refresh();
+						} else {
+							this.byId(sEntity).bindRows({
+								path: "/zjblessons_base_"+sEntity,
+								template: new sap.ui.table.Row({})
+							})
+						}
+
+				}
 			},
 
 
