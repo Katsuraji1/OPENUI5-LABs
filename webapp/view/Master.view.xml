@@ -6,40 +6,13 @@
 	xmlns:semantic="sap.m.semantic">
 
 	<semantic:MasterPage
+		title="{i18n>ttlMaster}"
 		id="page"
-		title="{masterView>/title}"
-		navButtonPress="onNavBack"
-		showNavButton="true">
-		<semantic:subHeader>
-			<Bar id="headerBar">
-				<contentMiddle>
-					<SearchField
-						id="searchField"
-						showRefreshButton="{= !${device>/support/touch} }"
-						tooltip="{i18n>masterSearchTooltip}"
-						width="100%"
-						search="onSearch">
-					</SearchField>
-				</contentMiddle>
-			</Bar>
-		</semantic:subHeader>
-
+		showNavButton="false">
 		<semantic:content>
-			<PullToRefresh
-				id="pullToRefresh"
-				visible="{device>/support/touch}"
-				refresh="onRefresh" />
-			<!-- For client side filtering add this to the items attribute: parameters: {operationMode: 'Client'}}" -->
 			<List
 				id="list"
-					items="{
-						path: '/zjblessons_base_Headers',
-						sorter: {
-							path: 'CreatedByFullName',
-							descending: false
-							},
-						groupHeaderFactory: '.createGroupHeader'
-					}"
+				class='sapUiSizeCompact'
 				busyIndicatorDelay="{masterView>/delay}"
 				noDataText="{masterView>/noDataText}"
 				mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}"
@@ -47,25 +20,57 @@
 				growingScrollToLoad="true"
 				updateFinished="onUpdateFinished"
 				selectionChange="onSelectionChange">
-				<infoToolbar>
-					<Toolbar
-						active="true"
-						id="filterBar"
-						visible="{masterView>/isFilterBarVisible}"
-						press="onOpenViewSettings">
-						<Title
-							id="filterBarLabel"
-							text="{masterView>/filterBarLabel}" />
-					</Toolbar>
-				</infoToolbar>
-				<items>
-					<ObjectListItem
-						type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}"
-						press="onSelectionChange"
-						title="{CreatedByFullName}"
->
-					</ObjectListItem>
-				</items>
+
+					<StandardListItem
+						title="{i18n>ttlAll}"
+					>
+						<customData>
+							<core:CustomData
+								key="All"
+							>
+							</core:CustomData>
+						</customData>
+					</StandardListItem>
+					<StandardListItem
+						title="{i18n>ttlGroups}"
+					>
+						<customData>
+							<core:CustomData
+								key="Groups"
+							>
+							</core:CustomData>
+						</customData>
+					</StandardListItem>
+					<StandardListItem
+						title="{i18n>ttlSubGroups}"
+					>
+						<customData>
+							<core:CustomData
+								key="SubGroups"
+							>
+							</core:CustomData>
+						</customData>
+					</StandardListItem>
+					<StandardListItem
+						title="{i18n>ttlRegions}"
+					>
+						<customData>
+							<core:CustomData
+								key="Regions"
+							>
+							</core:CustomData>
+						</customData>
+					</StandardListItem>
+					<StandardListItem
+						title="{i18n>ttlPlants}"
+					>
+						<customData>
+							<core:CustomData
+								key="Plants"
+							>
+							</core:CustomData>
+						</customData>
+					</StandardListItem>
 			</List>
 		</semantic:content>
 
