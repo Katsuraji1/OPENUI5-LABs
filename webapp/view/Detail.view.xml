@@ -6,11 +6,23 @@
 	height="100%">
 	<m:Page
 		showHeader="false"
-		enableScrolling="false"
+		enableScrolling="true"
 		class="sapUiContentPadding">
 		<m:content>
 			<m:VBox
 				id='VBoxContent'
+			>
+			<m:HBox
+			>
+				<m:Title
+					level="H2"
+					text="{detailView>/count}"
+					visible="{= (${detailView>/masterItem}) !=='All'}"
+				>
+					
+				</m:Title>	
+			</m:HBox>
+			<m:VBox
 			>
 				<Table
 					id="Groups"
@@ -200,6 +212,7 @@
 						</Column>
 					</columns>
 				</Table>
+			</m:VBox>
 			</m:VBox>
 		</m:content>
 	</m:Page>

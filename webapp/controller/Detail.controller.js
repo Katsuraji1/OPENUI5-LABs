@@ -16,7 +16,8 @@ sap.ui.define([
 			formatter: formatter,
 
 			_oViewModel: new JSONModel({
-				masterItem: ""
+				masterItem: "",
+				count: "",
 			}),
 
 			onInit : function () {
@@ -41,11 +42,18 @@ sap.ui.define([
 						} else {
 							this.byId(sEntity).bindRows({
 								path: "/zjblessons_base_"+sEntity,
-								template: new sap.ui.table.Row({})
+								template: new sap.ui.table.Row({}),
+								events: {
+									dataReceived: this._setCount.bind(this)
+								}
 							})
 						}
 
 				}
+			},
+
+			_setCount(oEvent){
+				this.getModel('detailView').setProperty('/count', `(${oEvent.getSource().getLength()})`)
 			},
 
 			_createPanel: function() {
@@ -206,7 +214,7 @@ sap.ui.define([
 				}
 				this.oGroups.bindRows({
 					path: "/zjblessons_base_Groups",
-					template: new sap.ui.table.Row({})
+					template: new sap.ui.table.Row({}),
 				})
 				this.oSubGroups.bindRows({
 					path: "/zjblessons_base_SubGroups",
