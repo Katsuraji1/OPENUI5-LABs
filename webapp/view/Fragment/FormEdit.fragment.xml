@@ -52,21 +52,7 @@
                                     forceSelection="false"
                                     selectedKey="{GroupID}"
                                     width="240px"
-                                    items="{
-                                        path: '/zjblessons_base_Groups',
-                                        sorter: {
-                                            path: 'GroupText',
-                                            descending: true
-                                        },
-                                        filters: {
-                                            path: 'GroupText',
-                                            operator: 'NE',
-                                            value1: null
-                                        }
-                                    }">
-                                        <core:Item
-                                            key="{GroupID}"
-                                            text="{GroupText}"/>
+									id="SelectGroup">
 							    </Select>
 							</f:fields>
 						</f:FormElement>
@@ -76,16 +62,7 @@
                                     selectedKey="{SubGroupID}"
                                     forceSelection="false"
                                     width="240px"
-                                    items="{
-                                        path: '/zjblessons_base_SubGroups',
-                                        sotert: {
-                                            path: 'SubGroupText',
-                                            descending: true
-                                        }
-                                    }">
-                                        <core:Item
-                                        key="{SubGroupID}"
-                                        text="{SubGroupText}"/>
+                                    id="SelectSubGroup">
 							    </Select>
 							</f:fields>
 						</f:FormElement>

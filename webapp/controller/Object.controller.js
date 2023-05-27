@@ -141,7 +141,8 @@ sap.ui.define([
 				const sSelectedKey = this.getModel('objectView').getProperty("/selectedKeyITB");
 
 				if(bMode && sSelectedKey === 'list'){
-
+					this._bindSelectGroup();
+					this._bindSubSelectGroup();
 				} else if(sSelectedKey==='form'){
 					this._addFormContent(bMode ? "Edit" : "View")
 				}
@@ -154,6 +155,14 @@ sap.ui.define([
 				if(sSelectedKey !== 'form') return;
 
 				this._addFormContent('View');
+			},
+
+			_bindSelectGroup: function(){
+				
+			},
+
+			_bindSubSelectGroup: function(){
+
 			},
 
 			_addFormContent(sMode){
