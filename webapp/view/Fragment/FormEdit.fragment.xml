@@ -46,12 +46,15 @@
                                     value="{MaterialDescription}"/>
 							</f:fields>
 						</f:FormElement>
-                        <f:FormElement label="{i18n>lGroupText}">
+					</f:formElements>
+				</f:FormContainer>
+                <f:FormContainer title="{i18n>ttlGroupsInfo}">
+					<f:formElements>
+						 <f:FormElement label="{i18n>lGroupText}">
 							<f:fields>
 								<Select
                                     forceSelection="false"
                                     selectedKey="{GroupID}"
-									visible="{= ${objectView>/editMode}}"
                                     width="240px"
 									items="{
 										path: '/zjblessons_base_Groups',
@@ -75,35 +78,24 @@
 						<f:FormElement label="{i18n>lSubGroupText}">
 							<f:fields>
 								<Select
-								selectedKey="{SubGroupID}"
-								visible="{= ${objectView>/editMode}}"
-								forceSelection="false"
-								width="15em"
-								items="{
-									path: '/zjblessons_base_SubGroups',
-									sotert: {
-										path: 'SubGroupText',
-										descending: true
-									}
-								}">
+                                    selectedKey="{SubGroupID}"
+                                    forceSelection="false"
+                                    width="240px"
+									items="{
+										path: '/zjblessons_base_SubGroups',
+										sorter: {
+											path: 'SubGroupText',
+											descending: true
+										}
+									}"
+                                    >
 									<core:Item
-									key="{SubGroupID}"
-									text="{SubGroupText}"/>
-							</Select>
-							</f:fields>
-						</f:FormElement>
-					</f:formElements>
-				</f:FormContainer>
-                <f:FormContainer title="{i18n>ttlModificationInfo}">
-					<f:formElements>
-						<f:FormElement label="{i18n>lModified}">
-							<f:fields>
-								<Text text="{Modified}"/>
-							</f:fields>
-						</f:FormElement>
-						<f:FormElement label="{i18n>lModifiedBy}">
-							<f:fields>
-								<Text text="{ModifiedBy}" />
+										key="{SubGroupID}"
+										text="{SubGroupText}"
+									>
+										
+									</core:Item>
+							    </Select>
 							</f:fields>
 						</f:FormElement>
 					</f:formElements>
@@ -118,6 +110,19 @@
 						<f:FormElement label="{i18n>lCreatedBy}">
 							<f:fields>
 								<Text text="{CreatedBy}" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>lModified}">
+							<f:fields>
+								<Text text="{Modified}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>lModifiedBy}">
+							<f:fields>
+								<Text text="{
+									parts: ['ModifiedByFullName', 'Modified'],
+									formatter: '.formatter.modifiedFormatter'
+								}" />
 							</f:fields>
 						</f:FormElement>
 					</f:formElements>

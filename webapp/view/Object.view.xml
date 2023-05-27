@@ -128,7 +128,6 @@
 							labelTextDirection="Inherit"
 						>
 							<Text
-								visible="{= !${objectView>/editMode}}"
 								text="{Created}"/>
 						</InputListItem>
 						<InputListItem
@@ -136,7 +135,6 @@
 							labelTextDirection="Inherit"
 						>
 							<Text
-								visible="{= !${objectView>/editMode}}"
 								text="{CreatedBy}"/>
 						</InputListItem>
 						<InputListItem
@@ -144,7 +142,6 @@
 							labelTextDirection="Inherit"
 						>
 							<Text
-								visible="{= !${objectView>/editMode}}"
 								text="{Modified}"/>
 						</InputListItem>
 						<InputListItem
@@ -152,8 +149,10 @@
 							labelTextDirection="Inherit"
 						>
 							<Text
-								visible="{= !${objectView>/editMode}}"
-								text="{ModifiedBy}"/>
+								text="{
+									parts: ['ModifiedByFullName', 'Modified'],
+									formatter: '.formatter.modifiedFormatter'
+								}"/>
 						</InputListItem>
 					</List>
 				</IconTabFilter>

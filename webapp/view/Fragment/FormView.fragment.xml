@@ -38,7 +38,11 @@
 								<Text text="{MaterialDescription}" />
 							</f:fields>
 						</f:FormElement>
-                        <f:FormElement label="{i18n>lGroupText}">
+					</f:formElements>
+				</f:FormContainer>
+                <f:FormContainer title="{i18n>ttlGroupsInfo}">
+					<f:formElements>
+					 	<f:FormElement label="{i18n>lGroupText}">
 							<f:fields>
 								<Text text="{GroupText}" />
 							</f:fields>
@@ -46,20 +50,6 @@
 						<f:FormElement label="{i18n>lSubGroupText}">
 							<f:fields>
 								<Text text="{SubGroupText}" />
-							</f:fields>
-						</f:FormElement>
-					</f:formElements>
-				</f:FormContainer>
-                <f:FormContainer title="{i18n>ttlModificationInfo}">
-					<f:formElements>
-						<f:FormElement label="{i18n>lModified}">
-							<f:fields>
-								<Text text="{Modified}"/>
-							</f:fields>
-						</f:FormElement>
-						<f:FormElement label="{i18n>lModifiedBy}">
-							<f:fields>
-								<Text text="{ModifiedBy}" />
 							</f:fields>
 						</f:FormElement>
 					</f:formElements>
@@ -74,6 +64,19 @@
 						<f:FormElement label="{i18n>lCreatedBy}">
 							<f:fields>
 								<Text text="{CreatedBy}" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>lModified}">
+							<f:fields>
+								<Text text="{Modified}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>lModifiedBy}">
+							<f:fields>
+								<Text text="{
+									parts: ['ModifiedByFullName', 'Modified'],
+									formatter: '.formatter.modifiedFormatter'
+								}" />
 							</f:fields>
 						</f:FormElement>
 					</f:formElements>
