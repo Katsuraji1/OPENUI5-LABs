@@ -95,7 +95,7 @@
 					]
 				},
 				{
-					"pattern": "zjblessons_base_Headers/{objectId}",
+					"pattern": "detail/{entity}",
 					"name": "object",
 					"target": [
 						"master",
