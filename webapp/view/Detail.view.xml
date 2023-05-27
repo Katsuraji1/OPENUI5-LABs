@@ -10,6 +10,7 @@
 		class="sapUiContentPadding">
 		<m:content>
 			<m:VBox
+				id='VBoxContent'
 			>
 				<Table
 					id="Groups"

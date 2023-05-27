@@ -3,7 +3,11 @@ sap.ui.define([
 		"zjblessons/MasterDetail/controller/BaseController",
 		"sap/ui/model/json/JSONModel",
 		"zjblessons/MasterDetail/model/formatter",
-	"sap/m/Table"
+	"sap/m/Table",
+	"sap/m/VBox",
+	"sap/m/Panel",
+	"sap/ui/table/Table",
+	"sap/m/Label"
 	], function (BaseController, JSONModel, formatter) {
 		"use strict";
 
@@ -29,7 +33,8 @@ sap.ui.define([
 
 				switch(sEntity){
 					case "All":
-						break
+						this._createPanel();
+						break;
 					default:
 						if(this.byId(sEntity).getBinding('rows')){
 							this.byId(sEntity).getBinding('rows').refresh();
@@ -43,6 +48,180 @@ sap.ui.define([
 				}
 			},
 
+			_createPanel: function() {
+				if(!this.oPanels){
+					this.oPanels = new sap.m.VBox({
+						visible: "{= (${detailView>/masterItem}) === 'All'}",
+						items: [
+							new sap.m.Panel({
+								expandable: true,
+								headerText: "{i18n>ttlGroups}",
+								content: [
+									(this.oGroups = new sap.ui.table.Table({
+										columns: [
+											new sap.ui.table.Column({
+												width: "auto",
+												label: new sap.m.Label({
+													text: "{i18n>ttlGroupID}"
+												}),
+												template: new sap.m.Text({
+													text: "{GroupID}"
+												})
+											}),
+											new sap.ui.table.Column({
+												width: "auto",
+												label: new sap.m.Label({
+													text: "{i18n>ttlGroupText}"
+												}),
+												template: new sap.m.Text({
+													text: "{GroupText}"
+												})
+											}),
+											new sap.ui.table.Column({
+												width: "auto",
+												label: new sap.m.Label({
+													text: "{i18n>ttlGroupDescription}"
+												}),
+												template: new sap.m.Text({
+													text: "{GroupDescription}"
+												})
+											})
+										]
+									}))
+								]
+							}),
+							new sap.m.Panel({
+								expandable: true,
+								headerText: "{i18n>ttlSubGroups}",
+								content: [
+									(this.oSubGroups = new sap.ui.table.Table({
+										columns: [
+											new sap.ui.table.Column({
+												width: "auto",
+												label: new sap.m.Label({
+													text: "{i18n>ttlSubGroupID}"
+												}),
+												template: new sap.m.Text({
+													text: "{SubGroupID}"
+												})
+											}),
+											new sap.ui.table.Column({
+												width: "auto",
+												label: new sap.m.Label({
+													text: "{i18n>ttlSubGroupText}"
+												}),
+												template: new sap.m.Text({
+													text: "{SubGroupText}"
+												})
+											}),
+											new sap.ui.table.Column({
+												width: "auto",
+												label: new sap.m.Label({
+													text: "{i18n>ttlCreatedBy}"
+												}),
+												template: new sap.m.Text({
+													text: "{CreatedBy}"
+												})
+											})
+										]
+									}))
+								]
+							}),
+							new sap.m.Panel({
+								expandable: true,
+								headerText: "{i18n>ttlRegions}",
+								content: [
+									(this.oRegions = new sap.ui.table.Table({
+										columns: [
+											new sap.ui.table.Column({
+												width: "auto",
+												label: new sap.m.Label({
+													text: "{i18n>ttlRegionID}"
+												}),
+												template: new sap.m.Text({
+													text: "{RegionID}"
+												})
+											}),
+											new sap.ui.table.Column({
+												width: "auto",
+												label: new sap.m.Label({
+													text: "{i18n>ttlRegionText}"
+												}),
+												template: new sap.m.Text({
+													text: "{RegionText}"
+												})
+											}),
+											new sap.ui.table.Column({
+												width: "auto",
+												label: new sap.m.Label({
+													text: "{i18n>ttlCreatedBy}"
+												}),
+												template: new sap.m.Text({
+													text: "{CreatedBy}"
+												})
+											})
+										]
+									}))
+								]
+							}),
+							new sap.m.Panel({
+								expandable: true,
+								headerText: "{i18n>ttlPlants}",
+								content: [
+									(this.oPlants = new sap.ui.table.Table({
+										columns: [
+											new sap.ui.table.Column({
+												width: "auto",
+												label: new sap.m.Label({
+													text: "{i18n>ttlPlantID}"
+												}),
+												template: new sap.m.Text({
+													text: "{PlantID}"
+												})
+											}),
+											new sap.ui.table.Column({
+												width: "auto",
+												label: new sap.m.Label({
+													text: "{i18n>ttlPlantText}"
+												}),
+												template: new sap.m.Text({
+													text: "{PlantText}"
+												})
+											}),
+											new sap.ui.table.Column({
+												width: "auto",
+												label: new sap.m.Label({
+													text: "{i18n>ttlCreatedBy}"
+												}),
+												template: new sap.m.Text({
+													text: "{CreatedBy}"
+												})
+											})
+										]
+									}))
+								]
+							})
+						]
+					});
+				}
+				this.oGroups.bindRows({
+					path: "/zjblessons_base_Groups",
+					template: new sap.ui.table.Row({})
+				})
+				this.oSubGroups.bindRows({
+					path: "/zjblessons_base_SubGroups",
+					template: new sap.ui.table.Row({})
+				})
+				this.oRegions.bindRows({
+					path: "/zjblessons_base_Regions",
+					template: new sap.ui.table.Row({})
+				})
+				this.oPlants.bindRows({
+					path: "/zjblessons_base_Plants",
+					template: new sap.ui.table.Row({})
+				})
+				this.byId('VBoxContent').addItem(this.oPanels);
+			},
 
 			_bindView : function (sObjectPath) {
 				var oViewModel = this.getModel("detailView");
