@@ -51,19 +51,45 @@
 								<Select
                                     forceSelection="false"
                                     selectedKey="{GroupID}"
+									visible="{= ${objectView>/editMode}}"
                                     width="240px"
-									id="SelectGroup">
+									items="{
+										path: '/zjblessons_base_Groups',
+										sorter: {
+											path: 'GroupText',
+											descending: true
+										},
+										filters: {
+											path: 'GroupText',
+											operator: 'NE',
+											value1: null
+										}
+									}">
+									<core:Item
+										key="{GroupID}"
+										text="{GroupText}"
+									/>
 							    </Select>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="{i18n>lSubGroupText}">
 							<f:fields>
 								<Select
-                                    selectedKey="{SubGroupID}"
-                                    forceSelection="false"
-                                    width="240px"
-                                    id="SelectSubGroup">
-							    </Select>
+								selectedKey="{SubGroupID}"
+								visible="{= ${objectView>/editMode}}"
+								forceSelection="false"
+								width="15em"
+								items="{
+									path: '/zjblessons_base_SubGroups',
+									sotert: {
+										path: 'SubGroupText',
+										descending: true
+									}
+								}">
+									<core:Item
+									key="{SubGroupID}"
+									text="{SubGroupText}"/>
+							</Select>
 							</f:fields>
 						</f:FormElement>
 					</f:formElements>

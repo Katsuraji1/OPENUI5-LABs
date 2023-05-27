@@ -4,7 +4,8 @@ sap.ui.define([
 		"sap/ui/model/json/JSONModel",
 		"sap/ui/core/routing/History",
 		"zjblessons/Worklist/model/formatter",
-	"sap/ui/core/Fragment"
+		"sap/ui/core/Fragment",
+		"sap/ui/core/Item",
 	], function (
 		BaseController,
 	JSONModel,
@@ -140,11 +141,13 @@ sap.ui.define([
 				this.getModel("objectView").setProperty("/editMode", bMode);
 				const sSelectedKey = this.getModel('objectView').getProperty("/selectedKeyITB");
 
-				if(bMode && sSelectedKey === 'list'){
+				if(bMode && sSelectedKey==='list'){
 					this._bindSelectGroup();
 					this._bindSubSelectGroup();
-				} else if(sSelectedKey==='form'){
-					this._addFormContent(bMode ? "Edit" : "View")
+				}
+
+				if(sSelectedKey==='form'){
+					this._addFormContent(bMode ? "Edit" : "View");
 				}
 			},
 
@@ -157,12 +160,26 @@ sap.ui.define([
 				this._addFormContent('View');
 			},
 
-			_bindSelectGroup: function(){
-				
+			_bindSelectGroup: function (){
+				this.byId("SelectGroup").bindItems({
+					path: "/zjblessons_base_Groups",
+					template: new sap.ui.core.Item({
+						key: "{GroupID}",
+						text: "{GroupText}",
+					}),
+					sorter: new sap.ui.model.Sorter("GroupText", true),
+					filters: new sap.ui.model.Filter("GroupText", sap.ui.model.FilterOperator.NE, null)
+				})
 			},
 
 			_bindSubSelectGroup: function(){
-
+				this._getSubGroupSelectTemplate().then(oTemplate => {
+					this.byId('SelectSubGroup').bindItems({
+						path: '/zjblessons_base_SubGroups',
+						template: oTemplate,
+						sorter: new sap.ui.model.Sorter("SubGroupText", true),
+					})
+				})
 			},
 
 			_addFormContent(sMode){
@@ -182,7 +199,26 @@ sap.ui.define([
 					IconTabFilter.removeAllContent();
 					IconTabFilter.insertContent(oContent, 0);
 				})
-			}
+			},
+
+			_getSubGroupSelectTemplate: function() {
+				return new Promise((resolve, reject) => {
+					if(!this.pSubGroupSelectTemplate){
+						this.pSubGroupSelectTemplate = Fragment.load({
+							name: "zjblessons.Worklist.view.Fragment.SubGroupSelectTemplate",
+							controller: this,
+							id: this.getView().getId(),
+						}).then(oTemplate => oTemplate)
+					}
+
+					this.pSubGroupSelectTemplate.then(oTemplate => {
+						resolve(oTemplate);
+					}).catch(oError => {
+						MessageBox.error(oError.toString());
+						reject();
+					})
+				})
+			},
 
 		});
 

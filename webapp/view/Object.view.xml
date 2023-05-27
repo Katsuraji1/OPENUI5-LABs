@@ -103,27 +103,11 @@
 								visible="{= !${objectView>/editMode}}"
 								text="{GroupText}"/>
 							<Select
-							visible="{= ${objectView>/editMode}}"
-							forceSelection="false"
-							selectedKey="{GroupID}"
-							width="15em"
-							items="{
-								path: '/zjblessons_base_Groups',
-								sorter: {
-									path: 'GroupText',
-									descending: true
-								},
-								filters: {
-									path: 'GroupText',
-									operator: 'NE',
-									value1: null
-								}
-							}">
-							<core:Item
-								key="{GroupID}"
-								text="{GroupText}"
-							/>
-							</Select>
+								id="SelectGroup"
+								visible="{= ${objectView>/editMode}}"
+								forceSelection="false"
+								selectedKey="{GroupID}"
+								width="15em"/>
 						</InputListItem>
 						<InputListItem
 							label="{i18n>ttlSubGroupText}"
@@ -133,21 +117,11 @@
 								visible="{= !${objectView>/editMode}}"
 								text="{SubGroupText}"/>
 							<Select
+								id="SelectSubGroup"
 								selectedKey="{SubGroupID}"
 								visible="{= ${objectView>/editMode}}"
 								forceSelection="false"
-								width="15em"
-								items="{
-									path: '/zjblessons_base_SubGroups',
-									sotert: {
-										path: 'SubGroupText',
-										descending: true
-									}
-								}">
-									<core:Item
-									key="{SubGroupID}"
-									text="{SubGroupText}"/>
-							</Select>
+								width="15em"/>
 						</InputListItem>
 						<InputListItem
 							label="{i18n>ttlCreated}"
