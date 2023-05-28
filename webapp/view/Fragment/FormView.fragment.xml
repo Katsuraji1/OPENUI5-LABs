@@ -63,7 +63,10 @@
 						</f:FormElement>
 						<f:FormElement label="{i18n>lCreatedBy}">
 							<f:fields>
-								<Text text="{CreatedBy}" />
+								<Text text="{
+									parts: ['CreatedByFullName'],
+									formatter: '.formatter.nameFormatter'
+								}" />
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="{i18n>lModified}">

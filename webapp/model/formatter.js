@@ -49,6 +49,12 @@ sap.ui.define([
 				}
 			},
 
+			nameFormatter: function(createdByFullName){
+				if(createdByFullName) {
+					return createdByFullName.split(' ').map((value, index) => index === 0 ? `${value[0]}.` : value).join(" ");
+			}
+			},
+
 		};
 
 	}

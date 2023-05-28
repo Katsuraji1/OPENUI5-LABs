@@ -135,7 +135,10 @@
 							labelTextDirection="Inherit"
 						>
 							<Text
-								text="{CreatedBy}"/>
+								text="{
+									parts: ['CreatedByFullName'],
+									formatter: '.formatter.nameFormatter'
+								}"/>
 						</InputListItem>
 						<InputListItem
 							label="{i18n>ttlModified}"
