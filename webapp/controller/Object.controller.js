@@ -84,22 +84,24 @@ sap.ui.define([
 			},
 
 			onPressSaveEditMaterial: function(){
-				this.getModel().submitChanges({
-					success: function() {
-						sap.m.MessageToast.show('Record successfully changed!',{
-							duration: 1000,
-							animationTimingFunction: "ease",
-							animationDuration: 1000, 
-						})
-					},
-					error: function(oError){
-						sap.m.MessageToast.show('Error!',{
-							duration: 1000,
-							animationTimingFunction: "ease",
-							animationDuration: 1000, 
-						})
-					},
-				});
+				if(this.getModel().hasPendingChanges()){
+					this.getModel().submitChanges({
+						success: function() {
+							sap.m.MessageToast.show('Record successfully changed!',{
+								duration: 1000,
+								animationTimingFunction: "ease",
+								animationDuration: 1000, 
+							})
+						},
+						error: function(oError){
+							sap.m.MessageToast.show('Error!',{
+								duration: 1000,
+								animationTimingFunction: "ease",
+								animationDuration: 1000, 
+							})
+						},
+					});
+				}
 				this._setEditMode(false);
 			},
 
