@@ -18,6 +18,12 @@ sap.ui.define([
 			_oViewModel: new JSONModel({
 				masterItem: "",
 				count: "",
+				panelsCount: {
+					Groups: '',
+					SubGroups: '',
+					Regions: '',
+					Plants: '',
+				}
 			}),
 
 			onInit : function () {
@@ -56,6 +62,11 @@ sap.ui.define([
 				this.getModel('detailView').setProperty('/count', `(${oEvent.getSource().getLength()})`)
 			},
 
+			_setPanelsCount(oEvent){
+				const sEntity = oEvent.getSource().getPath().replace('/zjblessons_base_', "");
+				this.getModel('detailView').setProperty(`/panelsCount/${sEntity}`, `(${oEvent.getSource().getLength()})`);
+			},
+
 			_createPanel: function() {
 				if(!this.oPanels){
 					this.oPanels = new sap.m.VBox({
@@ -63,7 +74,7 @@ sap.ui.define([
 						items: [
 							new sap.m.Panel({
 								expandable: true,
-								headerText: "{i18n>ttlGroups}",
+								headerText: "{i18n>ttlGroups}" + "{= ${detailView>/panelsCount/Groups}}",
 								content: [
 									(this.oGroups = new sap.ui.table.Table({
 										columns: [
@@ -100,7 +111,7 @@ sap.ui.define([
 							}),
 							new sap.m.Panel({
 								expandable: true,
-								headerText: "{i18n>ttlSubGroups}",
+								headerText: "{i18n>ttlSubGroups}" + "{= ${detailView>/panelsCount/SubGroups}}",
 								content: [
 									(this.oSubGroups = new sap.ui.table.Table({
 										columns: [
@@ -137,7 +148,7 @@ sap.ui.define([
 							}),
 							new sap.m.Panel({
 								expandable: true,
-								headerText: "{i18n>ttlRegions}",
+								headerText: "{i18n>ttlRegions}" + "{= ${detailView>/panelsCount/Regions}}",
 								content: [
 									(this.oRegions = new sap.ui.table.Table({
 										columns: [
@@ -174,7 +185,7 @@ sap.ui.define([
 							}),
 							new sap.m.Panel({
 								expandable: true,
-								headerText: "{i18n>ttlPlants}",
+								headerText: "{i18n>ttlPlants}" + "{= ${detailView>/panelsCount/Plants}}",
 								content: [
 									(this.oPlants = new sap.ui.table.Table({
 										columns: [
@@ -215,18 +226,30 @@ sap.ui.define([
 				this.oGroups.bindRows({
 					path: "/zjblessons_base_Groups",
 					template: new sap.ui.table.Row({}),
+					events: {
+						dataReceived: this._setPanelsCount.bind(this)
+					}
 				})
 				this.oSubGroups.bindRows({
 					path: "/zjblessons_base_SubGroups",
-					template: new sap.ui.table.Row({})
+					template: new sap.ui.table.Row({}),
+					events: {
+						dataReceived: this._setPanelsCount.bind(this)
+					}
 				})
 				this.oRegions.bindRows({
 					path: "/zjblessons_base_Regions",
-					template: new sap.ui.table.Row({})
+					template: new sap.ui.table.Row({}),
+					events: {
+						dataReceived: this._setPanelsCount.bind(this)
+					}
 				})
 				this.oPlants.bindRows({
 					path: "/zjblessons_base_Plants",
-					template: new sap.ui.table.Row({})
+					template: new sap.ui.table.Row({}),
+					events: {
+						dataReceived: this._setPanelsCount.bind(this)
+					}
 				})
 				this.byId('VBoxContent').addItem(this.oPanels);
 			},

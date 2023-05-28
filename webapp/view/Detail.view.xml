@@ -16,7 +16,7 @@
 			>
 				<m:Title
 					level="H2"
-					text="{detailView>/count}"
+					text="{detailView>/masterItem}{detailView>/count}"
 					visible="{= (${detailView>/masterItem}) !=='All'}"
 				>
 					

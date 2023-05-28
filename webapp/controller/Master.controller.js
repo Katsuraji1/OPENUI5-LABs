@@ -63,8 +63,13 @@ sap.ui.define([
 			},
 
 
-			_onMasterMatched :  function() {
-
+			_onMasterMatched :  function(oEvent) {
+				const sEntity = oEvent.getParameter('arguments').entity;
+				this.byId('list').getItems().forEach((oItem) => {
+					if(oItem.getCustomData()[0].getKey() === sEntity){
+						oItem.setSelected(true);
+					}
+				})
 			},
 
 
