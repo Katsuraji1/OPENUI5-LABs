@@ -27,7 +27,8 @@ sap.ui.define([
 					shareSendEmailSubject: this.getResourceBundle().getText("shareSendEmailWorklistSubject"),
 					shareSendEmailMessage: this.getResourceBundle().getText("shareSendEmailWorklistMessage", [location.href]),
 					tableNoDataText : this.getResourceBundle().getText("tableNoDataText"),
-					tableBusyDelay : 0
+					tableBusyDelay : 0,
+					validateError: false,
 				});
 				this.setModel(oViewModel, "worklistView");
 
@@ -104,8 +105,22 @@ sap.ui.define([
 			},
 			
 			onPressSaveCreateMaterial: function(){
-				this.getModel().submitChanges();
-				this._closeCreateDialog(this.oCreateDialog);
+				this._validateSaveMaterial();
+				if(!this.getModel("worklistView").getProperty('/validateError')){
+					this.getModel().submitChanges();
+					this._closeCreateDialog(this.oCreateDialog);
+				}
+			},
+
+			_validateSaveMaterial: function() {
+				[
+					Fragment.byId('fCreateDialog','iMaterialText'),
+					Fragment.byId('fCreateDialog','iMaterialDescription'),
+					Fragment.byId('fCreateDialog','cbGroupText'),
+					Fragment.byId('fCreateDialog','cbSubGroupText'),
+				].forEach(oItem => {
+					oItem.fireValidateFieldGroup();
+				})
 			},
 			
 			onPressDeleteEntry: function(oEvent){
@@ -173,8 +188,34 @@ sap.ui.define([
 				if (aTableSearchState.length !== 0) {
 					oViewModel.setProperty("/tableNoDataText", this.getResourceBundle().getText("worklistNoDataWithSearchText"));
 				}
-			}
+			},
+			
 
+			validateFieldGroupMaterial: function(oEvent){
+				const oSource = oEvent.getSource();
+				let bSuccess = true;
+				let sErrorText;
+				switch(oSource.getProperty('fieldGroupIds')[0]){
+					case 'input':
+						bSuccess = !!oSource.getValue()
+						sErrorText = 'Enter Text!'
+						break;
+					case 'comboBox':
+						bSuccess = oSource.getItems().includes(oSource.getSelectedItem())
+						sErrorText = 'Select Value!'
+				}
+				this.getModel("worklistView").setProperty('/validateError', !bSuccess)
+				oSource.setValueState(bSuccess ? 'None': 'Error');
+				oSource.setValueStateText(sErrorText);
+			},
+
+			/* onChangeMaterialText: function(oEvent){
+				const oSource = oEvent.getSource();
+				if(!oSource.getValue()){
+					oSource.setValueState("Error");
+					oSource.setValueStateText("Enter Text")
+				}
+			} */
 		});
 	}
 );
