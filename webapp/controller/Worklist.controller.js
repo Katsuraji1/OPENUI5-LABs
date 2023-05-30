@@ -118,6 +118,7 @@ sap.ui.define([
 					Fragment.byId('fCreateDialog','iMaterialDescription'),
 					Fragment.byId('fCreateDialog','cbGroupText'),
 					Fragment.byId('fCreateDialog','cbSubGroupText'),
+					Fragment.byId('fCreateDialog','iMaterialRating')
 				].forEach(oItem => {
 					oItem.fireValidateFieldGroup();
 				})
@@ -203,6 +204,17 @@ sap.ui.define([
 					case 'comboBox':
 						bSuccess = oSource.getItems().includes(oSource.getSelectedItem())
 						sErrorText = 'Select Value!'
+						break;
+					case 'inputRating':
+							const pattern = /^[0-9]\.\d{1,2}$/;
+							if(oSource.getValue()){
+								bSuccess = pattern.test(oSource.getValue());
+								sErrorText = 'Enter the correct rating!'
+							} else {
+								bSuccess = !!oSource.getValue()
+								sErrorText = 'Enter Text!'
+							}
+						break
 				}
 				this.getModel("worklistView").setProperty('/validateError', !bSuccess)
 				oSource.setValueState(bSuccess ? 'None': 'Error');

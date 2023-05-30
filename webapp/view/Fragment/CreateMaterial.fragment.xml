@@ -15,7 +15,7 @@
 					id='iMaterialText'
 					fieldGroupIds='input'
 					maxLength="128"
-					value="{path: 'MaterialText' , type: 'sap.ui.model.odata.type.String', constraints: {nullable: 'false'}}"/> 
+					value="{path: 'MaterialText' , type: 'sap.ui.model.odata.type.String'}"/> 
 				<Label
 					required='true'
 					text='{i18n>ttlMaterialDescription}'/>
@@ -23,7 +23,14 @@
 					id='iMaterialDescription'
 					fieldGroupIds='input'
 					maxLength="256"
-					value="{path: 'MaterialDescription', type: 'sap.ui.model.odata.type.String', constraints: {nullable: 'false'}}"/> 
+					value="{path: 'MaterialDescription', type: 'sap.ui.model.odata.type.String'}"/> 
+				<Label
+					required='true'
+					text='{i18n>ttlMaterialRating}'/>
+				<Input
+					id='iMaterialRating'
+					fieldGroupIds='inputRating'
+					value="{path: 'Rating', type: 'sap.ui.model.odata.type.Decimal', constraints: {precision: '3', scale: '2'}}"/> 
 				<Label
 					required='true'
 					text='{i18n>ttlGroupID}'/> 

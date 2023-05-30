@@ -11,7 +11,8 @@ sap.ui.define([
 	JSONModel,
 	History,
 	formatter,
-	Fragment
+	Fragment,
+	Item,
 	) {
 		"use strict";
 
@@ -24,7 +25,8 @@ sap.ui.define([
 						busy : true,
 						delay : 0,
 						editMode: false,
-						selectedKeyITB: 'list'
+						selectedKeyITB: 'list',
+						validateError: false,
 					});
 
 				this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
@@ -49,7 +51,7 @@ sap.ui.define([
 
 			onChange: function(oEvent){
 				const bState = oEvent.getParameter('state');
-				if(!bState && this.getModel().hasPendingChanges()){
+				if(!bState && this.getModel().hasPendingChanges() || this.getModel('objectView').getProperty('/validateError')){
 					sap.m.MessageBox.confirm(this.getResourceBundle().getText('ttlSaveChanges'),{
 						title: this.getResourceBundle().getText('ttlChooseAction'),
 						actions:[
@@ -69,7 +71,8 @@ sap.ui.define([
 						}
 					});
 					this._setEditMode(true);
-				} else{
+				} 
+				else{
 					this._setEditMode(bState);
 				}
 			},
@@ -84,25 +87,27 @@ sap.ui.define([
 			},
 
 			onPressSaveEditMaterial: function(){
-				if(this.getModel().hasPendingChanges()){
-					this.getModel().submitChanges({
-						success: function() {
-							sap.m.MessageToast.show('Record successfully changed!',{
-								duration: 1000,
-								animationTimingFunction: "ease",
-								animationDuration: 1000, 
-							})
-						},
-						error: function(oError){
-							sap.m.MessageToast.show('Error!',{
-								duration: 1000,
-								animationTimingFunction: "ease",
-								animationDuration: 1000, 
-							})
-						},
-					});
+				if(!this.getModel('objectView').getProperty('/validateError')){
+					if(this.getModel().hasPendingChanges()){
+						this.getModel().submitChanges({
+							success: function() {
+								sap.m.MessageToast.show('Record successfully changed!',{
+									duration: 1000,
+									animationTimingFunction: "ease",
+									animationDuration: 1000, 
+								})
+							},
+							error: function(oError){
+								sap.m.MessageToast.show('Error!',{
+									duration: 1000,
+									animationTimingFunction: "ease",
+									animationDuration: 1000, 
+								})
+							},
+						});
+					}
+					this._setEditMode(false);
 				}
-				this._setEditMode(false);
 			},
 
 			_onObjectMatched : function (oEvent) {
@@ -235,6 +240,38 @@ sap.ui.define([
 						reject();
 					})
 				})
+			},
+			
+			_validateSaveMaterial: function() {
+
+			},
+			validateFieldGroupMaterial: function(oEvent){
+				const oSource = oEvent.getSource();
+				let bSuccess = true;
+				let sErrorText;
+				switch(oSource.getProperty('fieldGroupIds')[0]){
+					case 'input':
+						bSuccess = !!oSource.getValue()
+						sErrorText = 'Enter Text!'
+						break;
+					case 'select':
+						bSuccess = !!oSource.getSelectedItem()
+						sErrorText = 'Select Value!'
+						break;
+					case 'inputRating':
+							const pattern = /^[0-9]\.\d{1,2}$/;
+							if(oSource.getValue()){
+								bSuccess = pattern.test(oSource.getValue());
+								sErrorText = 'Enter the correct rating!'
+							} else {
+								bSuccess = !!oSource.getValue()
+								sErrorText = 'Enter Text!'
+							}
+						break
+				}
+				this.getModel("objectView").setProperty('/validateError', !bSuccess)
+				oSource.setValueState(bSuccess ? 'None': 'Error');
+				oSource.setValueStateText(sErrorText);
 			},
 		});
 

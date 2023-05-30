@@ -3,7 +3,9 @@
 	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"
 	xmlns:core="sap.ui.core">
-	<VBox class="sapUiSmallMargin">
+	<VBox 
+		id='fFormEdit'
+		class="sapUiSmallMargin">
 		<f:Form
 			editable="true">
 			<f:title>
@@ -31,6 +33,8 @@
 						<f:FormElement label="{i18n>lMaterialText}">
 							<f:fields>
 								<Input
+									id='iFormMaterialText'
+									fieldGroupIds='input'
                                     enabled="{= ${objectView>/editMode} &amp;&amp; ${MaterialText} !== '' || null || undefined}"
                                     maxLength="128"
                                     width="240px"
@@ -40,11 +44,22 @@
 						<f:FormElement label="{i18n>lMaterialDescription}">
 							<f:fields>
 								<Input
+									id='iFormMaterialDescription'
+									fieldGroupIds='input'
                                     enabled="{= ${objectView>/editMode} &amp;&amp; ${MaterialDescription} !== '' || null || undefined}"
                                     width="240px"
                                     maxLength="256"
                                     value="{MaterialDescription}"/>
 							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>ttlMaterialRating}">
+							<Input
+								id='iFormMaterialRating'
+								fieldGroupIds='inputRating'
+								enabled="{= ${objectView>/editMode} &amp;&amp; ${Rating} !== '' || null || undefined}"
+								width="15em"
+								visible="{= ${objectView>/editMode}}"
+								value="{path: 'Rating', type: 'sap.ui.model.odata.type.Decimal', constraints: {precision: '3', scale: '2'}}"/> 
 						</f:FormElement>
 					</f:formElements>
 				</f:FormContainer>
@@ -53,6 +68,7 @@
 						 <f:FormElement label="{i18n>lGroupText}">
 							<f:fields>
 								<Select
+									id='sFormMaterialGroupText'
                                     forceSelection="false"
                                     selectedKey="{GroupID}"
                                     width="240px"
@@ -78,6 +94,7 @@
 						<f:FormElement label="{i18n>lSubGroupText}">
 							<f:fields>
 								<Select
+									id='sFormMaterialSubGroupText'
                                     selectedKey="{SubGroupID}"
                                     forceSelection="false"
                                     width="240px"

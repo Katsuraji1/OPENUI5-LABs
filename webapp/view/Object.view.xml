@@ -45,6 +45,7 @@
 		</semantic:titleCustomTextActions>
 		<semantic:content>
 		<IconTabBar
+			validateFieldGroup='validateFieldGroupMaterial'
 			select="onSelectIconTabBar"
 			headerMode="Inline">
 			<items>
@@ -75,6 +76,9 @@
 								visible="{= !${objectView>/editMode}}"
 								text="{MaterialText}"/>
 							<Input
+								id='listInputMaterialText'
+								fieldGroupIds='input'
+								required="true"
 								enabled="{= ${objectView>/editMode} &amp;&amp; ${MaterialText} !== '' || null || undefined}"
 								maxLength="128"
 								visible="{= ${objectView>/editMode}}"
@@ -89,11 +93,31 @@
 								visible="{= !${objectView>/editMode}}"
 								text="{MaterialDescription}"/>
 							<Input
+								id='listInputMaterialDescription'
+								fieldGroupIds='input'
+								required="true"
 								enabled="{= ${objectView>/editMode} &amp;&amp; ${MaterialDescription} !== '' || null || undefined}"
 								width="15em"
 								maxLength="256"
 								visible="{= ${objectView>/editMode}}"
 								value="{MaterialDescription}"/>
+						</InputListItem>
+						<InputListItem
+							label="{i18n>ttlMaterialRating}"
+							labelTextDirection="Inherit"
+						>
+						<Text
+							visible="{= !${objectView>/editMode}}"
+							text="{Rating}"
+						/>
+						<Input
+							id='listInputMaterialRating'
+							fieldGroupIds='inputRating'
+							required="true"
+							enabled="{= ${objectView>/editMode} &amp;&amp; ${Rating} !== '' || null || undefined}"
+							width="15em"
+							visible="{= ${objectView>/editMode}}"
+							value="{path: 'Rating', type: 'sap.ui.model.odata.type.Decimal', constraints: {precision: '3', scale: '2'}}"/> 
 						</InputListItem>
 						<InputListItem
 							label="{i18n>ttlGroupText}"
@@ -103,6 +127,8 @@
 								visible="{= !${objectView>/editMode}}"
 								text="{GroupText}"/>
 							<Select
+								fieldGroupIds='select'
+								required="true"
 								id="SelectGroup"
 								visible="{= ${objectView>/editMode}}"
 								forceSelection="false"
@@ -117,6 +143,8 @@
 								visible="{= !${objectView>/editMode}}"
 								text="{SubGroupText}"/>
 							<Select
+								fieldGroupIds='select'
+								required="true"
 								id="SelectSubGroup"
 								selectedKey="{SubGroupID}"
 								visible="{= ${objectView>/editMode}}"
