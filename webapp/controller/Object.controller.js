@@ -82,6 +82,7 @@ sap.ui.define([
 			},
 			
 			onPressCancelEditMaterial: function(){
+				this._clearValidateErrors()
 				this.getModel().resetChanges();
 				this._setEditMode(false);
 			},
@@ -273,6 +274,17 @@ sap.ui.define([
 				oSource.setValueState(bSuccess ? 'None': 'Error');
 				oSource.setValueStateText(sErrorText);
 			},
+
+			_clearValidateErrors: function(){
+				const fieldIds = this.getView().getControlsByFieldGroupId();
+				fieldIds.forEach((oItem) => {
+					if(oItem.mProperties.fieldGroupIds[0]){
+						oItem.setValueState('None');
+						oItem.setValueStateText('');
+					}
+				})
+				this.getModel('objectView').setProperty('/validateError', false)
+			}
 		});
 
 	}

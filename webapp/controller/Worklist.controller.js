@@ -100,6 +100,7 @@ sap.ui.define([
 			},
 			
 			onPressCloseCreateDialog: function(){
+				this._clearValidateErrors()
 				this.getModel().resetChanges();
 				this._closeCreateDialog(this.oCreateDialog);
 			},
@@ -220,6 +221,40 @@ sap.ui.define([
 				oSource.setValueState(bSuccess ? 'None': 'Error');
 				oSource.setValueStateText(sErrorText);
 			},
+
+			_clearValidateErrors: function(){
+				const fieldIds = this.getView().getControlsByFieldGroupId();
+				fieldIds.forEach((oItem) => {
+					if(oItem.mProperties.fieldGroupIds[0]){
+						oItem.setValueState('None');
+						oItem.setValueStateText('');
+					}
+				})
+			}
+
+			/* _findvalidateFieldGroup: function(oEvent){
+				let oSource = oEvent;
+				if(oSource.mEventRegistry.validateFieldGroup){
+					this._findValidateFieldIds(oSource);
+				} else{
+					this._findvalidateFieldGroup(oSource.getParent())
+				}
+			},
+
+			_findValidateFieldIds: function(oSource){
+				oSource.mAggregations.items.forEach((oItem) => {
+					if(oItem.getProperty('fieldGroupIds').length){
+						this._clearValidateFiled(oItem);
+					} else if(oItem.length) {
+						this._findValidateFieldIds(oItem);
+					}
+				})
+			},
+
+			_clearValidateFiled: function(oItem){
+				oItem.setValueState('None')
+				oItem.setValueStateText('');
+			} */
 
 			/* onChangeMaterialText: function(oEvent){
 				const oSource = oEvent.getSource();

@@ -7,6 +7,7 @@
 	
 
 	<semantic:SemanticPage
+		validateFieldGroup='validateFieldGroupMaterial'
 		id="page"
 		headerPinnable="false"
 		toggleHeaderOnTitleClick="false"
@@ -45,7 +46,6 @@
 		</semantic:titleCustomTextActions>
 		<semantic:content>
 		<IconTabBar
-			validateFieldGroup='validateFieldGroupMaterial'
 			select="onSelectIconTabBar"
 			headerMode="Inline">
 			<items>
