@@ -5,7 +5,9 @@
 	xmlns:core="sap.ui.core">
 	<VBox 
 		id='fFormEdit'
-		class="sapUiSmallMargin">
+		class="sapUiSmallMargin"
+		validateFieldGroup='validateFieldGroupMaterial'>
+		
 		<f:Form
 			editable="true">
 			<f:title>
@@ -33,8 +35,9 @@
 						<f:FormElement label="{i18n>lMaterialText}">
 							<f:fields>
 								<Input
+									required="true"
 									id='iFormMaterialText'
-									fieldGroupIds='input'
+									fieldGroupIds='formInput'
                                     enabled="{= ${objectView>/editMode} &amp;&amp; ${MaterialText} !== '' || null || undefined}"
                                     maxLength="128"
                                     width="240px"
@@ -44,8 +47,9 @@
 						<f:FormElement label="{i18n>lMaterialDescription}">
 							<f:fields>
 								<Input
+									required="true"
 									id='iFormMaterialDescription'
-									fieldGroupIds='input'
+									fieldGroupIds='formInput'
                                     enabled="{= ${objectView>/editMode} &amp;&amp; ${MaterialDescription} !== '' || null || undefined}"
                                     width="240px"
                                     maxLength="256"
@@ -54,8 +58,9 @@
 						</f:FormElement>
 						<f:FormElement label="{i18n>ttlMaterialRating}">
 							<Input
+								required="true"
 								id='iFormMaterialRating'
-								fieldGroupIds='inputRating'
+								fieldGroupIds='formInputRating'
 								enabled="{= ${objectView>/editMode} &amp;&amp; ${Rating} !== '' || null || undefined}"
 								width="15em"
 								visible="{= ${objectView>/editMode}}"
@@ -69,9 +74,11 @@
 							<f:fields>
 								<Select
 									id='sFormMaterialGroupText'
+									required="true"
                                     forceSelection="false"
                                     selectedKey="{GroupID}"
                                     width="240px"
+									fieldGroupIds='formSelect'
 									items="{
 										path: '/zjblessons_base_Groups',
 										sorter: {
@@ -83,7 +90,8 @@
 											operator: 'NE',
 											value1: null
 										}
-									}">
+									}"
+									>
 									<core:Item
 										key="{GroupID}"
 										text="{GroupText}"
@@ -94,10 +102,12 @@
 						<f:FormElement label="{i18n>lSubGroupText}">
 							<f:fields>
 								<Select
+									required="true"
 									id='sFormMaterialSubGroupText'
                                     selectedKey="{SubGroupID}"
                                     forceSelection="false"
                                     width="240px"
+									fieldGroupIds='formSelect'
 									items="{
 										path: '/zjblessons_base_SubGroups',
 										sorter: {
@@ -105,7 +115,7 @@
 											descending: true
 										}
 									}"
-                                    >
+                                >
 									<core:Item
 										key="{SubGroupID}"
 										text="{SubGroupText}"

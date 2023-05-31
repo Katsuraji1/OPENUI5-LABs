@@ -77,6 +77,7 @@ sap.ui.define([
 				}
 				this.pCreateMaterial.then(oDialog => {
 					oDialog.setBindingContext(oEntryContext);
+					oDialog.data('errors',[])
 					oDialog.open();
 				});
 			},
@@ -89,7 +90,7 @@ sap.ui.define([
 				};
 				
 				const oEntryContext=this.getModel().createEntry('/zjblessons_base_Materials', {
-					properties: mProps
+					properties: mProps,
 				});
 				
 				this._loadCreateMateriaFragment(oEntryContext);
@@ -114,14 +115,11 @@ sap.ui.define([
 			},
 
 			_validateSaveMaterial: function() {
-				[
-					Fragment.byId('fCreateDialog','iMaterialText'),
-					Fragment.byId('fCreateDialog','iMaterialDescription'),
-					Fragment.byId('fCreateDialog','cbGroupText'),
-					Fragment.byId('fCreateDialog','cbSubGroupText'),
-					Fragment.byId('fCreateDialog','iMaterialRating')
-				].forEach(oItem => {
-					oItem.fireValidateFieldGroup();
+				const fieldIds = this.getView().getControlsByFieldGroupId();
+				fieldIds.forEach((oItem) => {
+					if(oItem.mProperties.fieldGroupIds[0]){
+						oItem.fireValidateFieldGroup()
+					}
 				})
 			},
 			
@@ -195,6 +193,7 @@ sap.ui.define([
 
 			validateFieldGroupMaterial: function(oEvent){
 				const oSource = oEvent.getSource();
+				const aErrors = this.oCreateDialog.data('errors');
 				let bSuccess = true;
 				let sErrorText;
 				switch(oSource.getProperty('fieldGroupIds')[0]){
@@ -217,9 +216,19 @@ sap.ui.define([
 							}
 						break
 				}
-				this.getModel("worklistView").setProperty('/validateError', !bSuccess)
 				oSource.setValueState(bSuccess ? 'None': 'Error');
 				oSource.setValueStateText(sErrorText);
+
+				if(bSuccess){
+					if(aErrors.indexOf(oSource) === -1) return;
+					aErrors.splice(aErrors.indexOf(oSource), 1)
+				} else {
+					if(aErrors.indexOf(oSource) === -1){
+						aErrors.push(oSource);
+					}
+				}
+
+				this.getModel("worklistView").setProperty('/validateError', !!aErrors.length)
 			},
 
 			_clearValidateErrors: function(){
@@ -230,7 +239,7 @@ sap.ui.define([
 						oItem.setValueStateText('');
 					}
 				})
-			}
+			},
 
 			/* _findvalidateFieldGroup: function(oEvent){
 				let oSource = oEvent;

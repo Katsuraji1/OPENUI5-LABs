@@ -37,6 +37,7 @@ sap.ui.define([
 						oViewModel.setProperty("/delay", iOriginalBusyDelay);
 					}
 				);
+				this.fListEdit = this.byId('listTab').data('aValidateErrors', []);
 			},
 
 			onNavBack : function() {
@@ -51,6 +52,7 @@ sap.ui.define([
 
 			onChange: function(oEvent){
 				const bState = oEvent.getParameter('state');
+				!bState && this._validateSaveMaterial()
 				if(!bState && this.getModel().hasPendingChanges() || this.getModel('objectView').getProperty('/validateError')){
 					sap.m.MessageBox.confirm(this.getResourceBundle().getText('ttlSaveChanges'),{
 						title: this.getResourceBundle().getText('ttlChooseAction'),
@@ -88,6 +90,7 @@ sap.ui.define([
 			},
 
 			onPressSaveEditMaterial: function(){
+				this._validateSaveMaterial()
 				if(!this.getModel('objectView').getProperty('/validateError')){
 					if(this.getModel().hasPendingChanges()){
 						this.getModel().submitChanges({
@@ -212,13 +215,15 @@ sap.ui.define([
 						controller: this,
 						id: this.getView().getId(),
 					}).then((oContent) => {
-						this.getView().addDependent(oContent);
+						this.fFormEditView = oContent;
+						this.getView().addDependent(this.fFormEditView);
 						return oContent;
 					})
 				}
 
 				this[`pForm${sMode}`].then((oContent) => {
 					const IconTabFilter = this.byId('FormIconTabFilter');
+					this.fFormEditView.data('aValidateErrors', [])
 					IconTabFilter.removeAllContent();
 					IconTabFilter.insertContent(oContent, 0);
 				})
@@ -242,24 +247,23 @@ sap.ui.define([
 					})
 				})
 			},
-			
-			_validateSaveMaterial: function() {
 
-			},
 			validateFieldGroupMaterial: function(oEvent){
 				const oSource = oEvent.getSource();
+				const selectedKeyITB = this.getModel('objectView').getProperty('/selectedKeyITB');
+				const aValidateErrors = selectedKeyITB === 'list' ? this.fListEdit.data('aValidateErrors') : this.fFormEditView.data('aValidateErrors');
 				let bSuccess = true;
 				let sErrorText;
 				switch(oSource.getProperty('fieldGroupIds')[0]){
-					case 'input':
+					case selectedKeyITB === 'list' ? 'listInput' : 'formInput' :
 						bSuccess = !!oSource.getValue()
 						sErrorText = 'Enter Text!'
 						break;
-					case 'select':
+					case selectedKeyITB === 'list' ? 'listSelect' : 'formSelect' :
 						bSuccess = !!oSource.getSelectedItem()
 						sErrorText = 'Select Value!'
 						break;
-					case 'inputRating':
+					case selectedKeyITB === 'list' ? 'listInputRating' : 'formInputRating':
 							const pattern = /^[0-9]\.\d{1,2}$/;
 							if(oSource.getValue()){
 								bSuccess = pattern.test(oSource.getValue());
@@ -270,10 +274,21 @@ sap.ui.define([
 							}
 						break
 				}
-				this.getModel("objectView").setProperty('/validateError', !bSuccess)
 				oSource.setValueState(bSuccess ? 'None': 'Error');
 				oSource.setValueStateText(sErrorText);
+
+				if(bSuccess){
+					if(aValidateErrors.indexOf(oSource) === -1) return;
+					aValidateErrors.splice(aValidateErrors.indexOf(oSource), 1)
+				} else {
+					if(aValidateErrors.indexOf(oSource) === -1){
+						aValidateErrors.push(oSource);
+					}
+				}
+
+				this.getModel("objectView").setProperty('/validateError', !!aValidateErrors.length)
 			},
+			
 
 			_clearValidateErrors: function(){
 				const fieldIds = this.getView().getControlsByFieldGroupId();
@@ -284,6 +299,15 @@ sap.ui.define([
 					}
 				})
 				this.getModel('objectView').setProperty('/validateError', false)
+			},
+
+			_validateSaveMaterial: function(){
+				const fieldIds = this.getView().getControlsByFieldGroupId();
+				fieldIds.forEach((oItem) => {
+					if(oItem.mProperties.fieldGroupIds[0]){
+						oItem.fireValidateFieldGroup()
+					}
+				})
 			}
 		});
 

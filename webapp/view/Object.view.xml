@@ -7,7 +7,6 @@
 	
 
 	<semantic:SemanticPage
-		validateFieldGroup='validateFieldGroupMaterial'
 		id="page"
 		headerPinnable="false"
 		toggleHeaderOnTitleClick="false"
@@ -53,8 +52,10 @@
 					enabled="{= !${objectView>/editMode} || ${objectView>/selectedKeyITB} === 'list'}"
 					icon="{i18n>iList}"
 					key="list"
+					id='listTab'
 					text="{i18n>ttlList}">
 					<List
+						validateFieldGroup='validateFieldGroupMaterial'
 						backgroundDesign="Solid"
 						headerText="{= ${objectView>/editMode} ? ${i18n>ttlEditMode} : ${i18n>ttlViewMode}}"
 					>
@@ -63,6 +64,7 @@
 							labelTextDirection="Inherit"
 						>
 							<Switch
+								enabled="{= !${objectView>/validateError}}"
 								change="onChange"
 								state="{objectView>/editMode}"
 							>
@@ -77,7 +79,7 @@
 								text="{MaterialText}"/>
 							<Input
 								id='listInputMaterialText'
-								fieldGroupIds='input'
+								fieldGroupIds='listInput'
 								required="true"
 								enabled="{= ${objectView>/editMode} &amp;&amp; ${MaterialText} !== '' || null || undefined}"
 								maxLength="128"
@@ -94,7 +96,7 @@
 								text="{MaterialDescription}"/>
 							<Input
 								id='listInputMaterialDescription'
-								fieldGroupIds='input'
+								fieldGroupIds='listInput'
 								required="true"
 								enabled="{= ${objectView>/editMode} &amp;&amp; ${MaterialDescription} !== '' || null || undefined}"
 								width="15em"
@@ -112,7 +114,7 @@
 						/>
 						<Input
 							id='listInputMaterialRating'
-							fieldGroupIds='inputRating'
+							fieldGroupIds='listInputRating'
 							required="true"
 							enabled="{= ${objectView>/editMode} &amp;&amp; ${Rating} !== '' || null || undefined}"
 							width="15em"
@@ -127,7 +129,7 @@
 								visible="{= !${objectView>/editMode}}"
 								text="{GroupText}"/>
 							<Select
-								fieldGroupIds='select'
+								fieldGroupIds='listSelect'
 								required="true"
 								id="SelectGroup"
 								visible="{= ${objectView>/editMode}}"
@@ -143,7 +145,7 @@
 								visible="{= !${objectView>/editMode}}"
 								text="{SubGroupText}"/>
 							<Select
-								fieldGroupIds='select'
+								fieldGroupIds='listSelect'
 								required="true"
 								id="SelectSubGroup"
 								selectedKey="{SubGroupID}"
