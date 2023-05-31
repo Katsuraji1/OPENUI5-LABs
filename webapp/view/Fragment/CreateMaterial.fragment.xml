@@ -34,9 +34,9 @@
 				<Label
 					required='true'
 					text='{i18n>ttlGroupID}'/> 
-				<ComboBox
-					id='cbGroupText'
-					fieldGroupIds='comboBox'
+				<Select
+					forceSelection="false"
+					fieldGroupIds='select'
 					selectedKey="{GroupID}"
 					width="100%"
 					items="{
@@ -55,13 +55,13 @@
 						key="{GroupID}"
 						text="{GroupText}"
 					/>
-				</ComboBox>
+				</Select>
 				<Label
 					required='true'
 					text='{i18n>ttlSubGroupID}'/>
-				<ComboBox
-					id='cbSubGroupText'
-					fieldGroupIds='comboBox'
+				<Select
+					forceSelection="false"
+					fieldGroupIds='select'
 					selectedKey="{SubGroupID}"
 					width="100%"
 					items="{
@@ -69,6 +69,11 @@
 						sorter: {
 							path: 'SubGroupText',
 							descending: true
+						},
+						filters: {
+							path: 'SubGroupText',
+							operator: 'NE',
+							value1: null
 						}
 					}"
 					>
@@ -78,7 +83,7 @@
 					>
 						
 					</core:Item>
-				</ComboBox>
+				</Select>
 					<FlexBox
 						justifyContent='SpaceBetween'>
 					<Button

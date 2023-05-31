@@ -201,9 +201,13 @@ sap.ui.define([
 						bSuccess = !!oSource.getValue()
 						sErrorText = this.getResourceBundle().getText('ttlInputError');
 						break;
-					case 'comboBox':
+					/* case 'comboBox':
 						bSuccess = oSource.getItems().includes(oSource.getSelectedItem())
 						sErrorText = this.getResourceBundle().getText('ttlSelectError');
+						break; */
+					case 'select' :
+						bSuccess = !!oSource.getSelectedItem()
+						sErrorText = sErrorText = this.getResourceBundle().getText('ttlSelectError');
 						break;
 					case 'inputRating':
 							const pattern = /^[0-9]\.\d{1,2}$/;
