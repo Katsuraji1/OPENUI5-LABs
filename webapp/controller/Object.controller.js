@@ -258,20 +258,20 @@ sap.ui.define([
 				switch(oSource.getProperty('fieldGroupIds')[0]){
 					case selectedKeyITB === 'list' ? 'listInput' : 'formInput' :
 						bSuccess = !!oSource.getValue()
-						sErrorText = 'Enter Text!'
+						sErrorText = this.getResourceBundle().getText('ttlInputError');
 						break;
 					case selectedKeyITB === 'list' ? 'listSelect' : 'formSelect' :
 						bSuccess = !!oSource.getSelectedItem()
-						sErrorText = 'Select Value!'
+						sErrorText = sErrorText = this.getResourceBundle().getText('ttlSelectError');
 						break;
 					case selectedKeyITB === 'list' ? 'listInputRating' : 'formInputRating':
 							const pattern = /^[0-9]\.\d{1,2}$/;
 							if(oSource.getValue()){
 								bSuccess = pattern.test(oSource.getValue());
-								sErrorText = 'Enter the correct rating!'
+								sErrorText = sErrorText = this.getResourceBundle().getText('ttlInputRatingError');
 							} else {
 								bSuccess = !!oSource.getValue()
-								sErrorText = 'Enter Text!'
+								sErrorText = this.getResourceBundle().getText('ttlInputError');
 							}
 						break
 				}
