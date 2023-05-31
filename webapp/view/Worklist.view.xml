@@ -81,8 +81,8 @@
 						type="Navigation"
 						press="onPress">
 						<cells>
-							<ObjectIdentifier
-								title="{MaterialText}"/>
+							<Link
+								text="{MaterialText}"/>
 							<ObjectIdentifier
 								title="{MaterialDescription}"/>
 							<ObjectIdentifier
