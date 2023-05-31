@@ -85,6 +85,7 @@ sap.ui.define([
 			
 			onPressCancelEditMaterial: function(){
 				this._clearValidateErrors()
+				this.getModel('objectView').setProperty('/validateError', false)
 				this.getModel().resetChanges();
 				this._setEditMode(false);
 			},
@@ -298,7 +299,6 @@ sap.ui.define([
 						oItem.setValueStateText('');
 					}
 				})
-				this.getModel('objectView').setProperty('/validateError', false)
 			},
 
 			_validateSaveMaterial: function(){
