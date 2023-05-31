@@ -7,6 +7,7 @@
 			contentHeight='{worklistView>/dialogParams/height}'
 			contentWidth='{worklistView>/dialogParams/width}'
 			id='fCreateDialog'
+			beforeClose='onBeforeCloseDialog'
 			title='{i18n>ttlCreateMaterial}'
 		>
 			<VBox

@@ -99,22 +99,27 @@ sap.ui.define([
 				
 				this._loadCreateMateriaFragment(oEntryContext);
 			},
-			
-			_closeCreateDialog: function(dialog){
-				dialog.close();
+
+			oClearCreateDialog: function(){
+				const fieldIds = this.getView().getControlsByFieldGroupId();
+				fieldIds.forEach((oItem) => {
+					if(oItem.mProperties.fieldGroupIds[0]){
+						oItem.setValueState('None');
+						oItem.setValueStateText('');
+					}
+				})
 			},
 			
 			onPressCloseCreateDialog: function(){
-				this._clearValidateErrors()
 				this.getModel().resetChanges();
-				this._closeCreateDialog(this.oCreateDialog);
+				this.oCreateDialog.close();
 			},
 			
 			onPressSaveCreateMaterial: function(){
 				this._validateSaveMaterial();
 				if(!this.getModel("worklistView").getProperty('/validateError')){
 					this.getModel().submitChanges();
-					this._closeCreateDialog(this.oCreateDialog);
+					this.oCreateDialog.close()
 				}
 			},
 
@@ -205,10 +210,6 @@ sap.ui.define([
 						bSuccess = !!oSource.getValue()
 						sErrorText = this.getResourceBundle().getText('ttlInputError');
 						break;
-					/* case 'comboBox':
-						bSuccess = oSource.getItems().includes(oSource.getSelectedItem())
-						sErrorText = this.getResourceBundle().getText('ttlSelectError');
-						break; */
 					case 'select' :
 						bSuccess = !!oSource.getSelectedItem()
 						sErrorText = sErrorText = this.getResourceBundle().getText('ttlSelectError');
@@ -239,47 +240,17 @@ sap.ui.define([
 				this.getModel("worklistView").setProperty('/validateError', !!aErrors.length)
 			},
 
-			_clearValidateErrors: function(){
-				const fieldIds = this.getView().getControlsByFieldGroupId();
-				fieldIds.forEach((oItem) => {
-					if(oItem.mProperties.fieldGroupIds[0]){
-						oItem.setValueState('None');
-						oItem.setValueStateText('');
-					}
-				})
-			},
-
-			/* _findvalidateFieldGroup: function(oEvent){
-				let oSource = oEvent;
-				if(oSource.mEventRegistry.validateFieldGroup){
-					this._findValidateFieldIds(oSource);
-				} else{
-					this._findvalidateFieldGroup(oSource.getParent())
+			onBeforeCloseDialog: function(oEvent){
+				const oDialogSize = oEvent.getSource()._oManuallySetSize;
+				if(oDialogSize){
+					this.getModel('worklistView').setProperty('/dialogParams/height', oDialogSize.height + 'px');
+					this.getModel('worklistView').setProperty('/dialogParams/width', oDialogSize.width + 'px');
+				} else {
+					oEvent.getSource().destroy();
+					this.oCreateDialog = null;
 				}
-			},
-
-			_findValidateFieldIds: function(oSource){
-				oSource.mAggregations.items.forEach((oItem) => {
-					if(oItem.getProperty('fieldGroupIds').length){
-						this._clearValidateFiled(oItem);
-					} else if(oItem.length) {
-						this._findValidateFieldIds(oItem);
-					}
-				})
-			},
-
-			_clearValidateFiled: function(oItem){
-				oItem.setValueState('None')
-				oItem.setValueStateText('');
-			} */
-
-			/* onChangeMaterialText: function(oEvent){
-				const oSource = oEvent.getSource();
-				if(!oSource.getValue()){
-					oSource.setValueState("Error");
-					oSource.setValueStateText("Enter Text")
-				}
-			} */
+				this.oClearCreateDialog();
+			}
 		});
 	}
 );
