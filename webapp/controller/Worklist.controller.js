@@ -30,8 +30,8 @@ sap.ui.define([
 					tableBusyDelay : 0,
 					validateError: false,
 					dialogParams: {
-						height: 500 +'px',
-						width: 300 + 'px',
+						height: '400px',
+						width: '250px',
 					}
 				});
 				this.setModel(oViewModel, "worklistView");
