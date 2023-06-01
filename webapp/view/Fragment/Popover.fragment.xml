@@ -3,19 +3,21 @@
 	xmlns:c="sap.ui.core"
 >
     <Popover
-    title="{MaterialText}">
+    modal="true"
+    title="{MaterialText}"
+    class='sapUiSizeCompact'>
 
         <VBox>
-            <FlexBox alignItems="Center" renderType="Bare">
+            <FlexBox renderType="Bare" alignItems="Center" justifyContent="SpaceBetween" class='sapUiTinyMargin'>
                 <Label
-                    text="{i18n>ttlGroupText}"
+                    text="{i18n>ttlGroupTextPopover}"
                     design="Bold"/>
                 <Label
                     text="{GroupText}"/>
             </FlexBox>
-            <FlexBox alignItems="Center" renderType="Bare">
+            <FlexBox renderType="Bare" alignItems="Center" justifyContent="SpaceBetween" class='sapUiTinyMargin'>
                 <Label
-                    text="{i18n>ttlSubGroupText}"
+                    text="{i18n>ttlSubGroupTextPopover}"
                     design="Bold"/>
                 <Label
                     text="{SubGroupText}"/>
@@ -26,11 +28,9 @@
                 <Button
                     press="onPressCloseMaterialPopover"
                     text="{i18n>btnClose}"/>
-                <Button/>
                 <Button
                     press="onPressGoToMaterial"
                     text="{i18n>btnGoToMaterial}"/>
-                <Button/>
             </Toolbar>
         </footer>
 

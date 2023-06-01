@@ -250,6 +250,32 @@ sap.ui.define([
 					this.oCreateDialog = null;
 				}
 				this.oClearCreateDialog();
+			},
+			onPressMaterialTextDropInfo: function(oEvent){
+				const oSource = oEvent.getSource();
+
+				if(!this.oMaterialPopover){
+					this.oMaterialPopover = Fragment.load({
+						name: 'zjblessons.Worklist.view.Fragment.Popover',
+						id: this.getView().getId(),
+						controller: this
+					}).then((oPopover) => {
+						this.getView().addDependent(oPopover);
+						return oPopover;
+					})
+				}
+				this.oMaterialPopover.then((oPopover) => {
+					oPopover.setBindingContext(oSource.getBindingContext());
+					oPopover.openBy(oSource);
+				})
+			},
+
+			onPressCloseMaterialPopover: function(oEvent) {
+				oEvent.getSource().getParent().getParent().close()
+			},
+
+			onPressGoToMaterial: function(oEvent){
+				this._showObject(oEvent.getSource())
 			}
 		});
 	}

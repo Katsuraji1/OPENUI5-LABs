@@ -82,6 +82,7 @@
 						press="onPress">
 						<cells>
 							<Link
+								press='onPressMaterialTextDropInfo'
 								text="{MaterialText}"/>
 							<ObjectIdentifier
 								title="{MaterialDescription}"/>
