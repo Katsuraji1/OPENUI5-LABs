@@ -1,0 +1,25 @@
+<ActionSheet id="actionSheet"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	core:require="{ MessageToast: 'sap/m/MessageToast' }"
+	title="Choose Your Action"
+	showCancelButton="true"
+	placement="Bottom">
+	<Button 
+        text='{i18n>CreateButton}'
+        icon='{i18n>iSave}'
+        press='onPressCreateMaterial'
+        tooltip="{i18n>btnCreateTooltip}"
+        type='Emphasized'/>
+        <Button
+            text="{i18n>ttlRefresh}"
+            icon="{i18n>iRefresh}"
+            tooltip="{i18n>ttlRefresh}"
+            press="onRefresh"
+            />
+        <Button
+            tooltip="{i18n>ttlMessageToast}"
+            text="{i18n>ttlTest}"
+            press="MessageToast.show(${i18n>ttlMessageToast})"
+        />
+</ActionSheet>

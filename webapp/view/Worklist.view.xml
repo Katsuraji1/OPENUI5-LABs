@@ -33,11 +33,6 @@
 					<Toolbar>
 						<Title id="tableHeader" text="{worklistView>/worklistTableTitle}"/>
 						<ToolbarSpacer/>
-						<Button 
-							text='{i18n>CreateButton}'
-							icon='{i18n>iSave}'
-							press='onPressCreateMaterial'
-							type='Emphasized'/>
 						<SearchField
 							id="searchFieldMaterialText"
 							tooltip="{i18n>worklistSearchTooltip}"
@@ -46,9 +41,9 @@
 							width="auto">
 						</SearchField>
 						<Button
-						icon="{i18n>iRefresh}"
-						tooltip="{i18n>ttlRefresh}"
-						press="onRefresh"
+						text="{i18n>ttlActions}"
+						type="Attention"
+						press="onPressOpenActionSheet"
 						/>
 					</Toolbar>
 				</headerToolbar>
