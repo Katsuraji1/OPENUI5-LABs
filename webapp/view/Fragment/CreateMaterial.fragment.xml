@@ -45,9 +45,9 @@
 					selectedKey="{GroupID}"
 					width="100%"
 					items="{
-						path: '/zjblessons_base_Groups',
+						path: '/zjblessons_base_Materials',
 						sorter: {
-							path: 'GroupText',
+							path: 'MaterialText',
 							descending: true
 						},
 						filters: {
@@ -70,9 +70,9 @@
 					selectedKey="{SubGroupID}"
 					width="100%"
 					items="{
-						path: '/zjblessons_base_SubGroups',
+						path: '/zjblessons_base_Materials',
 						sorter: {
-							path: 'SubGroupText',
+							path: 'MaterialText',
 							descending: true
 						},
 						filters: {
