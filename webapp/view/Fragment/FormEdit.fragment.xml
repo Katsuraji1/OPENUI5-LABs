@@ -38,7 +38,7 @@
 									required="true"
 									id='iFormMaterialText'
 									fieldGroupIds='formInput'
-                                    enabled="{= ${objectView>/editMode} &amp;&amp; ${MaterialText} !== '' || null || undefined}"
+                                    enabled="{= ${objectView>/editMode}}"
                                     maxLength="128"
                                     width="240px"
                                     value="{MaterialText}"/>
@@ -50,7 +50,7 @@
 									required="true"
 									id='iFormMaterialDescription'
 									fieldGroupIds='formInput'
-                                    enabled="{= ${objectView>/editMode} &amp;&amp; ${MaterialDescription} !== '' || null || undefined}"
+                                    enabled="{= ${objectView>/editMode}}"
                                     width="240px"
                                     maxLength="256"
                                     value="{MaterialDescription}"/>
@@ -61,7 +61,7 @@
 								required="true"
 								id='iFormMaterialRating'
 								fieldGroupIds='formInputRating'
-								enabled="{= ${objectView>/editMode} &amp;&amp; ${Rating} !== '' || null || undefined}"
+								enabled="{= ${objectView>/editMode}}"
 								width="15em"
 								visible="{= ${objectView>/editMode}}"
 								value="{path: 'Rating', type: 'sap.ui.model.odata.type.Decimal', constraints: {precision: '3', scale: '2'}}"/> 

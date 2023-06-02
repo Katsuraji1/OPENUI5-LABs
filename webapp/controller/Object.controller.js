@@ -6,6 +6,7 @@ sap.ui.define([
 		"zjblessons/Worklist/model/formatter",
 		"sap/ui/core/Fragment",
 		"sap/ui/core/Item",
+		"sap/m/MessageBox"
 	], function (
 		BaseController,
 	JSONModel,
@@ -13,6 +14,7 @@ sap.ui.define([
 	formatter,
 	Fragment,
 	Item,
+	MessageBox,
 	) {
 		"use strict";
 
@@ -212,7 +214,7 @@ sap.ui.define([
 			_addFormContent(sMode){
 				if(!this[`pForm${sMode}`]){
 					this[`pForm${sMode}`]=Fragment.load({
-						name:"zjblessons.Worklist.view.Fragment.Form"+sMode,
+						name:"zjblessons.Worklist.view.fragment.Form"+sMode,
 						controller: this,
 						id: this.getView().getId(),
 					}).then((oContent) => {
@@ -234,7 +236,7 @@ sap.ui.define([
 				return new Promise((resolve, reject) => {
 					if(!this.pSubGroupSelectTemplate){
 						this.pSubGroupSelectTemplate = Fragment.load({
-							name: "zjblessons.Worklist.view.Fragment.SubGroupSelectTemplate",
+							name: "zjblessons.Worklist.view.fragment.SubGroupSelectTemplate",
 							controller: this,
 							id: this.getView().getId(),
 						}).then(oTemplate => oTemplate)

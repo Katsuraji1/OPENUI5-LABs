@@ -1,5 +1,6 @@
 <core:FragmentDefinition
 	xmlns:core='sap.ui.core'
+	xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns='sap.m'>
 		<Dialog
 			resizable='true'
@@ -8,7 +9,9 @@
 			contentWidth='{worklistView>/dialogParams/width}'
 			id='fCreateDialog'
 			beforeClose='onBeforeCloseDialog'
+			afterOpen='onOpenDialog'
 			title='{i18n>ttlCreateMaterial}'
+			class='sapUiSizeCompact'
 		>
 			<VBox
 				validateFieldGroup='validateFieldGroupMaterial'
@@ -21,14 +24,6 @@
 					fieldGroupIds='input'
 					maxLength="128"
 					value="{path: 'MaterialText' , type: 'sap.ui.model.odata.type.String'}"/> 
-				<Label
-					required='true'
-					text='{i18n>ttlMaterialDescription}'/>
-				<Input
-					id='iMaterialDescription'
-					fieldGroupIds='input'
-					maxLength="256"
-					value="{path: 'MaterialDescription', type: 'sap.ui.model.odata.type.String'}"/> 
 				<Label
 					required='true'
 					text='{i18n>ttlMaterialRating}'/>
@@ -85,22 +80,33 @@
 					<core:Item
 						key="{SubGroupID}"
 						text="{SubGroupText}"
-					>
-						
-					</core:Item>
+					/>
 				</Select>
-					<FlexBox
-						justifyContent='SpaceBetween'>
-					<Button
-						text='{i18n>closeDialog}'
-						icon='{i18n>iClose}'
-						press='onPressCloseCreateDialog'/>
-					<Button
-						text='{i18n>saveMaterial}'
-						icon='{i18n>iSave}'
-						press='onPressSaveCreateMaterial'
-						type="Emphasized"/>
-			</FlexBox>
+				<Label
+					required='true'
+					text='{i18n>ttlMaterialDescription}'/>
+				<TextArea
+					height="{worklistView>/textAreaHeight}"
+					width='100%'
+					id='iMaterialDescription'
+					fieldGroupIds='input'
+					maxLength="256"
+					value="{path: 'MaterialDescription', type: 'sap.ui.model.odata.type.String'}"/> 
 			</VBox>
+			<footer
+			id='footerDialog'>
+				<Toolbar>
+						<Button
+							text='{i18n>btnCloseDialog}'
+							icon='{i18n>iClose}'
+							press='onPressCloseCreateDialog'/>
+							<ToolbarSpacer/>
+						<Button
+							text='{i18n>btnSaveMaterial}'
+							icon='{i18n>iSave}'
+							press='onPressSaveCreateMaterial'
+							type="Emphasized"/>
+				</Toolbar>
+			</footer>
 		</Dialog>
 </core:FragmentDefinition>

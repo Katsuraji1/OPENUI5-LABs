@@ -5,7 +5,8 @@ sap.ui.define([
 		"zjblessons/Worklist/model/formatter",
 		"sap/ui/model/Filter",
 		"sap/ui/model/FilterOperator",
-		"sap/ui/core/Fragment"
+		"sap/ui/core/Fragment",
+	"sap/m/TextArea"
 	], function (BaseController, JSONModel, formatter, Filter, FilterOperator, Fragment) {
 		"use strict";
 
@@ -32,7 +33,8 @@ sap.ui.define([
 					dialogParams: {
 						height: '400px',
 						width: '250px',
-					}
+					},
+					textAreaHeight: '130px',
 				});
 				this.setModel(oViewModel, "worklistView");
 
@@ -70,7 +72,7 @@ sap.ui.define([
 			_loadCreateMateriaFragment: function(oEntryContext){
 				if(!this.oCreateDialog){
 					this.pCreateMaterial = Fragment.load({
-						name:"zjblessons.Worklist.view.Fragment.CreateMaterial",
+						name:"zjblessons.Worklist.view.fragment.CreateMaterial",
 						controller: this,
 						id:"fCreateDialog"
 					}).then(oDialog => {
@@ -249,6 +251,7 @@ sap.ui.define([
 					oEvent.getSource().destroy();
 					this.oCreateDialog = null;
 				}
+				sap.ui.core.ResizeHandler.deregister(oEvent.getSource())
 				this.oClearCreateDialog();
 			},
 			onPressMaterialTextDropInfo: function(oEvent){
@@ -256,7 +259,7 @@ sap.ui.define([
 
 				if(!this.oMaterialPopover){
 					this.oMaterialPopover = Fragment.load({
-						name: 'zjblessons.Worklist.view.Fragment.Popover',
+						name: 'zjblessons.Worklist.view.fragment.Popover',
 						id: this.getView().getId(),
 						controller: this
 					}).then((oPopover) => {
@@ -284,7 +287,7 @@ sap.ui.define([
 					this._pActionSheet = Fragment.load({
 						id: this.getView().getId(),
 						controller: this,
-						name: 'zjblessons.Worklist.view.Fragment.ActionSheet',
+						name: 'zjblessons.Worklist.view.fragment.ActionSheet',
 					}).then((oAction) => {
 						this.getView().addDependent(oAction);
 						return oAction;
@@ -293,6 +296,17 @@ sap.ui.define([
 
 				this._pActionSheet.then((oAction) => {
 					oAction.openBy(oSource);
+				})
+			},
+
+			onOpenDialog: function(oEvent){
+
+				const oSource= oEvent.getSource();
+
+				sap.ui.core.ResizeHandler.register(oSource, () => {
+					const footerTop = oSource.getFooter().getDomRef().getBoundingClientRect().top;
+					const textAreaTop = oSource.getContent()[0].mAggregations.items[9].getDomRef().getBoundingClientRect().top 
+					this.getModel('worklistView').setProperty('/textAreaHeight', (footerTop - textAreaTop - 20) + 'px')
 				})
 			}
 		});
