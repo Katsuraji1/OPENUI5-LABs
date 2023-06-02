@@ -304,8 +304,9 @@ sap.ui.define([
 				const oSource= oEvent.getSource();
 
 				sap.ui.core.ResizeHandler.register(oSource, () => {
-					const footerTop = oSource.getFooter().getDomRef().getBoundingClientRect().top;
-					const textAreaTop = oSource.getContent()[0].mAggregations.items[9].getDomRef().getBoundingClientRect().top 
+					const footerTop = oSource.getFooter().getDomRef().getBoundingClientRect().top,
+						aDialogAggregations =  oSource.getContent()[0].mAggregations.items,
+						textAreaTop = aDialogAggregations[aDialogAggregations.length - 1].getDomRef().getBoundingClientRect().top 
 					this.getModel('worklistView').setProperty('/textAreaHeight', (footerTop - textAreaTop - 20) + 'px')
 				})
 			}
