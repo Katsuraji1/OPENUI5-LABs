@@ -2,14 +2,14 @@
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core"
 	core:require="{ MessageToast: 'sap/m/MessageToast' }"
-	title="Choose Your Action"
+	title="{i18n>ttlPopover}"
 	showCancelButton="true"
 	placement="Bottom">
 	<Button 
-        text='{i18n>CreateButton}'
+        text='{i18n>ttlCreateButton}'
         icon='{i18n>iSave}'
         press='onPressCreateMaterial'
-        tooltip="{i18n>btnCreateTooltip}"
+        tooltip="{i18n>ttlCreateTooltip}"
         type='Emphasized'/>
         <Button
             text="{i18n>ttlRefresh}"
