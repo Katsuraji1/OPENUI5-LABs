@@ -9,7 +9,7 @@
 			contentWidth='{worklistView>/dialogParams/width}'
 			id='fCreateDialog'
 			beforeClose='onBeforeCloseDialog'
-			afterOpen='onOpenDialog'
+			afterOpen='onAfterOpenDialog'
 			title='{i18n>ttlCreateMaterial}'
 			class='sapUiSizeCompact'
 		>

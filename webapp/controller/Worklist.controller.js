@@ -113,7 +113,6 @@ sap.ui.define([
 			},
 			
 			onPressCloseCreateDialog: function(){
-				this.getModel().resetChanges();
 				this.oCreateDialog.close();
 			},
 			
@@ -251,7 +250,8 @@ sap.ui.define([
 					oEvent.getSource().destroy();
 					this.oCreateDialog = null;
 				}
-				sap.ui.core.ResizeHandler.deregister(oEvent.getSource())
+				sap.ui.core.ResizeHandler.deregister(oEvent.getSource());
+				this.getModel().resetChanges();
 				this.oClearCreateDialog();
 			},
 			onPressMaterialTextDropInfo: function(oEvent){
@@ -299,7 +299,7 @@ sap.ui.define([
 				})
 			},
 
-			onOpenDialog: function(oEvent){
+			onAfterOpenDialog: function(oEvent){
 
 				const oSource= oEvent.getSource();
 
