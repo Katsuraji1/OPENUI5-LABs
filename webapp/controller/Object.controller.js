@@ -14,7 +14,7 @@ sap.ui.define([
 	formatter,
 	Fragment,
 	Item,
-	MessageBox,
+	MessageBox
 	) {
 		"use strict";
 
