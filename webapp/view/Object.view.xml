@@ -81,7 +81,6 @@
 								id='listInputMaterialText'
 								fieldGroupIds='listInput'
 								required="true"
-								enabled="{= ${objectView>/editMode} &amp;&amp; ${MaterialText} !== '' || null || undefined}"
 								maxLength="128"
 								visible="{= ${objectView>/editMode}}"
 								width="15em"
@@ -98,7 +97,6 @@
 								id='listInputMaterialDescription'
 								fieldGroupIds='listInput'
 								required="true"
-								enabled="{= ${objectView>/editMode} &amp;&amp; ${MaterialDescription} !== '' || null || undefined}"
 								width="15em"
 								maxLength="256"
 								visible="{= ${objectView>/editMode}}"
@@ -116,7 +114,6 @@
 							id='listInputMaterialRating'
 							fieldGroupIds='listInputRating'
 							required="true"
-							enabled="{= ${objectView>/editMode} &amp;&amp; ${Rating} !== '' || null || undefined}"
 							width="15em"
 							visible="{= ${objectView>/editMode}}"
 							value="{path: 'Rating', type: 'sap.ui.model.odata.type.Decimal', constraints: {precision: '3', scale: '2'}}"/> 
