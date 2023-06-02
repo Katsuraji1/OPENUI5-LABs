@@ -117,15 +117,15 @@ sap.ui.define([
 			},
 			
 			onPressSaveCreateMaterial: function(){
-				this._validateSaveMaterial();
+				this._validateSaveMaterial(this.oCreateDialog);
 				if(!this.getModel("worklistView").getProperty('/validateError')){
 					this.getModel().submitChanges();
 					this.oCreateDialog.close()
 				}
 			},
 
-			_validateSaveMaterial: function() {
-				const fieldIds = this.getView().getControlsByFieldGroupId();
+			_validateSaveMaterial: function(oDialog) {
+				const fieldIds = oDialog.getContent()[0].getControlsByFieldGroupId();
 				fieldIds.forEach((oItem) => {
 					if(oItem.mProperties.fieldGroupIds[0]){
 						oItem.fireValidateFieldGroup()
