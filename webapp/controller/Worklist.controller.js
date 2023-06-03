@@ -35,6 +35,38 @@ sap.ui.define([
 						width: '250px',
 					},
 					textAreaHeight: '130px',
+					Messages: [
+						{
+							type: 'Error',
+							title: 'Error message',
+							active: true,
+							description: sErrorDescription,
+							subtitle: 'Example of subtitle',
+							counter: 1
+						}, {
+							type: 'Warning',
+							title: 'Warning without description',
+							description: ''
+						}, {
+							type: 'Success',
+							title: 'Success message',
+							description: 'First Success message description',
+							subtitle: 'Example of subtitle',
+							counter: 1
+						}, {
+							type: 'Error',
+							title: 'Error message',
+							description: 'Second Error message description',
+							subtitle: 'Example of subtitle',
+							counter: 2
+						}, {
+							type: 'Information',
+							title: 'Information message',
+							description: 'First Information message description',
+							subtitle: 'Example of subtitle',
+							counter: 1
+						}
+					]
 				});
 				this.setModel(oViewModel, "worklistView");
 
