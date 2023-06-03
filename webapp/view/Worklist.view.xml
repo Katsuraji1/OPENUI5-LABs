@@ -115,6 +115,8 @@
 		<semantic:footerCustomActions>
 			<Button
 				type="Success"
+				id='messagePopoverBtn'
+				press="onPressMessagePopover"
 				icon="{i18n>iInfo}"
 				text="{i18n>btnInfo}"
 			/>

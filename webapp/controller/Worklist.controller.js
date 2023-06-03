@@ -40,7 +40,7 @@ sap.ui.define([
 							type: 'Error',
 							title: 'Error message',
 							active: true,
-							description: sErrorDescription,
+							description: this.sErrorDescription,
 							subtitle: 'Example of subtitle',
 							counter: 1
 						}, {
@@ -73,9 +73,46 @@ sap.ui.define([
 				this.getRouter().getRoute('worklist').attachPatternMatched(this._onObjectMatched, this);
 
 				oTable.attachEventOnce("updateFinished", function(){
-					
 					oViewModel.setProperty("/tableBusyDelay", iOriginalBusyDelay);
 				});
+
+				this.oLink = new sap.m.Link({
+					text: "Show more information",
+					href: "http://sap.com",
+					target: "_blank"
+				});
+	
+				this.oMessageTemplate = new sap.m.MessageItem({
+					type: '{worklistView>type}',
+					title: '{worklistView>title}',
+					activeTitle: "{worklistView>active}",
+					description: '{worklistView>description}',
+					subtitle: '{worklistView>subtitle}',
+					counter: '{worklistView>counter}',
+					link: this.oLink
+				});
+	
+				this.sErrorDescription = 'First Error message description. \n' +
+					'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod' +
+					'tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,' +
+					'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo' +
+					'consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse' +
+					'cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' +
+					'proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+	
+				this.oMessagePopover = new sap.m.MessagePopover({
+					items: {
+						model: 'worklistView',
+						path: 'worklistView>/Messages',
+						template: this.oMessageTemplate
+					},
+					activeTitlePress: function () {
+						MessageToast.show('Active title is pressed');
+					}
+				});
+				
+				this.byId('messagePopoverBtn').addDependent(this.oMessagePopover)
+
 			},
 
 			onUpdateFinished : function (oEvent) {
@@ -343,7 +380,9 @@ sap.ui.define([
 				})
 			},
 
-			onPressMessagePopover: function(){}
+			onPressMessagePopover: function(oEvent){
+				this.oMessagePopover.toggle(oEvent.getSource());
+			}
 		});
 	}
 );
