@@ -92,6 +92,7 @@ sap.ui.define([
 
 			
 			onPress : function (oEvent) {
+				this.addInfoMessage(oEvent);
 				this._showObject(oEvent.getSource());
 			},
 			
@@ -161,13 +162,28 @@ sap.ui.define([
 				}
 			},
 
+			addInfoMessage: function(oEvent){
+				const materialText = oEvent.getSource().mAggregations.cells[0].mProperties.text;
+				const aMessages = this.getModel('worklistView').getProperty('/Messages');
+				
+
+				aMessages.push({
+					type: sap.ui.core.MessageType.Information,
+					title: this.getResourceBundle().getText('ttlViewed'),
+					description: `${this.getResourceBundle().getText('ttlMaterialTextMessPopover')} ${materialText}`,
+					subtitle: `${materialText} ${this.getResourceBundle().getText('msgViewed')}`,
+					counter: 1,
+					link: this.oLink
+				})
+			},
+
 			addMessageCreated: function(oData){
 				const aResponse = oData.__batchResponses[0].__changeResponses[0].data;
 				const aMessages = this.getModel('worklistView').getProperty('/Messages');
 				
 
 				aMessages.push({
-					type: this.getResourceBundle().getText('tSuccess'),
+					type: sap.ui.core.MessageType.Success,
 					title: this.getResourceBundle().getText('ttlCreated'),
 					description: `${this.getResourceBundle().getText('ttlMaterialTextMessPopover')} ${aResponse.MaterialText}`,
 					subtitle: `${aResponse.MaterialText} ${this.getResourceBundle().getText('msgCreated')}`,
@@ -180,7 +196,7 @@ sap.ui.define([
 				const aMessages = this.getModel('worklistView').getProperty('/Messages');
 
 				aMessages.push({
-					type: this.getResourceBundle().getText('tError'),
+					type: sap.ui.core.MessageType.Error,
 					title: this.getResourceBundle().getText('ttlNotCreated'),
 					description: `${this.getResourceBundle().getText('ttlError')} ${oError.message}`,
 					subtitle: `${this.oDeletedMaterial.MaterialText} ${this.getResourceBundle().getText('msgNotCreated')}`,
@@ -227,7 +243,7 @@ sap.ui.define([
 				const aMessages = this.getModel('worklistView').getProperty('/Messages');
 				
 				aMessages.push({
-					type: this.getResourceBundle().getText('tWarning'),
+					type: sap.ui.core.MessageType.Warning,
 					title: this.getResourceBundle().getText('ttlDeleted'),
 					description: `${this.getResourceBundle().getText('ttlMaterialTextMessPopover')} ${this.oDeletedMaterial.MaterialText}`,
 					subtitle: `${this.oDeletedMaterial.MaterialText} ${this.getResourceBundle().getText('msgDeleted')}`,
@@ -240,7 +256,7 @@ sap.ui.define([
 				const aMessages = this.getModel('worklistView').getProperty('/Messages');
 
 				aMessages.push({
-					type: this.getResourceBundle().getText('tError'),
+					type: sap.ui.core.MessageType.Error,
 					title: this.getResourceBundle().getText('ttlNotDeleted'),
 					description: `${this.getResourceBundle().getText('ttlError')} ${oError.message}`,
 					subtitle: `${this.oDeletedMaterial.MaterialText} ${this.getResourceBundle().getText('msgNotDeleted')}`,
