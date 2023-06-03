@@ -35,38 +35,7 @@ sap.ui.define([
 						width: '250px',
 					},
 					textAreaHeight: '130px',
-					Messages: [
-						{
-							type: 'Error',
-							title: 'Error message',
-							active: true,
-							description: this.sErrorDescription,
-							subtitle: 'Example of subtitle',
-							counter: 1
-						}, {
-							type: 'Warning',
-							title: 'Warning without description',
-							description: ''
-						}, {
-							type: 'Success',
-							title: 'Success message',
-							description: 'First Success message description',
-							subtitle: 'Example of subtitle',
-							counter: 1
-						}, {
-							type: 'Error',
-							title: 'Error message',
-							description: 'Second Error message description',
-							subtitle: 'Example of subtitle',
-							counter: 2
-						}, {
-							type: 'Information',
-							title: 'Information message',
-							description: 'First Information message description',
-							subtitle: 'Example of subtitle',
-							counter: 1
-						}
-					]
+					Messages: []
 				});
 				this.setModel(oViewModel, "worklistView");
 
@@ -91,14 +60,6 @@ sap.ui.define([
 					counter: '{worklistView>counter}',
 					link: this.oLink
 				});
-	
-				this.sErrorDescription = 'First Error message description. \n' +
-					'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod' +
-					'tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,' +
-					'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo' +
-					'consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse' +
-					'cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' +
-					'proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
 	
 				this.oMessagePopover = new sap.m.MessagePopover({
 					items: {
@@ -188,9 +149,44 @@ sap.ui.define([
 			onPressSaveCreateMaterial: function(){
 				this._validateSaveMaterial(this.oCreateDialog);
 				if(!this.getModel("worklistView").getProperty('/validateError')){
-					this.getModel().submitChanges();
+					this.getModel().submitChanges({
+						success: (oData) => {
+							this.addMessageCreated(oData);
+						},
+						error: (oError) => {
+							this.addMessageErrorCreated(oError);
+						}
+					});
 					this.oCreateDialog.close()
 				}
+			},
+
+			addMessageCreated: function(oData){
+				const aResponse = oData.__batchResponses[0].__changeResponses[0].data;
+				const aMessages = this.getModel('worklistView').getProperty('/Messages');
+				
+
+				aMessages.push({
+					type: this.getResourceBundle().getText('tSuccess'),
+					title: this.getResourceBundle().getText('ttlCreated'),
+					description: `${this.getResourceBundle().getText('ttlMaterialTextMessPopover')} ${aResponse.MaterialText}`,
+					subtitle: `${aResponse.MaterialText} ${this.getResourceBundle().getText('msgCreated')}`,
+					counter: 1,
+					link: this.oLink
+				})
+			},
+
+			addMessageErrorCreated: function(oError){
+				const aMessages = this.getModel('worklistView').getProperty('/Messages');
+
+				aMessages.push({
+					type: this.getResourceBundle().getText('tError'),
+					title: this.getResourceBundle().getText('ttlNotCreated'),
+					description: `${this.getResourceBundle().getText('ttlError')} ${oError.message}`,
+					subtitle: `${this.oDeletedMaterial.MaterialText} ${this.getResourceBundle().getText('msgNotCreated')}`,
+					counter: 1,
+					link: this.oLink
+				})
 			},
 
 			_validateSaveMaterial: function(oDialog) {
@@ -204,6 +200,7 @@ sap.ui.define([
 			
 			onPressDeleteEntry: function(oEvent){
 				this.sEntryPath = oEvent.getSource().getBindingContext().getPath();
+				this.oDeletedMaterial = oEvent.getSource().getBindingContext().getObject()
 				sap.m.MessageBox.confirm(this.getResourceBundle().getText('msgdeletionConfiramtion'),{
 					actions:[
 							sap.m.MessageBox.Action.OK,
@@ -213,10 +210,43 @@ sap.ui.define([
 					initialFocus: null,
 					onClose: function(sAction){
 						if(sAction === 'OK'){
-							this.getModel().remove(this.sEntryPath);
+							this.getModel().remove(this.sEntryPath, {
+								success: () => {
+									this.addMessageDeleted();
+								},
+								error: (oError) => {
+									this.addMessageErrorDeleted(oError);
+								}
+							});
 						}
 					}.bind(this)
 				});
+			},
+
+			addMessageDeleted: function(){
+				const aMessages = this.getModel('worklistView').getProperty('/Messages');
+				
+				aMessages.push({
+					type: this.getResourceBundle().getText('tWarning'),
+					title: this.getResourceBundle().getText('ttlDeleted'),
+					description: `${this.getResourceBundle().getText('ttlMaterialTextMessPopover')} ${this.oDeletedMaterial.MaterialText}`,
+					subtitle: `${this.oDeletedMaterial.MaterialText} ${this.getResourceBundle().getText('msgDeleted')}`,
+					counter: 1,
+					link: this.oLink
+				})
+			},
+
+			addMessageErrorDeleted: function(oError){
+				const aMessages = this.getModel('worklistView').getProperty('/Messages');
+
+				aMessages.push({
+					type: this.getResourceBundle().getText('tError'),
+					title: this.getResourceBundle().getText('ttlNotDeleted'),
+					description: `${this.getResourceBundle().getText('ttlError')} ${oError.message}`,
+					subtitle: `${this.oDeletedMaterial.MaterialText} ${this.getResourceBundle().getText('msgNotDeleted')}`,
+					counter: 1,
+					link: this.oLink
+				})
 			},
 
 			onNavBack : function() {
