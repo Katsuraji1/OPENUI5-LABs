@@ -6,6 +6,7 @@
 
 	<semantic:SemanticPage
 		id="page"
+		showFooter="true"
 		headerPinnable="false"
 		toggleHeaderOnTitleClick="false">
 		<semantic:titleHeading>
@@ -41,9 +42,9 @@
 							width="auto">
 						</SearchField>
 						<Button
-						text="{i18n>ttlActions}"
-						type="Attention"
-						press="onPressOpenActionSheet"
+							text="{i18n>ttlActions}"
+							type="Attention"
+							press="onPressOpenActionSheet"
 						/>
 					</Toolbar>
 				</headerToolbar>
@@ -111,5 +112,12 @@
 				</items>
 			</Table>
 		</semantic:content>
+		<semantic:footerCustomActions>
+			<Button
+				type="Success"
+				icon="{i18n>iInfo}"
+				text="{i18n>btnInfo}"
+			/>
+		</semantic:footerCustomActions>
 	</semantic:SemanticPage>
 </mvc:View>

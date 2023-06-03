@@ -309,7 +309,9 @@ sap.ui.define([
 						textAreaTop = aDialogAggregations[aDialogAggregations.length - 1].getDomRef().getBoundingClientRect().top 
 					this.getModel('worklistView').setProperty('/textAreaHeight', (footerTop - textAreaTop - 20) + 'px')
 				})
-			}
+			},
+
+			onPressMessagePopover: function(){}
 		});
 	}
 );
