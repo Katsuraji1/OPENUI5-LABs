@@ -67,7 +67,7 @@ sap.ui.define([
 							sIcon = sIcon !== this.getResourceBundle().getText('iError') ? this.getResourceBundle().getText('iWarning') : sIcon;
 							break;
 						case 'Success': 
-							sIcon = sIcon !== this.getResourceBundle().getText('iError') && sIcon !== this.getResourceBundle().getText('iWarning') ? this.getResourceBundle().getText('iSuccess') : sIcon;
+							sIcon = sIcon = this.getResourceBundle().getText('iError') && sIcon !== this.getResourceBundle().getText('iWarning') ? this.getResourceBundle().getText('iSuccess') : sIcon;
 							break;
 						default:
 							sIcon = !sIcon ? this.getResourceBundle().getText('iInfo') : sIcon;
@@ -82,16 +82,16 @@ sap.ui.define([
 				aMessages.forEach(function (sMessage) {
 					switch (sMessage.type) {
 						case "Error":
-							sHighestSeverityIcon = "Negative";
+							sHighestSeverityIcon = sap.m.ButtonType.Negative;
 							break;
 						case "Warning":
-							sHighestSeverityIcon = sHighestSeverityIcon !== "Negative" ? "Critical" : sHighestSeverityIcon;
+							sHighestSeverityIcon = sHighestSeverityIcon !== sap.m.ButtonType.Negative ? sap.m.ButtonType.Critical : sHighestSeverityIcon;
 							break;
 						case "Success":
-							sHighestSeverityIcon = sHighestSeverityIcon !== "Negative" && sHighestSeverityIcon !== "Critical" ?  "Success" : sHighestSeverityIcon;
+							sHighestSeverityIcon = sHighestSeverityIcon !== sap.m.ButtonType.Negative && sHighestSeverityIcon !== sap.m.ButtonType.Critical ?  sap.m.ButtonType.Success : sHighestSeverityIcon;
 							break;
 						default:
-							sHighestSeverityIcon = !sHighestSeverityIcon ? "Neutral" : sHighestSeverityIcon;
+							sHighestSeverityIcon = !sHighestSeverityIcon ? sap.m.ButtonType.Neutral : sHighestSeverityIcon;
 							break;
 					}
 				});
@@ -104,17 +104,17 @@ sap.ui.define([
 				let sHighestSeverityMessageType;
 	
 				switch (sHighestSeverityIconType) {
-					case "Negative":
-						sHighestSeverityMessageType = "Error";
+					case sap.m.ButtonType.Negative:
+						sHighestSeverityMessageType = sap.ui.core.MessageType.Error;
 						break;
-					case "Critical":
-						sHighestSeverityMessageType = "Warning";
+					case sap.m.ButtonType.Critical:
+						sHighestSeverityMessageType = sap.ui.core.MessageType.Warning;
 						break;
-					case "Success":
-						sHighestSeverityMessageType = "Success";
+					case sap.m.ButtonType.Success:
+						sHighestSeverityMessageType = sap.ui.core.MessageType.Success;
 						break;
 					default:
-						sHighestSeverityMessageType = !sHighestSeverityMessageType ? "Information" : sHighestSeverityMessageType;
+						sHighestSeverityMessageType = !sHighestSeverityMessageType ? sap.ui.core.MessageType.Information : sHighestSeverityMessageType;
 						break;
 				}
 	

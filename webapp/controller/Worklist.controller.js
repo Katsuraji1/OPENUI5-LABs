@@ -35,7 +35,7 @@ sap.ui.define([
 						width: '250px',
 					},
 					textAreaHeight: '130px',
-					Messages: []
+					Messages: [],
 				});
 				this.setModel(oViewModel, "worklistView");
 
@@ -46,7 +46,7 @@ sap.ui.define([
 				});
 
 				this.oLink = new sap.m.Link({
-					text: "Show more information",
+					text: this.getResourceBundle().getText('ttlShowMoreInfo'),
 					href: "http://sap.com",
 					target: "_blank"
 				});
@@ -66,9 +66,6 @@ sap.ui.define([
 						model: 'worklistView',
 						path: 'worklistView>/Messages',
 						template: this.oMessageTemplate
-					},
-					activeTitlePress: function () {
-						MessageToast.show('Active title is pressed');
 					}
 				});
 				
@@ -164,7 +161,7 @@ sap.ui.define([
 
 			addInfoMessage: function(oEvent){
 				const materialText = oEvent.getSource().mAggregations.cells[0].mProperties.text;
-				const aMessages = this.getModel('worklistView').getProperty('/Messages');
+				const aMessages = this.getModel('worklistView').getProperty('/Messages').slice();
 
 				aMessages.push({
 					type: sap.ui.core.MessageType.Information,
@@ -174,11 +171,13 @@ sap.ui.define([
 					counter: 1,
 					link: this.oLink
 				})
+
+				this.getModel('worklistView').setProperty('/Messages', aMessages);
 			},
 
 			addMessageCreated: function(oData){
 				const aResponse = oData.__batchResponses[0].__changeResponses[0].data;
-				const aMessages = this.getModel('worklistView').getProperty('/Messages');
+				const aMessages = this.getModel('worklistView').getProperty('/Messages').slice();
 				
 
 				aMessages.push({
@@ -189,10 +188,12 @@ sap.ui.define([
 					counter: 1,
 					link: this.oLink
 				})
+
+				this.getModel('worklistView').setProperty('/Messages', aMessages);
 			},
 
 			addMessageErrorCreated: function(oError){
-				const aMessages = this.getModel('worklistView').getProperty('/Messages');
+				const aMessages = this.getModel('worklistView').getProperty('/Messages').slice();
 
 				aMessages.push({
 					type: sap.ui.core.MessageType.Error,
@@ -202,6 +203,8 @@ sap.ui.define([
 					counter: 1,
 					link: this.oLink
 				})
+
+				this.getModel('worklistView').setProperty('/Messages', aMessages);
 			},
 
 			_validateSaveMaterial: function(oDialog) {
@@ -239,7 +242,7 @@ sap.ui.define([
 			},
 
 			addMessageDeleted: function(){
-				const aMessages = this.getModel('worklistView').getProperty('/Messages');
+				const aMessages = this.getModel('worklistView').getProperty('/Messages').slice();
 				
 				aMessages.push({
 					type: sap.ui.core.MessageType.Warning,
@@ -248,11 +251,13 @@ sap.ui.define([
 					subtitle: `${this.oDeletedMaterial.MaterialText} ${this.getResourceBundle().getText('msgDeleted')}`,
 					counter: 1,
 					link: this.oLink
-				})
+				});
+
+				this.getModel('worklistView').setProperty('/Messages', aMessages);
 			},
 
 			addMessageErrorDeleted: function(oError){
-				const aMessages = this.getModel('worklistView').getProperty('/Messages');
+				const aMessages = this.getModel('worklistView').getProperty('/Messages').slice();
 
 				aMessages.push({
 					type: sap.ui.core.MessageType.Error,
@@ -261,7 +266,9 @@ sap.ui.define([
 					subtitle: `${this.oDeletedMaterial.MaterialText} ${this.getResourceBundle().getText('msgNotDeleted')}`,
 					counter: 1,
 					link: this.oLink
-				})
+				});
+
+				this.getModel('worklistView').setProperty('/Messages', aMessages);
 			},
 
 			onNavBack : function() {
