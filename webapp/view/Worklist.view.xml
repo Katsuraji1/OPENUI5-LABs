@@ -114,11 +114,11 @@
 		</semantic:content>
 		<semantic:footerCustomActions>
 			<Button
-				type="Success"
 				id='messagePopoverBtn'
 				press="onPressMessagePopover"
-				icon="{i18n>iInfo}"
-				text="{i18n>btnInfo}"
+				type="{path: 'worklistView>/Messages', formatter: '.formatter.buttonTypeFormatter'}"
+				icon="{path: 'worklistView>/Messages', formatter: '.formatter.buttonIconFormatter'}"
+				text="{path: 'worklistView>/Messages', formatter: '.formatter.buttonTextFormatter'}"
 			/>
 		</semantic:footerCustomActions>
 	</semantic:SemanticPage>

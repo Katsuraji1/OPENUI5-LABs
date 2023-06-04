@@ -165,7 +165,6 @@ sap.ui.define([
 			addInfoMessage: function(oEvent){
 				const materialText = oEvent.getSource().mAggregations.cells[0].mProperties.text;
 				const aMessages = this.getModel('worklistView').getProperty('/Messages');
-				
 
 				aMessages.push({
 					type: sap.ui.core.MessageType.Information,
