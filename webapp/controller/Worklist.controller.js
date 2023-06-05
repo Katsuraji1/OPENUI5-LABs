@@ -89,8 +89,7 @@ sap.ui.define([
 
 			
 			onPress : function (oEvent) {
-				this.addInfoMessage(oEvent);
-				this._showObject(oEvent.getSource());
+				this._showObject(oEvent);
 			},
 			
 			_onObjectMatched: function() {
@@ -160,7 +159,7 @@ sap.ui.define([
 			},
 
 			addInfoMessage: function(oEvent){
-				const materialText = oEvent.getSource().mAggregations.cells[0].mProperties.text;
+				const materialText = oEvent.getSource().mAggregations.cells ? oEvent.getSource().mAggregations.cells[0].mProperties.text : oEvent.getSource().getParent().getParent().getTitle();
 				const aMessages = this.getModel('worklistView').getProperty('/Messages').slice();
 
 				aMessages.push({
@@ -311,8 +310,9 @@ sap.ui.define([
 				oTable.getBinding("items").refresh();
 			},
 			_showObject : function (oItem) {
+				this.addInfoMessage(oItem);
 				this.getRouter().navTo("object", {
-					objectId: oItem.getBindingContext().getProperty("MaterialID")
+					objectId: oItem.getSource().getBindingContext().getProperty("MaterialID")
 				});
 			},
 
@@ -404,7 +404,7 @@ sap.ui.define([
 			},
 
 			onPressGoToMaterial: function(oEvent){
-				this._showObject(oEvent.getSource())
+				this._showObject(oEvent)
 			},
 			onPressOpenActionSheet: function(oEvent){
 				const oSource = oEvent.getSource();
