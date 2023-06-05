@@ -51,6 +51,7 @@
 							type="Reject"
 							press="onPressOpenSelectDialog"
 						/>
+						
 					</Toolbar>
 				</headerToolbar>
 

@@ -220,7 +220,7 @@ sap.ui.define([
 					}).then((oContent) => {
 						this.fFormEditView = oContent;
 						this.getView().addDependent(this.fFormEditView);
-						return oContent;
+						return Promise.resolve(oContent);
 					})
 				}
 

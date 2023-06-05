@@ -6,20 +6,20 @@
 	showCancelButton="true"
 	placement="Bottom">
 	<Button 
-        text='{i18n>ttlCreateButton}'
+        text='{i18n>btnCreateButton}'
         icon='{i18n>iSave}'
         press='onPressCreateMaterial'
         tooltip="{i18n>ttlCreateTooltip}"
         type='Emphasized'/>
         <Button
-            text="{i18n>ttlRefresh}"
+            text="{i18n>btnRefresh}"
             icon="{i18n>iRefresh}"
-            tooltip="{i18n>ttlRefresh}"
+            tooltip="{i18n>btnRefresh}"
             press="onRefresh"
             />
         <Button
             tooltip="{i18n>ttlMessageToast}"
-            text="{i18n>ttlTest}"
+            text="{i18n>btnTest}"
             press="MessageToast.show(${i18n>ttlMessageToast})"
         />
 </ActionSheet>

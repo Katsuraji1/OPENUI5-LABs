@@ -3,7 +3,7 @@
 	xmlns:c="sap.ui.core"
 >
     <SelectDialog
-        class='sapUiResponsivePadding'
+        class='sapUiSizeCompact sapUiResponsivePadding--header sapUiResponsivePadding--subHeader sapUiResponsivePadding--content sapUiResponsivePadding--footer'
         contentWidth='400px'
         search="onSearchSelectDialog"
         liveChange="onSearchSelectDialog"
