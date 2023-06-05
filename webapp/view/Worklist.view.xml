@@ -41,7 +41,7 @@
 							width="auto">
 						</SearchField>
 						<Button
-						text="{i18n>ttlActions}"
+						text="{i18n>btnActions}"
 						type="Attention"
 						press="onPressOpenActionSheet"
 						/>

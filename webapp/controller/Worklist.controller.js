@@ -254,6 +254,9 @@ sap.ui.define([
 				this.getModel().resetChanges();
 				this.oClearCreateDialog();
 			},
+
+			//Material Popover
+
 			onPressMaterialTextDropInfo: function(oEvent){
 				const oSource = oEvent.getSource();
 
@@ -264,7 +267,7 @@ sap.ui.define([
 						controller: this
 					}).then((oPopover) => {
 						this.getView().addDependent(oPopover);
-						return oPopover;
+						return Promise.resolve(oPopover);
 					})
 				}
 				this.oMaterialPopover.then((oPopover) => {
@@ -280,6 +283,9 @@ sap.ui.define([
 			onPressGoToMaterial: function(oEvent){
 				this._showObject(oEvent.getSource())
 			},
+
+			//ActionSheet
+
 			onPressOpenActionSheet: function(oEvent){
 				const oSource = oEvent.getSource();
 
@@ -290,7 +296,7 @@ sap.ui.define([
 						name: 'zjblessons.Worklist.view.fragment.ActionSheet',
 					}).then((oAction) => {
 						this.getView().addDependent(oAction);
-						return oAction;
+						return Promise.resolve(oAction);
 					})
 				}
 
@@ -298,6 +304,8 @@ sap.ui.define([
 					oAction.openBy(oSource);
 				})
 			},
+
+			//TextArea resize
 
 			onAfterOpenDialog: function(oEvent){
 
