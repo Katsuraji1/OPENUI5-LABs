@@ -385,7 +385,7 @@ sap.ui.define([
 						controller: this
 					}).then((oPopover) => {
 						this.getView().addDependent(oPopover);
-						return oPopover;
+						return Promise.resolve(oPopover);
 					})
 				}
 				this.oMaterialPopover.then((oPopover) => {
@@ -411,7 +411,7 @@ sap.ui.define([
 						name: 'zjblessons.Worklist.view.fragment.ActionSheet',
 					}).then((oAction) => {
 						this.getView().addDependent(oAction);
-						return oAction;
+						return Promise.resolve(oAction);
 					})
 				}
 
@@ -434,7 +434,26 @@ sap.ui.define([
 
 			onPressMessagePopover: function(oEvent){
 				this.oMessagePopover.toggle(oEvent.getSource());
-			}
+			},
+
+			//Select Diloag
+
+			onPressOpenSelectDialog: function() {
+					if(!this._pSelectDialog) {
+						this._pSelectDialog = Fragment.load({
+							controller: this,
+							id: this.getView().getId(),
+							name: 'zjblessons.Worklist.view.fragment.SelectDialog'
+						}).then((oSelectDialog) => {
+							this.getView().addDependent(oSelectDialog);
+							return Promise.resolve(oSelectDialog);
+						})
+					}
+
+					this._pSelectDialog.then((oSelectDialog) => {
+						oSelectDialog.open();
+					})
+			},
 		});
 	}
 );

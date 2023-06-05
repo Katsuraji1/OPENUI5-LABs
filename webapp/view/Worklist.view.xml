@@ -42,9 +42,14 @@
 							width="auto">
 						</SearchField>
 						<Button
-							text="{i18n>ttlActions}"
+							text="{i18n>btnActions}"
 							type="Attention"
 							press="onPressOpenActionSheet"
+						/>
+						<Button 
+							text="{i18n>btnSelectDialog}"
+							type="Reject"
+							press="onPressOpenSelectDialog"
 						/>
 					</Toolbar>
 				</headerToolbar>

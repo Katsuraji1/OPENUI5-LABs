@@ -3,8 +3,9 @@
 	xmlns:c="sap.ui.core"
 >
     <SelectDialog
-        width='300px'
-        height='500px'
+        class='sapUiResponsivePadding'
+        contentWidth='400px'
+        contentHeight='500px'
         draggable="true"
         growing="true"
         growingThreshold="15"
@@ -19,6 +20,8 @@
             title="{MaterialText}"
             description="{MaterialDescription}"
 			type="Active"
+            iconInset="false"
+            iconDensityAware="false"
         />
     </SelectDialog>
 </c:FragmentDefinition>
