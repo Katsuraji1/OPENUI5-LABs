@@ -278,6 +278,10 @@ sap.ui.define([
 
 			onSearchMaterialText : function (oEvent) {
 				const sValue = oEvent.getParameter('query') || oEvent.getParameter('newValue');
+				this.byId('table').getBinding('items').filter(this.getFilters(sValue));
+			},
+
+			getFilters: function(sValue){
 				const aFilters = [];
 				if(sValue){
 					aFilters.push(
@@ -298,7 +302,8 @@ sap.ui.define([
 						})
 					)
 				};
-				this.byId('table').getBinding('items').filter(aFilters);
+
+				return aFilters;
 			},
 			
 			onRefresh : function () {
@@ -451,9 +456,15 @@ sap.ui.define([
 					}
 
 					this._pSelectDialog.then((oSelectDialog) => {
+						oSelectDialog.getBinding('items').filter([]);
 						oSelectDialog.open();
 					})
 			},
+
+			onSearchSelectDialog: function(oEvent){
+				const sValue = oEvent.getParameter('value');
+				oEvent.getParameter('itemsBinding').filter(this.getFilters(sValue));
+			}
 		});
 	}
 );

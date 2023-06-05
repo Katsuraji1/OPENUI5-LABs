@@ -5,6 +5,8 @@
     <SelectDialog
         class='sapUiResponsivePadding'
         contentWidth='400px'
+        search="onSearchSelectDialog"
+        liveChange="onSearchSelectDialog"
         contentHeight='500px'
         draggable="true"
         growing="true"
