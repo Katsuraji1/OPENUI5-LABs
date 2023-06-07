@@ -129,18 +129,19 @@ sap.ui.define([
 				this._loadCreateMateriaFragment(oEntryContext);
 			},
 
-			oClearCreateDialog: function(){
-				const fieldIds = this.getView().getControlsByFieldGroupId();
+			oClearDialog: function(oEvent){
+				const fieldIds = oEvent.getSource().getControlsByFieldGroupId();
 				fieldIds.forEach((oItem) => {
 					if(oItem.mProperties.fieldGroupIds[0]){
+						oItem.setValue('');
 						oItem.setValueState('None');
 						oItem.setValueStateText('');
 					}
 				})
 			},
 			
-			onPressCloseCreateDialog: function(){
-				this.oCreateDialog.close();
+			onPressCloseCreateDialog: function(oEvent){
+				oEvent.getSource().getParent().getParent().close();
 			},
 			
 			onPressSaveCreateMaterial: function(){
@@ -378,7 +379,7 @@ sap.ui.define([
 				}
 				sap.ui.core.ResizeHandler.deregister(oEvent.getSource());
 				this.getModel().resetChanges();
-				this.oClearCreateDialog();
+				this.oClearDialog(oEvent);
 			},
 			onPressMaterialTextDropInfo: function(oEvent){
 				const oSource = oEvent.getSource();
@@ -464,7 +465,108 @@ sap.ui.define([
 			onSearchSelectDialog: function(oEvent){
 				const sValue = oEvent.getParameter('value');
 				oEvent.getParameter('itemsBinding').filter(this.getFilters(sValue));
-			}
+			},
+
+
+			//homework 12
+
+			onPressRegistration: function(){
+				return new Promise((resolve, reject) => {
+					if(!this._pRegistrationFragment){
+						this._pRegistrationFragment = Fragment.load({
+							name: 'zjblessons.Worklist.view.fragment.Registration',
+							controller: this,
+							id: this.getView().getId()
+						}).then((oDialog) => {
+							this.getView().addDependent(oDialog)
+							return oDialog;
+						})
+					}
+
+					this._pRegistrationFragment.then((oDialog) => {
+						oDialog.data('errors',[])
+						resolve(oDialog.open())
+					}).catch((oError) => {
+						sap.m.MessageBox.error(oError.toString());
+						reject()
+					})
+				})
+			},
+
+			validateFieldGroupRegistration: function(oEvent){
+				const oSource = oEvent.getSource();
+				const aErrors =	oSource.getParent().getParent().data('errors');
+				let bSuccess = true;
+				switch(oSource.getProperty('fieldGroupIds')[0]){
+					case 'input':
+						bSuccess = !!oSource.getValue()
+						break;
+				}
+				if(bSuccess){
+					if(aErrors.indexOf(oSource) === -1) return;
+					aErrors.splice(aErrors.indexOf(oSource), 1)
+				} else {
+					if(aErrors.indexOf(oSource) === -1){
+						aErrors.push(oSource);
+					}
+				}
+
+				try{
+					oSource.setValueState(bSuccess ? 'None': 'Error');
+				} catch(oError) {
+					const oMsgStrip = new sap.m.MessageStrip({
+						text: `${oError}`,
+						showCloseButton: true,
+						showIcon: false,
+						type: sap.ui.core.MessageType.Error
+					});
+					oSource.getParent().getParent().addContent(oMsgStrip);
+				} finally {
+					this.byId('registrationSaveBtn').setEnabled(!aErrors.length);
+				}
+			},
+
+			onpRressRegistrationSave: function(oEvent){
+				this._validateRegistration(oEvent.getSource().getParent().getParent());
+			},
+
+			_validateRegistration: function(oDialog) {
+				const fieldIds = oDialog.getContent()[0].getControlsByFieldGroupId();
+				fieldIds.forEach((oItem) => {
+					if(oItem.mProperties.fieldGroupIds[0]){
+						oItem.fireValidateFieldGroup()
+					}
+				})
+			},
+
+			beforeCloseRegistrationHandler: function(oEvent){
+				this.getModel().resetChanges();
+				this.byId('registrationSaveBtn').setEnabled(true);
+				this.oClearDialog(oEvent);
+			},
+
+
+			onPressLogin: function(){
+				return new Promise((resolve, reject) => {
+					if(!this._pLoginFragment){
+						this._pLoginFragment = Fragment.load({
+							name: 'zjblessons.Worklist.view.fragment.Login',
+							controller: this,
+							id: this.getView().getId()
+						}).then((oDialog) => {
+							this.getView().addDependent(oDialog)
+							return oDialog;
+						})
+					}
+
+					this._pLoginFragment.then((oDialog) => {
+						resolve(oDialog.open());
+					}).catch((oError) => {
+						sap.m.MessageBox.error(oError.toString());
+						reject();
+					})
+				})
+			},
 		});
 	}
 );

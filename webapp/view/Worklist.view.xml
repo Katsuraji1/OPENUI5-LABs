@@ -51,7 +51,14 @@
 							type="Reject"
 							press="onPressOpenSelectDialog"
 						/>
-						
+						<Button
+						text="{i18n>btnRegistration}"
+						type="Emphasized"
+						press="onPressRegistration"/>
+						<Button
+							text="{i18n>btnLogin}"
+							type="Emphasized"
+							press="onPressLogin"/>
 					</Toolbar>
 				</headerToolbar>
 
