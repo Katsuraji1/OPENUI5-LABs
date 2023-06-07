@@ -3,10 +3,10 @@
 	xmlns='sap.m'>
 		<Dialog
 			validateFieldGroup='validateFieldGroupRegistration'
-			beforeClose='beforeCloseRegistrationHandler'
+			beforeClose='beforeCloseHandler'
 			resizable='true'
 			draggable='true'
-			id='sasfasfsa'
+			id='registrationDialog'
 			title='{i18n>ttlRegistrationDialog}'
 			class='sapUiSizeCompact'
 		>
@@ -14,19 +14,19 @@
 				class="sapUiSmallMargin">
 				<Label
 					required='true'
-					text='{i18n>ttlName}'/>
+					text='{i18n>lName}'/>
 				<Input
 					fieldGroupIds='input'
 					maxLength="128"/> 
 				<Label
 					required='true'
-					text='{i18n>ttlSurname}'/>
+					text='{i18n>lSurname}'/>
 				<Input
 					fieldGroupIds='input'
 					maxLength="128"/> 
                 <Label
 					required='true'
-					text='{i18n>ttlAge}'/>
+					text='{i18n>lAge}'/>
 				<Input
 					fieldGroupIds='input'
                     type='Number'/>

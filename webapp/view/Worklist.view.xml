@@ -59,6 +59,10 @@
 							text="{i18n>btnLogin}"
 							type="Emphasized"
 							press="onPressLogin"/>
+						<Button
+							text="{i18n>btnTimeDate}"
+							type="Emphasized"
+							press="onPressTimeDate"/>
 					</Toolbar>
 				</headerToolbar>
 

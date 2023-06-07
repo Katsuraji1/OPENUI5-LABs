@@ -495,35 +495,78 @@ sap.ui.define([
 
 			validateFieldGroupRegistration: function(oEvent){
 				const oSource = oEvent.getSource();
-				const aErrors =	oSource.getParent().getParent().data('errors');
+				const oDialog = oSource.getParent().getParent()
+				this.aErrors =	oDialog.data('errors') || [];
 				let bSuccess = true;
 				switch(oSource.getProperty('fieldGroupIds')[0]){
 					case 'input':
 						bSuccess = !!oSource.getValue()
 						break;
+					case 'timePicker':
+						bSuccess = !!oSource.getValue() && oSource._isValidValue()
+						break;
+					case 'datePicker':
+						bSuccess = !!oSource.getValue() && oSource.isValidValue()
+						break;
+					case 'inputEmail':
+						try{
+							bSuccess = this.validateEmail(oSource.getValue());;
+						} catch(oError){
+							bSuccess=false
+							this.craeteMessageErrorStrip(oSource, oError);
+						} finally {
+							//отключение кнопки "Save" сделано ниже для всех ошибок валидации
+							break;
+						}
 				}
-				if(bSuccess){
-					if(aErrors.indexOf(oSource) === -1) return;
-					aErrors.splice(aErrors.indexOf(oSource), 1)
-				} else {
-					if(aErrors.indexOf(oSource) === -1){
-						aErrors.push(oSource);
-					}
-				}
+				
 
 				try{
+					if(bSuccess){
+						if(this.aErrors.indexOf(oSource) === -1) return;
+						this.aErrors.splice(this.aErrors.indexOf(oSource), 1)
+					} else {
+						if(this.aErrors.indexOf(oSource) === -1){
+							this.aErrors.push(oSource);
+						}
+					}
 					oSource.setValueState(bSuccess ? 'None': 'Error');
 				} catch(oError) {
-					const oMsgStrip = new sap.m.MessageStrip({
-						text: `${oError}`,
-						showCloseButton: true,
-						showIcon: false,
-						type: sap.ui.core.MessageType.Error
-					});
-					oSource.getParent().getParent().addContent(oMsgStrip);
+					switch(oDialog.getId().replace('Worklist---worklist--', '')){
+						case 'registrationDialog':
+							this.craeteMessageErrorStrip(oSource, oError);
+							break;
+						case 'dateTimeDialog':
+							sap.m.MessageToast.show(oError.toString())
+							break;
+						default:
+							sap.m.MessageToast.show(oError.toString())
+							break;
+					}
 				} finally {
-					this.byId('registrationSaveBtn').setEnabled(!aErrors.length);
+					this.saveBtnSearch(oSource);
 				}
+			},
+
+			saveBtnSearch: function(oSource){
+				if(!!oSource.mAggregations.footer){
+					oSource.getFooter().mAggregations.content[2].setEnabled(!this.aErrors.length);
+				} else {
+					this.saveBtnSearch(oSource.getParent())
+				}
+			},
+
+			craeteMessageErrorStrip: function(oSource, oError){
+				if(!this.oMsgStrip) this.oMsgStrip = new sap.m.MessageStrip({
+					text: `${oError}`,
+					showCloseButton: true,
+					showIcon: false,
+					type: sap.ui.core.MessageType.Error,
+					close: () => {
+						this.oMsgStrip = null
+					}
+				});
+				oSource.getParent().getParent().addContent(this.oMsgStrip);
 			},
 
 			onpRressRegistrationSave: function(oEvent){
@@ -539,12 +582,41 @@ sap.ui.define([
 				})
 			},
 
-			beforeCloseRegistrationHandler: function(oEvent){
+			beforeCloseHandler: function(oEvent){
+				if(this.oMsgStrip) {
+					this.oMsgStrip.close()
+					this.oMsgStrip = null;
+				};
 				this.getModel().resetChanges();
-				this.byId('registrationSaveBtn').setEnabled(true);
+				oEvent.getSource().getFooter().mAggregations.content[2].setEnabled(true);
 				this.oClearDialog(oEvent);
 			},
 
+//TIME AND DATE
+
+			onPressTimeDate: function(){
+				return new Promise((resolve, reject) => {
+					if(!this._pDateTimeFragment){
+						this._pDateTimeFragment = Fragment.load({
+							name: 'zjblessons.Worklist.view.fragment.DateTime',
+							controller: this,
+							id: this.getView().getId()
+						}).then((oDialog) => {
+							this.getView().addDependent(oDialog)
+							return oDialog;
+						})
+					}
+
+					this._pDateTimeFragment.then((oDialog) => {
+						oDialog.data('errors',[])
+						resolve(oDialog.open());
+					}).catch((oError) => {
+						sap.m.MessageBox.error(oError.toString());
+						reject();
+					})
+				})
+			},
+//LOGIN
 
 			onPressLogin: function(){
 				return new Promise((resolve, reject) => {
@@ -560,12 +632,21 @@ sap.ui.define([
 					}
 
 					this._pLoginFragment.then((oDialog) => {
+						oDialog.data('errors',[])
 						resolve(oDialog.open());
 					}).catch((oError) => {
 						sap.m.MessageBox.error(oError.toString());
 						reject();
 					})
 				})
+			},
+
+			validateEmail: function(sValue){
+				const mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
+				if(!mailregex.test(sValue)){
+					throw new Error(this.getResourceBundle().getText('tValidateMailError'));
+				}
+				return mailregex.test(sValue);
 			},
 		});
 	}
