@@ -74,7 +74,6 @@ sap.ui.define([
 			},
 
 			onUpdateFinished : function (oEvent) {
-
 				var sTitle,
 					oTable = oEvent.getSource(),
 					iTotalItems = oEvent.getParameter("total");
@@ -647,6 +646,16 @@ sap.ui.define([
 					throw new Error(this.getResourceBundle().getText('tValidateMailError'));
 				}
 				return mailregex.test(sValue);
+			},
+
+			//
+
+			onPressList: function(){
+				this._showList()
+			},
+
+			_showList : function () {
+				this.getRouter().navTo("list");
 			},
 		});
 	}

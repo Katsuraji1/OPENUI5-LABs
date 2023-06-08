@@ -102,6 +102,13 @@
 					"target": [
 						"object"
 					]
+				},
+				{
+					"pattern": "list",
+					"name": "list",
+					"target": [
+						"list"
+					]
 				}
 			],
 			"targets": {
@@ -109,6 +116,12 @@
 					"viewName": "Worklist",
 					"viewId": "worklist",
 					"viewLevel": 1,
+					"title": "{i18n>worklistViewTitle}"
+				},
+				"list": {
+					"viewName": "List",
+					"viewId": "list",
+					"viewLevel": 2,
 					"title": "{i18n>worklistViewTitle}"
 				},
 				"object": {

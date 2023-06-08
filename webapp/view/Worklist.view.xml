@@ -63,6 +63,10 @@
 							text="{i18n>btnTimeDate}"
 							type="Emphasized"
 							press="onPressTimeDate"/>
+						<Button
+							text="{i18n>btnList}"
+							type="Emphasized"
+							press="onPressList"/>
 					</Toolbar>
 				</headerToolbar>
 
