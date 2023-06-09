@@ -34,26 +34,27 @@ sap.ui.define([
         _onObjectMatched : function () {
             this.getModel().read('/zjblessons_base_Materials', {
                 success: (oData) => {
-                    this._setListData(oData)
+                    this._setListData(oData);
                 }
-            })
+            });
         },
 
         _setListData: function(oData){
-            const oStandardListItem = new sap.m.StandardListItem({
-                title: "{MaterialText}",
-                description: "{MaterialDescription}"
-            });
-            const oList = this.getView().byId('list')
-            var oModel = new sap.ui.model.json.JSONModel();
-            oModel.setData({list: oData});    	  
-                            
-            oList.setModel(oModel);
+            
+            const oList = this.getView().byId('list');
+            var oModel = new sap.ui.model.json.JSONModel(oData);
             debugger;
-            oList.bindAggregation("items",{
-                path: '/list',
-                template: oStandardListItem
-            }); 
+            oModel.setData({list: oData});    	  
+            oList.setModel(oModel);
+            oList.bindItems(
+                {
+                    path: '/list',
+                    template: new sap.m.StandardListItem({
+                        title: "{MaterialText}",
+                        description: "{MaterialDescription}"
+                    })
+            }
+            ); 
         }
 	});
 });

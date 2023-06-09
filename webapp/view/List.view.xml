@@ -30,13 +30,16 @@
 			<List
 				id='list'
 				growing="true"
-				items="{path: '/list'}">
-				<items>
-					<StandardListItem
-						title="{MaterialText}"
-						description="{MaterialDescription}"
-					/>
-				</items>
+				items="{
+					path: '/list'
+				}"
+			>
+			<items>
+				<StandardListItem
+					title="{MaterialText}"
+					description="{MaterialDescription}"
+				/>
+			</items>
 			</List>
 		</semantic:content>
 		</semantic:SemanticPage>
