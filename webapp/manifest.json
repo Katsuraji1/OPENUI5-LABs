@@ -94,7 +94,7 @@
 					]
 				},
 				{
-					"pattern": "zjblessons_base_Materials/{objectId}",
+					"pattern": "zjblessons_base_Materials/object",
 					"name": "object",
 					"target": [
 						"object"

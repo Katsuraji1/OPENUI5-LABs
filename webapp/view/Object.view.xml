@@ -1,35 +1,51 @@
 <mvc:View
 	controllerName="zjblessons.Worklist.controller.Object"
 	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:semantic="sap.f.semantic">
+	xmlns:mvc="sap.ui.core.mvc">
 
-	<semantic:SemanticPage
-		id="page"
-		headerPinnable="false"
-		toggleHeaderOnTitleClick="false"
-		busy="{objectView>/busy}"
-		busyIndicatorDelay="{objectView>/delay}">
-
-		<semantic:titleHeading>
-			<Title text="{MaterialText}" />
-		</semantic:titleHeading>
-
-		<semantic:headerContent>
-			<ObjectNumber
-				number="{
-					path: 'Rating',
-					formatter: '.formatter.numberUnit'
-				}"
-				numberUnit="{Created}"
+	<ObjectHeader
+		title="{MaterialText}"
+		condensed="true"
+		number="{
+			parts:[{path:'Price'},{path:'CurrencyCode'}],
+			type: 'sap.ui.model.type.Currency',
+			formatOptions: {showMeasure: false}
+		}">
+		<attributes>
+					<ObjectAttribute text=" {i18n>ttlMaterialDescription} {MaterialDescription} {i18n>ttlRating} {Rating}"/>
+		</attributes>
+	</ObjectHeader>
+	<VBox>
+		<Label
+	text="{i18n>lMaterialText}"/>
+		<HBox
+		>
+			<Input
+				width="15em"
+				value="{MaterialText}"
 			/>
-		</semantic:headerContent>
-
-		<semantic:sendEmailAction>
-			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
-		</semantic:sendEmailAction>
-
-
-	</semantic:SemanticPage>
+			<Button
+				type="Emphasized"
+				press="onPressSubmitMaterialText"
+				class='sapUiSmallMarginBegin'
+				text="{i18n>btnSubmit}"
+			/>
+		</HBox>
+	<Label
+	text="{i18n>lMaterialDescription}"/>
+		<HBox
+		>
+			<Input
+				width="15em"
+				value="{MaterialDescription}"
+			/>
+			<Button
+				type="Emphasized"
+				press="onPressSubmitMateriaDescription"
+				class='sapUiSmallMarginBegin'
+				text="{i18n>btnSubmit}"
+			/>
+	</HBox>
+	</VBox>
 
 </mvc:View>
