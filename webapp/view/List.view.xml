@@ -28,18 +28,11 @@
 		</semantic:titleHeading>
 		<semantic:content>
 			<List
+				busy="{= ${listView>/busy}}"
+				busyIndicatorDelay="0"
 				id='list'
 				growing="true"
-				items="{
-					path: '/list'
-				}"
 			>
-			<items>
-				<StandardListItem
-					title="{MaterialText}"
-					description="{MaterialDescription}"
-				/>
-			</items>
 			</List>
 		</semantic:content>
 		</semantic:SemanticPage>
