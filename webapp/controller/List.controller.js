@@ -1,8 +1,7 @@
 sap.ui.define([
     "zjblessons/Worklist/controller/BaseController",
-	"sap/ui/core/mvc/Controller",
-    "sap/ui/model/json/JSONModel",
     "sap/ui/core/routing/History",
+    "sap/ui/model/json/JSONModel",
     "zjblessons/Worklist/model/formatter",
 ], function(
     BaseController,
@@ -33,6 +32,15 @@ sap.ui.define([
             oList.attachEventOnce("updateFinished", function(){
                 this.getModel('listView').setProperty('/busy', false) 
             });
+        },
+
+        onNavBack : function() {
+            const sPreviousHash = History.getInstance().getPreviousHash();
+            if (sPreviousHash !== undefined) {
+                history.go(-1);
+            } else {
+                this.getRouter().navTo("worklist", {}, true);
+            }
         },
 
         _onObjectMatched : function () {
