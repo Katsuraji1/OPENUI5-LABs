@@ -30,9 +30,7 @@ sap.ui.define([
 					}
 				);
 				const bus = this.getOwnerComponent().getEventBus()
-				bus.subscribe('channelA', 'orderSelected', this.bindData, this)
-				/* this.oModel = new sap.ui.model.odata.v2.ODataModel('/Material')
-				this.oModel.setDeferredGroups(['material', 'description']) */
+				bus.subscribe('channelA', 'orderSelected', this.bindData, this);
 			},
 
 			_bindView : function (sObjectPath) {
@@ -96,7 +94,10 @@ sap.ui.define([
 				this.getModel().submitChanges({
 					groupId: 'material',
 					success: () => {
-						new sap.m.MessageToast.show(this.getResourceBundle().text(''))
+						new sap.m.MessageToast.show(this.getResourceBundle().getText('msgSuccessfullyChanged'))
+					},
+					error: (oError) => {
+						new sap.m.MessageBox.error(oError.toString())
 					}
 				});
 			},
@@ -110,6 +111,12 @@ sap.ui.define([
 				})
 				this.getModel().submitChanges({
 					groupId: 'description',
+					success: () => {
+						new sap.m.MessageToast.show(this.getResourceBundle().getText('msgSuccessfullyChanged'))
+					},
+					error: (oError) => {
+						new sap.m.MessageBox.error(oError.toString())
+					}
 				});
 			},
 

@@ -37,17 +37,20 @@ sap.ui.define([
 			},
 
 
-			/* onPress : function (oEvent) {
-				this._showObject(oEvent.getSource());
-			}, */
-
 			onSelectionChange: function(oEvent){
-				const oData = oEvent.getSource().getSelectedContexts()[0].getProperty();
+				this.oData = oEvent.getSource().getSelectedContexts()[0].getProperty();
+				this._publishOData(this.oData);
+				this._showObject(this.oData.MaterialID);
+			},
+
+			_publishOData: function(oData){
 				const bus = this.getOwnerComponent().getEventBus();
-				bus.publish('channelA', 'orderSelected',{
-					oData
-				})
-				this._showObject(oData.MaterialID);
+				let timer = sap.ui.getCore().byId('Worklist---object') ? 0 : 100;
+				setTimeout(() => {
+					bus.publish('channelA', 'orderSelected',{
+						oData
+					})
+				}, timer)
 			},
 
 
