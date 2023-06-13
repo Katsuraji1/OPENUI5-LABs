@@ -98,19 +98,19 @@ sap.ui.define([
 					if(this.getModel().hasPendingChanges()){
 						this.getModel().submitChanges({
 							success: function() {
-								sap.m.MessageToast.show('Record successfully changed!',{
+								sap.m.MessageToast.show(this.getResourceBundle().getText('msgSuccessfullyChanged'),{
 									duration: 1000,
 									animationTimingFunction: "ease",
 									animationDuration: 1000, 
 								})
-							},
+							}.bind(this),
 							error: function(oError){
-								sap.m.MessageToast.show('Error!',{
+								sap.m.MessageToast.show(this.getResourceBundle().getText('msgError'),{
 									duration: 1000,
 									animationTimingFunction: "ease",
 									animationDuration: 1000, 
 								})
-							},
+							}.bind(this),
 						});
 					}
 					this._setEditMode(false);
