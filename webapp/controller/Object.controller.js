@@ -75,21 +75,39 @@ sap.ui.define([
 			},
 
 			bindData: function(channelID, eventID, parametersMap){
-				const sObjectId =  parametersMap.objectId;
+				this.getModel().setDeferredGroups(['material', 'description'])
+				const oData =  parametersMap.oData;
 				this.getModel().metadataLoaded().then( function() {
 					var sObjectPath = this.getModel().createKey("zjblessons_base_Materials", {
-						MaterialID :  sObjectId
+						groupId: ['material', 'description'],
+						MaterialID: oData.MaterialID
 					});
 					this._bindView("/" + sObjectPath);
 				}.bind(this));
 			},
 
 			onPressSubmitMaterialText: function(oEvent){
-				
+				const sPath = oEvent.getSource().getBindingContext().sPath
+				this.getModel().update(sPath, {			
+						MaterialText: this.getView().byId('inputText').getValue(),
+				}, {
+					groupId: 'material'
+				})
+				this.getModel().submitChanges({
+					groupId: 'material',
+				});
 			},
 
 			onPressSubmitMateriaDescription: function(oEvent){
-
+				const sPath = oEvent.getSource().getBindingContext().sPath
+				this.getModel().update(sPath, {
+						MaterialDescription: this.getView().byId('inputDescription').getValue(),
+				}, {
+					groupId: 'description'
+				})
+				this.getModel().submitChanges({
+					groupId: 'description',
+				});
 			},
 
 		});

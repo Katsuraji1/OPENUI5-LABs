@@ -42,12 +42,12 @@ sap.ui.define([
 			}, */
 
 			onSelectionChange: function(oEvent){
-				const objectId = oEvent.getSource().getSelectedContexts()[0].getProperty('MaterialID');
+				const oData = oEvent.getSource().getSelectedContexts()[0].getProperty();
 				const bus = this.getOwnerComponent().getEventBus();
 				bus.publish('channelA', 'orderSelected',{
-					objectId
+					oData
 				})
-				this._showObject();
+				this._showObject(oData.MaterialID);
 			},
 
 
@@ -76,8 +76,10 @@ sap.ui.define([
 				oTable.getBinding("items").refresh();
 			},
 
-			_showObject : function () {
-				this.getRouter().navTo("object");
+			_showObject : function (MaterialID) {
+				this.getRouter().navTo("object", {
+					MaterialID
+				});
 			},
 
 			

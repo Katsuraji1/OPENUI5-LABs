@@ -4,6 +4,7 @@
 	xmlns:mvc="sap.ui.core.mvc">
 
 	<ObjectHeader
+		id='objectHeaderID'
 		title="{MaterialText}"
 		condensed="true"
 		number="{
@@ -21,6 +22,7 @@
 		<HBox
 		>
 			<Input
+				id='inputText'
 				width="15em"
 				value="{MaterialText}"
 			/>
@@ -36,6 +38,7 @@
 		<HBox
 		>
 			<Input
+				id='inputDescription'
 				width="15em"
 				value="{MaterialDescription}"
 			/>
