@@ -95,6 +95,9 @@ sap.ui.define([
 				})
 				this.getModel().submitChanges({
 					groupId: 'material',
+					success: () => {
+						new sap.m.MessageToast.show(this.getResourceBundle().text(''))
+					}
 				});
 			},
 
