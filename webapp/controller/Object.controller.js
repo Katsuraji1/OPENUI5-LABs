@@ -25,14 +25,12 @@ sap.ui.define([
 
 				iOriginalBusyDelay = this.getView().setBusyIndicatorDelay(0);
 				this.setModel(oViewModel, "objectView");
-				this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
 				this.getOwnerComponent().getModel().metadataLoaded().then(function () {
 						oViewModel.setProperty("/delay", iOriginalBusyDelay);
 					}
 				);
 				const bus = this.getOwnerComponent().getEventBus()
 				bus.subscribe('channelA', 'orderSelected', this.bindData, this);
-				
 			},
 
 			_bindView : function (sObjectPath) {
@@ -55,10 +53,6 @@ sap.ui.define([
 				});
 			},
 
-			_onObjectMatched: function(){
-				this.getModel().setDeferredGroups(['material', 'description'])
-			},
-
 
 			_onBindingChange : function () {
 				var oView = this.getView(),
@@ -79,6 +73,7 @@ sap.ui.define([
 			},
 
 			bindData: function(channelID, eventID, parametersMap){
+				this.getModel().setDeferredGroups(['material', 'description'])
 				const oData =  parametersMap.oData;
 				this.getModel().metadataLoaded().then( function() {
 					var sObjectPath = this.getModel().createKey("zjblessons_base_Materials", {
