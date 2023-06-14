@@ -1,6 +1,7 @@
 <mvc:View
 	controllerName="zjblessons.Worklist.controller.Object"
 	xmlns="sap.m"
+	busy="{= ${objectView>/busy}}"
 	xmlns:mvc="sap.ui.core.mvc">
 
 	<ObjectHeader

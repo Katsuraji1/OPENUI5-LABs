@@ -23,7 +23,7 @@ sap.ui.define([
 						delay : 0
 					});
 
-				iOriginalBusyDelay = this.getView().getBusyIndicatorDelay();
+				iOriginalBusyDelay = this.getView().setBusyIndicatorDelay(0);
 				this.setModel(oViewModel, "objectView");
 				this.getOwnerComponent().getModel().metadataLoaded().then(function () {
 						oViewModel.setProperty("/delay", iOriginalBusyDelay);
@@ -85,7 +85,7 @@ sap.ui.define([
 			},
 
 			onPressSubmitMaterialText: function(oEvent){
-				const sPath = oEvent.getSource().getBindingContext().sPath
+				const sPath = oEvent.getSource().getBindingContext().sPath;
 				this.getModel().update(sPath, {			
 						MaterialText: this.getView().byId('inputText').getValue(),
 				}, {

@@ -19,7 +19,15 @@ sap.ui.define([
 				oViewModel = new JSONModel({
 					worklistTableTitle : this.getResourceBundle().getText("worklistTableTitle"),
 					tableNoDataText : this.getResourceBundle().getText("tableNoDataText"),
-					tableBusyDelay : 0
+					delay : 0,
+					busy: true,
+				});
+				const list = this.getView().byId('list');
+				this.setModel(oViewModel, 'worklistView');
+				iOriginalBusyDelay = list.setBusyIndicatorDelay(0);
+
+				list.attachEventOnce("updateFinished", function(){
+					oViewModel.setProperty("/busy", false);
 				});
 			},
 
@@ -39,8 +47,8 @@ sap.ui.define([
 
 			onSelectionChange: function(oEvent){
 				this.oData = oEvent.getSource().getSelectedContexts()[0].getProperty();
-				this._publishOData(this.oData);
 				this._showObject(this.oData.MaterialID);
+				this._publishOData(this.oData);
 			},
 
 			_publishOData: function(oData){

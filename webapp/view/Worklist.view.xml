@@ -15,7 +15,9 @@
 
 		<semantic:content>
 			<List
+				id='list'
 				backgroundDesign="Solid"
+				busy="{worklistView>/busy}"
 				growing="true"
 				mode="SingleSelectMaster"
 				growingScrollToLoad="true"
