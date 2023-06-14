@@ -86,31 +86,34 @@ sap.ui.define([
 
 			onPressSubmitMaterialText: function(oEvent){
 				const sPath = oEvent.getSource().getBindingContext().sPath;
-				this.getModel().update(sPath, {			
-						MaterialText: this.getView().byId('inputText').getValue(),
+				const input = this.getView().byId('inputText')
+				if(input.getBindingInfo('value').binding.vOriginalValue !== input.getValue()){
+					this.getModel().update(sPath, {			
+						MaterialText: input.getValue(),
 				}, {
 					groupId: 'material'
 				})
-				this.getModel().submitChanges({
-					groupId: 'material',
-					success: () => {
-						new sap.m.MessageToast.show(this.getResourceBundle().getText('msgSuccessfullyChanged'))
-					},
-					error: (oError) => {
-						new sap.m.MessageBox.error(oError.toString())
-					}
-				});
+				}
+				this._submitChanges('material');
 			},
 
 			onPressSubmitMateriaDescription: function(oEvent){
 				const sPath = oEvent.getSource().getBindingContext().sPath
-				this.getModel().update(sPath, {
-						MaterialDescription: this.getView().byId('inputDescription').getValue(),
+				const input = this.getView().byId('inputDescription')
+				if(input.getBindingInfo('value').binding.vOriginalValue !== input.getValue()){
+					this.getModel().update(sPath, {
+						MaterialDescription: input.getValue(),
 				}, {
 					groupId: 'description'
 				})
-				this.getModel().submitChanges({
-					groupId: 'description',
+				}
+				this._submitChanges('description');
+			},
+
+			_submitChanges(sGroupID){
+				if(this.getModel().hasPendingChanges(true)){
+					this.getModel().submitChanges({
+					groupId: sGroupID,
 					success: () => {
 						new sap.m.MessageToast.show(this.getResourceBundle().getText('msgSuccessfullyChanged'))
 					},
@@ -118,7 +121,8 @@ sap.ui.define([
 						new sap.m.MessageBox.error(oError.toString())
 					}
 				});
-			},
+				}
+			}
 
 		});
 
