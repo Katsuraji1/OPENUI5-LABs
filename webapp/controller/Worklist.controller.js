@@ -53,12 +53,12 @@ sap.ui.define([
 
 			_publishOData: function(oData){
 				const bus = this.getOwnerComponent().getEventBus();
-				let timer = sap.ui.getCore().byId('Worklist---object') ? 0 : 100;
+				let timer = sap.ui.getCore().byId('Worklist---object') ? 0 : 1000;
 				setTimeout(() => {
 					bus.publish('channelA', 'orderSelected',{
 						oData
 					})
-				}, timer)
+				}, timer);
 			},
 
 
@@ -89,7 +89,7 @@ sap.ui.define([
 
 			_showObject : function (MaterialID) {
 				this.getRouter().navTo("object", {
-					MaterialID
+					MaterialID,
 				});
 			},
 
