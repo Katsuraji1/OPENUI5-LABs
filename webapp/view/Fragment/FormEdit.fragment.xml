@@ -30,7 +30,7 @@
 					singleContainerFullSize="false" />
 			</f:layout>
 			<f:formContainers>
-				<f:FormContainer title="{i18n>ttlText}">
+				<f:FormContainer title="{i18n>ttlMaterialInfo}">
 					<f:formElements>
 						<f:FormElement label="{i18n>lMaterialText}">
 							<f:fields>
