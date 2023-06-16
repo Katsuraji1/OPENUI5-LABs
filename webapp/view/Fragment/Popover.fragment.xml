@@ -10,14 +10,14 @@
         <VBox>
             <FlexBox renderType="Bare" alignItems="Center" justifyContent="SpaceBetween" class='sapUiTinyMargin'>
                 <Label
-                    text="{i18n>ttlGroupTextPopover}"
+                    text="{i18n>lGroupTextPopover}"
                     design="Bold"/>
                 <Label
                     text="{GroupText}"/>
             </FlexBox>
             <FlexBox renderType="Bare" alignItems="Center" justifyContent="SpaceBetween" class='sapUiTinyMargin'>
                 <Label
-                    text="{i18n>ttlSubGroupTextPopover}"
+                    text="{i18n>lSubGroupTextPopover}"
                     design="Bold"/>
                 <Label
                     text="{SubGroupText}"/>

@@ -4,7 +4,7 @@
 	xmlns="sap.m">
 
 	<MessagePage
-		title="{i18n>notFoundTitle}"
+		title="{i18n>ttlNotFound}"
 		text="{i18n>notFoundText}"
 		icon="{sap-icon://document}"
 		id="page"

@@ -165,7 +165,7 @@ sap.ui.define([
 				aMessages.push({
 					type: sap.ui.core.MessageType.Information,
 					title: this.getResourceBundle().getText('ttlViewed'),
-					description: `${this.getResourceBundle().getText('ttlMaterialTextMessPopover')} ${materialText}`,
+					description: `${this.getResourceBundle().getText('descMaterialTextMessPopover')} ${materialText}`,
 					subtitle: `${materialText} ${this.getResourceBundle().getText('msgViewed')}`,
 					counter: 1,
 					link: this.oLink
@@ -182,7 +182,7 @@ sap.ui.define([
 				aMessages.push({
 					type: sap.ui.core.MessageType.Success,
 					title: this.getResourceBundle().getText('ttlCreated'),
-					description: `${this.getResourceBundle().getText('ttlMaterialTextMessPopover')} ${aResponse.MaterialText}`,
+					description: `${this.getResourceBundle().getText('descMaterialTextMessPopover')} ${aResponse.MaterialText}`,
 					subtitle: `${aResponse.MaterialText} ${this.getResourceBundle().getText('msgCreated')}`,
 					counter: 1,
 					link: this.oLink
@@ -246,7 +246,7 @@ sap.ui.define([
 				aMessages.push({
 					type: sap.ui.core.MessageType.Warning,
 					title: this.getResourceBundle().getText('ttlDeleted'),
-					description: `${this.getResourceBundle().getText('ttlMaterialTextMessPopover')} ${this.oDeletedMaterial.MaterialText}`,
+					description: `${this.getResourceBundle().getText('descMaterialTextMessPopover')} ${this.oDeletedMaterial.MaterialText}`,
 					subtitle: `${this.oDeletedMaterial.MaterialText} ${this.getResourceBundle().getText('msgDeleted')}`,
 					counter: 1,
 					link: this.oLink
@@ -643,7 +643,7 @@ sap.ui.define([
 			validateEmail: function(sValue){
 				const mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
 				if(!mailregex.test(sValue)){
-					throw new Error(this.getResourceBundle().getText('tValidateMailError'));
+					throw new Error(this.getResourceBundle().getText('msgValidateMailError'));
 				}
 				return mailregex.test(sValue);
 			},

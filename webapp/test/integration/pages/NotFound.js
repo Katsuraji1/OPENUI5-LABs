@@ -28,7 +28,7 @@ sap.ui.require([
 							id : "page",
 							viewName : "NotFound",
 							success : function (oPage) {
-								Opa5.assert.strictEqual(oPage.getTitle(), oPage.getModel("i18n").getProperty("notFoundTitle"), "the not found title is shown as title");
+								Opa5.assert.strictEqual(oPage.getTitle(), oPage.getModel("i18n").getProperty("ttlNotFound"), "the not found title is shown as title");
 								Opa5.assert.strictEqual(oPage.getText(), oPage.getModel("i18n").getProperty("notFoundText"), "the not found text is shown");
 							},
 							errorMessage : "Did not display the object not found text"
@@ -73,7 +73,7 @@ sap.ui.require([
 							id : "page",
 							viewName : "NotFound",
 							success: function (oPage) {
-								Opa5.assert.strictEqual(oPage.getTitle(), oPage.getModel("i18n").getProperty("notFoundTitle"), "the not found title is shown as title");
+								Opa5.assert.strictEqual(oPage.getTitle(), oPage.getModel("i18n").getProperty("ttlNotFound"), "the not found title is shown as title");
 								Opa5.assert.strictEqual(oPage.getText(), oPage.getModel("i18n").getProperty("notFoundText"), "the not found text is shown");
 							},
 							errorMessage: "Did not display the object not found text"

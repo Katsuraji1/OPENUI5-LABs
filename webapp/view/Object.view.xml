@@ -26,19 +26,19 @@
 			</HBox>
 		</semantic:titleHeading>
 		<semantic:titleCustomTextActions>
-			<Button tooltip='{i18>ttlEdit}' 
-				text='{i18n>ttlEdit}' 
+			<Button tooltip='{i18>ttEdit}' 
+				text='{i18n>btnEdit}' 
 				icon='{i18n>iEdit}'
 				type='Emphasized'
 				visible="{= !${objectView>/editMode}}"
 				press="onPressEditMaterial"/>
-			<Button tooltip='{i18>ttlCancel}' 
-				text='{i18n>ttlCancel}' 
+			<Button tooltip='{i18>ttCancel}' 
+				text='{i18n>btnCancel}' 
 				icon='{i18n>iCancel}'
 				visible='{objectView>/editMode}'
 				press="onPressCancelEditMaterial"/>
-			<Button tooltip='{i18>ttlSave}' 
-				text='{i18n>ttlSave}' 
+			<Button tooltip='{i18>ttSave}' 
+				text='{i18n>btnSave}' 
 				icon='{i18n>iSave}'
 				visible='{objectView>/editMode}'
 				press="onPressSaveEditMaterial"/>
@@ -60,7 +60,7 @@
 						headerText="{= ${objectView>/editMode} ? ${i18n>ttlEditMode} : ${i18n>ttlViewMode}}"
 					>
 						<InputListItem
-							label="{i18n>ttlChange}"
+							label="{i18n>lChange}"
 							labelTextDirection="Inherit"
 						>
 							<Switch

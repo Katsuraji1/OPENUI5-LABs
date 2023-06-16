@@ -9,7 +9,7 @@
         text='{i18n>btnCreateButton}'
         icon='{i18n>iSave}'
         press='onPressCreateMaterial'
-        tooltip="{i18n>ttlCreateTooltip}"
+        tooltip="{i18n>ttCreateMaterial}"
         type='Emphasized'/>
         <Button
             text="{i18n>btnRefresh}"
