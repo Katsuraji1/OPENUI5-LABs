@@ -87,7 +87,7 @@ sap.ui.define([
 			onPressSubmitMaterialText: function(oEvent){
 				const sPath = oEvent.getSource().getBindingContext().sPath;
 				const input = this.getView().byId('inputText')
-				if(input.getBindingInfo('value').binding.vOriginalValue !== input.getValue()){
+				if(input.getBinding('value').oValue !== input.getValue()){
 					this.getModel().update(sPath, {			
 						MaterialText: input.getValue(),
 				}, {
@@ -100,7 +100,7 @@ sap.ui.define([
 			onPressSubmitMateriaDescription: function(oEvent){
 				const sPath = oEvent.getSource().getBindingContext().sPath
 				const input = this.getView().byId('inputDescription')
-				if(input.getBindingInfo('value').binding.vOriginalValue !== input.getValue()){
+				if(input.getBinding('value').oValue !== input.getValue()){
 					this.getModel().update(sPath, {
 						MaterialDescription: input.getValue(),
 				}, {
