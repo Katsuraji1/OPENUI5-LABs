@@ -1,0 +1,157 @@
+{
+  "run": [
+    {
+      "filePath": "/webapp/index.html",
+      "previewMode": 1,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "ui5ActiveVersion": null,
+      "ui5VerSource": null,
+      "isDefaultVersion": 0,
+      "urlParameters": [],
+      "hashParameter": "",
+      "backendSystem": [],
+      "_metadata": {
+        "runnerId": "webapprunner",
+        "id": 8959092,
+        "displayName": "Run index.html",
+        "lastRunTimeStamp": 1687359562926
+      }
+    },
+    {
+      "filePath": "/Worklist/webapp/index.html",
+      "previewMode": 1,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "urlParameters": [
+        {
+          "paramName": "",
+          "paramValue": "",
+          "paramActive": false
+        },
+        {
+          "paramName": "",
+          "paramValue": "",
+          "paramActive": false
+        }
+      ],
+      "hashParameter": "",
+      "ui5ActiveVersion": "snapshot",
+      "ui5VerSource": null,
+      "isDefaultVersion": 1,
+      "_metadata": {
+        "id": "2582078",
+        "runnerId": "webapprunner",
+        "displayName": "App",
+        "lastRunTimeStamp": 1687359527786
+      }
+    },
+    {
+      "filePath": "/Worklist/webapp/test/mockServer.html",
+      "previewMode": 1,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "urlParameters": [
+        {
+          "paramName": "",
+          "paramValue": "",
+          "paramActive": false
+        },
+        {
+          "paramName": "",
+          "paramValue": "",
+          "paramActive": false
+        }
+      ],
+      "hashParameter": "",
+      "ui5ActiveVersion": "snapshot",
+      "ui5VerSource": null,
+      "isDefaultVersion": 1,
+      "_metadata": {
+        "id": "6724930",
+        "runnerId": "webapprunner",
+        "displayName": "App (Mock Server)"
+      }
+    },
+    {
+      "filePath": "/Worklist/webapp/test/unit/unitTests.qunit.html",
+      "previewMode": 1,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "ui5ActiveVersion": "snapshot",
+      "ui5VerSource": null,
+      "isDefaultVersion": 1,
+      "urlParameters": [
+        {
+          "paramName": "",
+          "paramValue": "",
+          "paramActive": false
+        },
+        {
+          "paramName": "",
+          "paramValue": "",
+          "paramActive": false
+        }
+      ],
+      "_metadata": {
+        "id": "7048266",
+        "runnerId": "webapprunner",
+        "displayName": "Unit Tests"
+      }
+    },
+    {
+      "filePath": "/Worklist/webapp/test/integration/opaTests.qunit.html",
+      "previewMode": 1,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "ui5ActiveVersion": "snapshot",
+      "ui5VerSource": null,
+      "isDefaultVersion": 1,
+      "urlParameters": [
+        {
+          "paramName": "",
+          "paramValue": "",
+          "paramActive": false
+        },
+        {
+          "paramName": "",
+          "paramValue": "",
+          "paramActive": false
+        }
+      ],
+      "hashParameter": "",
+      "_metadata": {
+        "id": "1091084",
+        "runnerId": "webapprunner",
+        "displayName": "OPA Tests"
+      }
+    },
+    {
+      "filePath": "/Worklist/webapp/test/testsuite.qunit.html",
+      "previewMode": 1,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "ui5ActiveVersion": "snapshot",
+      "ui5VerSource": null,
+      "isDefaultVersion": 1,
+      "urlParameters": [
+        {
+          "paramName": "",
+          "paramValue": "",
+          "paramActive": false
+        },
+        {
+          "paramName": "",
+          "paramValue": "",
+          "paramActive": false
+        }
+      ],
+      "hashParameter": "",
+      "_metadata": {
+        "id": "6093561",
+        "runnerId": "webapprunner",
+        "displayName": "Test Suite (Unit, OPA)"
+      }
+    }
+  ]
+}
