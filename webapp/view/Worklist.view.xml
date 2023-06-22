@@ -2,7 +2,8 @@
 	controllerName="zjblessons.Worklist.controller.Worklist"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:semantic="sap.f.semantic">
+	xmlns:semantic="sap.f.semantic"
+	xmlns:cr="zjblessons/Worklist/Control">
 
 	<semantic:SemanticPage
 		id="page"
@@ -34,6 +35,10 @@
 					<Toolbar>
 						<Title id="tableHeader" text="{worklistView>/worklistTableTitle}"/>
 						<ToolbarSpacer />
+						<cr:IconText text='{i18n>msgCustomControl}'
+								icon='{worklistView>/icon}' 
+								iconColor='{worklistView>/iconColor}'
+								press='onPressControl'/>
 						<SearchField
 							id="searchField"
 							tooltip="{i18n>worklistSearchTooltip}"
@@ -55,7 +60,7 @@
 						press="onPress">
 						<cells>
 							<ObjectIdentifier
-								title="{MaterialText}"/>
+								title="{MaterialText}"/>	
 						</cells>
 					</ColumnListItem>
 				</items>

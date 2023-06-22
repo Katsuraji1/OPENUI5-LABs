@@ -4,8 +4,14 @@ sap.ui.define([
 		"sap/ui/model/json/JSONModel",
 		"zjblessons/Worklist/model/formatter",
 		"sap/ui/model/Filter",
-		"sap/ui/model/FilterOperator"
-	], function (BaseController, JSONModel, formatter, Filter, FilterOperator) {
+		"sap/ui/model/FilterOperator",
+		"sap/m/MessageToast"
+	], function (BaseController,
+	JSONModel,
+	formatter,
+	Filter,
+	FilterOperator,
+	MessageToast) {
 		"use strict";
 
 		return BaseController.extend("zjblessons.Worklist.controller.Worklist", {
@@ -39,7 +45,9 @@ sap.ui.define([
 					shareSendEmailSubject: this.getResourceBundle().getText("shareSendEmailWorklistSubject"),
 					shareSendEmailMessage: this.getResourceBundle().getText("shareSendEmailWorklistMessage", [location.href]),
 					tableNoDataText : this.getResourceBundle().getText("tableNoDataText"),
-					tableBusyDelay : 0
+					tableBusyDelay : 0,
+					iconColor: sap.ui.core.IconColor.Critical,
+					icon: "sap-icon://accept"
 				});
 				this.setModel(oViewModel, "worklistView");
 
@@ -158,6 +166,10 @@ sap.ui.define([
 				if (aTableSearchState.length !== 0) {
 					oViewModel.setProperty("/tableNoDataText", this.getResourceBundle().getText("worklistNoDataWithSearchText"));
 				}
+			},
+
+			onPressControl: function(oEvent){
+				MessageToast.show(this.getResourceBundle().getText('msgCustomControl'))
 			}
 
 		});
