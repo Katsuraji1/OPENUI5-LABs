@@ -32,10 +32,17 @@ sap.ui.define([
             this.firePress();
         },
 
-        onBeforeRendering: function() {
-            this.getAggregation('_text').setText(this.getText());
-            this.getAggregation('_icon').setSrc(this.getIcon());
-        },
+		setText: function(fValue){
+			this.setProperty('text', fValue);
+			this.getAggregation('_text').setText(fValue);
+			return this;
+		},
+
+		setIcon: function(fValue){
+			this.getAggregation('_icon').setSrc(fValue);
+			return this;
+		},
+
 		renderer: {
 			apiVersion: 4,
 			render: function(oRm, oControl){
