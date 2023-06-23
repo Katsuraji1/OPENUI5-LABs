@@ -22,10 +22,10 @@ sap.ui.define([
 		init: function(){
 			this.setAggregation('_icon', new Icon({
 				src: this.getIcon(),
-			}));
+			}).addStyleClass("cursorPointer"));
 			this.setAggregation('_text', new Text({
 				text: this.getText()
-			}));
+			}).addStyleClass("cursorPointer"));
 		},
 
         onclick: function(){
@@ -40,6 +40,7 @@ sap.ui.define([
 			apiVersion: 4,
 			render: function(oRm, oControl){
 				oRm.openStart("div", oControl);
+				oRm.class('customControl')
 				oRm.openEnd();
 				oRm.renderControl(oControl.getAggregation("_icon").setColor(oControl.getIconColor()));
 				oRm.renderControl(oControl.getAggregation("_text"));
