@@ -8,4 +8,4 @@ fioriHtmlRunner.html
 visual_ext_index.html
 /webapp/visual_ext_index.html
 /.user.project.json
-/node_modules
+**/node_modules
