@@ -1,0 +1,112 @@
+<core:FragmentDefinition
+	xmlns:core='sap.ui.core'
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns='sap.m'>
+		<Dialog
+			resizable='true'
+			draggable='true'
+			contentHeight='{worklistView>/dialogParams/height}'
+			contentWidth='{worklistView>/dialogParams/width}'
+			id='fCreateDialog'
+			beforeClose='onBeforeCloseDialog'
+			afterOpen='onAfterOpenDialog'
+			title='{i18n>ttlCreateMaterial}'
+			class='sapUiSizeCompact'
+		>
+			<VBox
+				validateFieldGroup='validateFieldGroupMaterial'
+				class="sapUiSmallMargin">
+				<Label
+					required='true'
+					text='{i18n>ttlMaterialText}'/>
+				<Input
+					id='iMaterialText'
+					fieldGroupIds='input'
+					maxLength="128"
+					value="{path: 'MaterialText' , type: 'sap.ui.model.odata.type.String'}"/> 
+				<Label
+					required='true'
+					text='{i18n>ttlMaterialRating}'/>
+				<Input
+					id='iMaterialRating'
+					fieldGroupIds='inputRating'
+					value="{path: 'Rating', type: 'sap.ui.model.odata.type.Decimal', constraints: {precision: '3', scale: '2'}}"/> 
+				<Label
+					required='true'
+					text='{i18n>ttlGroupID}'/> 
+				<Select
+					forceSelection="false"
+					fieldGroupIds='select'
+					selectedKey="{GroupID}"
+					width="100%"
+					items="{
+						path: '/zjblessons_base_Groups',
+						sorter: {
+							path: 'GroupText',
+							descending: true
+						},
+						filters: {
+							path: 'GroupText',
+							operator: 'NE',
+							value1: null
+						}
+					}">
+					<core:Item
+						key="{GroupID}"
+						text="{GroupText}"
+					/>
+				</Select>
+				<Label
+					required='true'
+					text='{i18n>ttlSubGroupID}'/>
+				<Select
+					forceSelection="false"
+					fieldGroupIds='select'
+					selectedKey="{SubGroupID}"
+					width="100%"
+					items="{
+						path: '/zjblessons_base_SubGroups',
+						sorter: {
+							path: 'SubGroupText',
+							descending: true
+						},
+						filters: {
+							path: 'SubGroupText',
+							operator: 'NE',
+							value1: null
+						}
+					}"
+					>
+					<core:Item
+						key="{SubGroupID}"
+						text="{SubGroupText}"
+					/>
+				</Select>
+				<Label
+					required='true'
+					text='{i18n>ttlMaterialDescription}'/>
+				<TextArea
+					height="{worklistView>/textAreaHeight}"
+					width='100%'
+					id='iMaterialDescription'
+					fieldGroupIds='input'
+					maxLength="256"
+					value="{path: 'MaterialDescription', type: 'sap.ui.model.odata.type.String'}"/> 
+			</VBox>
+			<footer
+			id='footerDialog'>
+				<Toolbar>
+						<Button
+							text='{i18n>btnCloseDialog}'
+							icon='{i18n>iClose}'
+							press='onPressCloseCreateDialog'/>
+							<ToolbarSpacer/>
+						<Button
+							text='{i18n>btnSaveMaterial}'
+							icon='{i18n>iSave}'
+							press='onPressSaveCreateMaterial'
+							type="Emphasized"/>
+				</Toolbar>
+			</footer>
+		</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,38 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+>
+    <Popover
+    modal="true"
+    title="{MaterialText}"
+    class='sapUiSizeCompact'>
+
+        <VBox>
+            <FlexBox renderType="Bare" alignItems="Center" justifyContent="SpaceBetween" class='sapUiTinyMargin'>
+                <Label
+                    text="{i18n>lGroupTextPopover}"
+                    design="Bold"/>
+                <Label
+                    text="{GroupText}"/>
+            </FlexBox>
+            <FlexBox renderType="Bare" alignItems="Center" justifyContent="SpaceBetween" class='sapUiTinyMargin'>
+                <Label
+                    text="{i18n>lSubGroupTextPopover}"
+                    design="Bold"/>
+                <Label
+                    text="{SubGroupText}"/>
+            </FlexBox>
+        </VBox>
+        <footer>
+            <Toolbar>
+                <Button
+                    press="onPressCloseMaterialPopover"
+                    text="{i18n>btnClose}"/>
+                <Button
+                    press="onPressGoToMaterial"
+                    text="{i18n>btnGoToMaterial}"/>
+            </Toolbar>
+        </footer>
+
+    </Popover>
+</c:FragmentDefinition>
