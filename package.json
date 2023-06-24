@@ -20,5 +20,13 @@
   "devDependencies": {
     "@ui5/cli": "^3.3.0",
     "serve": "^14.2.0"
+  },
+  "ui5": {
+    "dependencies": [
+      "ui5-middleware-simpleproxy"
+    ]
+  },
+  "dependencies": {
+    "ui5-middleware-simpleproxy": "^0.9.9"
   }
 }
